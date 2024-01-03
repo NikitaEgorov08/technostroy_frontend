@@ -65,8 +65,7 @@ export default class ApplicationForGoods extends Vue {}
 .application-for-goods {
   position: fixed;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 2;
   height: 100vh;
   .form-container {

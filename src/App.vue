@@ -1,18 +1,18 @@
 <template>
-  <Hero />
+  <Header />
   <router-view />
   <Footer />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 
-import Hero from "@/components/Hero.vue"; // @ is an alias to /src
+import Header from "@/components/Header.vue"; // @ is an alias to /src
 
 import Footer from "./components/Footer.vue";
 
 @Options({
   components: {
-    Hero,
+    Header,
 
     Footer,
   },

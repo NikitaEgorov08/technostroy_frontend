@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="hero">
     <h1>Продажа, лизинг и ремонт спецтехники</h1>
     <img class="banner" src="../assets/image/Banner.png" alt="" />
@@ -7,12 +6,9 @@
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import Header from "@/components/Header.vue"; // @ is an alias to /src
 
 @Options({
-  components: {
-    Header,
-  },
+  components: {},
 })
 export default class Home extends Vue {}
 </script>
