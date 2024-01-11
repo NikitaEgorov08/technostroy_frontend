@@ -36,11 +36,12 @@
       <div class="contact-footer">
         <h3 class="footer-title">КОНТАКТЫ</h3>
         <p class="contact-footer-info">
-          8 (000) 000-00-00 <br />
+          +7 (908) 085-97-17 <br />
           Отдел продаж <br />
-          +7 (000) 000-00-00 <br />
-          info@mail.ru <br />
-          09:00 - 18:00 (UTC +5)<br />г. Уфа, ул. Льва Толстого, д. 13 <br />
+          +7 (908) 085-97-17 <br />
+          info@chelstroymash.ru <br />
+          09:00 - 18:00 (UTC +5)<br />
+          454012, г. Челябинск, Копейское шоссе, д.23 <br />
         </p>
         <div class="social">
           <img class="soc" src="../assets/icon/Telegram.svg" alt="" />

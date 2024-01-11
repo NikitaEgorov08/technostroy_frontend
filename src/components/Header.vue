@@ -1,14 +1,14 @@
 <template>
   <div class="header">
     <div class="header-cont">
-      <a href="">info@technostroy.ru</a>
+      <a href="mailto:info@chelstroymash.ru">info@chelstroymash.ru</a>
 
       <img src="../assets/icon/Telegram.svg" alt="" />
       <img src="../assets/icon/Whatsapp.svg" alt="" />
       <img src="../assets/icon/Vk.svg" alt="" />
       <img src="../assets/icon/Tel.svg" alt="" />
 
-      <a href="">+7 123 456 7890</a>
+      <a href="tel:+79080859717">+7 908 085 9717</a>
     </div>
     <div class="header-info">
       <router-link to="/"
