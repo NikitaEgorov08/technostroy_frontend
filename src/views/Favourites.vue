@@ -1,7 +1,7 @@
 <template>
   <h2>ИЗБРАННОЕ</h2>
   <div class="favourites">
-    <a class="select-all" href="">Удалить все</a>
+    <a class="select-all" @click="deleteAll">Удалить все</a>
 
     <div class="favourite-card" v-for="item of cartItems" :key="item.id">
       <img class="favourite-card-img" :src="item.image" alt="" />
@@ -32,7 +32,7 @@
         Отправить заявку
       </button>
       <button class="forms-btn">Купить в лизинг</button>
-      <a class="delite-btn" href="">Удалить выбранное</a>
+      <a class="delite-btn" @click="deleteChecked()">Удалить выбранное</a>
     </div>
   </div>
   <request-group-favorites-modal
@@ -51,20 +51,7 @@ import Bulldozer from "../assets/image/Bulldozer.png";
   data() {
     return {
       groupFavoritesModalVisibility: false,
-      cartItems: [
-        {
-          id: 1,
-          title: "Трактор МВР-1570",
-          image: Tractor,
-          checked: false,
-        },
-        {
-          id: 2,
-          title: "Бульдозер",
-          image: Bulldozer,
-          checked: false,
-        },
-      ],
+      cartItems: [],
     };
   },
   methods: {
@@ -75,6 +62,33 @@ import Bulldozer from "../assets/image/Bulldozer.png";
     closeModalGroupFavorites() {
       this.groupFavoritesModalVisibility = false;
     },
+    deleteAll() {
+      this.cartItems = [];
+      localStorage.clear();
+    },
+    deleteChecked() {
+      const cartItems = localStorage.getItem("cart");
+      if (cartItems) {
+        const parsed = JSON.parse(cartItems!);
+
+        const checkedElements = this.cartItems
+          .filter((item: any) => item.checked)
+          .map((item: any) => item.id);
+
+        const newCart = parsed.filter(
+          (item: any) => !checkedElements.includes(item.id)
+        );
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        this.cartItems = newCart;
+      }
+    },
+  },
+  mounted() {
+    const cartItems = localStorage.getItem("cart");
+    if (cartItems) {
+      const parsed = JSON.parse(cartItems!);
+      this.cartItems = parsed;
+    }
   },
 })
 export default class Favourites extends Vue {}
@@ -85,9 +99,11 @@ export default class Favourites extends Vue {}
   .select-all {
     display: flex;
     justify-content: end;
+    cursor: pointer;
     text-decoration: none;
     color: #fb0404;
     margin-right: 64px;
+    text-align: center;
   }
   .favourite-card {
     display: grid;
@@ -132,6 +148,7 @@ export default class Favourites extends Vue {}
   .favourites-buttons {
     display: flex;
     justify-content: end;
+
     gap: 80px;
     align-items: center;
     margin-top: 64px;
@@ -140,6 +157,14 @@ export default class Favourites extends Vue {}
       color: #fb0404;
       text-decoration: none;
       font-size: 20px;
+      cursor: pointer;
+      transition: 1s;
+      &:hover {
+        transform: scale(1.2);
+      }
+      &:active {
+        border-bottom: 1px solid #fb0404;
+      }
     }
   }
 }

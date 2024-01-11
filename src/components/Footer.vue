@@ -3,7 +3,7 @@
     <div class="footer-top">
       <img class="logo" src="../assets/Logo.svg" alt="" />
       <div class="catalog">
-        <a class="catalog-link" href="">Перейти в каталог</a>
+        <a class="catalog-link" href="/tech">Перейти в каталог</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
       </div>
@@ -17,16 +17,16 @@
     <div class="footer-menu">
       <nav class="menu-item">
         <h3 class="footer-title">КОМПАНИЯ</h3>
-        <a class="menu-link" href="">Спецтехника</a>
-        <a class="menu-link" href="">Лизинг</a>
-        <a class="menu-link" href="">Запчасти</a>
-        <a class="menu-link" href="">Ремонт спецтехники</a>
-        <a class="menu-link" href="">Оплата и доставка</a>
-        <a class="menu-link" href="">Контакты</a>
+        <a class="menu-link" href="/tech">Спецтехника</a>
+        <a class="menu-link" href="/leasing">Лизинг</a>
+        <a class="menu-link" href="/parts">Запчасти</a>
+        <a class="menu-link" href="/ServiceCatalog">Ремонт спецтехники</a>
+        <a class="menu-link" href="/paymentAndDelivery">Оплата и доставка</a>
+        <a class="menu-link" href="/contacts">Контакты</a>
       </nav>
       <nav class="menu-item">
         <h3 class="footer-title">КАТАЛОГ</h3>
-        <a class="menu-link" href="">Трактора</a>
+        <a class="menu-link" href="/techCards">Трактора</a>
         <a class="menu-link" href="">Бурильные машины</a>
         <a class="menu-link" href="">Бульдозеры</a>
         <a class="menu-link" href="">Трубоукладчики</a>

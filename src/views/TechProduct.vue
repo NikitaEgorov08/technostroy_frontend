@@ -3,7 +3,7 @@
   <div class="tech-product">
     <div class="tech-product-hero">
       <div class="tech-product-gallery">
-        <img class="tech-card-img" src="../assets/image/Drill.png" />
+        <img class="tech-card-img" src="../assets/image/Drill2.png" />
       </div>
       <div class="tech-product-info">
         <span class="">Доставка по России и СНГ</span>

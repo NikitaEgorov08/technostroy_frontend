@@ -114,16 +114,22 @@ h2 {
 .application-favorites {
   text-decoration: none;
   border: none;
-  background-color: #333;
-  padding: 0 42px;
-  height: 60px;
-  border-radius: 3px;
+  background-color: #949494;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 6px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
   font-size: 18px;
   text-wrap: nowrap;
   color: #ffcc00;
   align-items: center;
   display: flex;
+  &:hover {
+    background-color: #222;
+  }
+  &:active {
+    background-color: #000;
+  }
 }
 
 .line {
@@ -143,5 +149,9 @@ textarea:active {
 }
 textarea:focus {
   outline-color: #ffcc00;
+}
+
+.favourite-btn {
+  cursor: pointer;
 }
 </style>

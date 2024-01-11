@@ -41,6 +41,13 @@ export default class ComponentCard extends Vue {}
         position: absolute;
         right: -20%;
       }
+      &:active {
+        &::after {
+          content: url("../assets/icon/FavouriteBlack.svg");
+          position: absolute;
+          right: -20%;
+        }
+      }
     }
 
     .status {

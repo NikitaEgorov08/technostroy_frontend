@@ -1,10 +1,10 @@
 <template>
   <div class="catalog-service-card">
-    <img class="service-img" src="../assets/image/Service-img.png" />
+    <img class="service-img" :src="img" />
     <div class="service-card-info">
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">{{ text }}</p>
-      <router-link to="/Service" class="detail">Подробнее</router-link>
+      <router-link :to="url" class="detail">Подробнее</router-link>
       <button class="forms-btn service-card-btn" @click="showModal">
         Отправить заявку
       </button>
@@ -20,7 +20,7 @@ import RepairPartsModal from "./Forms/RepairPartsModal.vue";
 
 @Options({
   components: { RepairCarsModal, RepairPartsModal },
-  props: ["img", "title", "text"],
+  props: ["img", "title", "text", "url"],
   data() {
     return {
       repairCarsModalVisibility: false,
@@ -48,6 +48,8 @@ export default class CatalogServiceCard extends Vue {}
   display: flex;
   padding: 64px;
   .service-img {
+    width: 466px;
+    height: 378px;
     margin-right: 84px;
   }
   .service-card-info {

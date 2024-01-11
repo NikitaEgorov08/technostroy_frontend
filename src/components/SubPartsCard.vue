@@ -1,7 +1,7 @@
 <template>
   <router-link to="/Components" class="sub-parts-card">
     <h3 class="parts-card-title">{{ title }}</h3>
-    <img class="parts-card-img" src="../assets/image/Parts1.png" />
+    <img class="parts-card-img" :src="img" />
   </router-link>
 </template>
 <script lang="ts">
@@ -16,6 +16,7 @@ export default class SubPartsCard extends Vue {}
 <style>
 .sub-parts-card {
   position: relative;
+
   .parts-card-title {
     position: absolute;
     left: 50%;

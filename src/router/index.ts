@@ -14,6 +14,7 @@ import SubParts from "../views/SubParts.vue";
 import Components from "../views/Components.vue";
 import ComponentProduct from "../views/ComponentProduct.vue";
 import Service from "../views/Service.vue";
+import ServiceComponents from "../views/ServiceComponents.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -90,6 +91,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/service",
     name: "Service",
     component: Service,
+  },
+  {
+    path: "/serviceComponents",
+    name: "ServiceComponents",
+    component: ServiceComponents,
   },
 
   /* {

@@ -130,7 +130,7 @@ export default class CommonCalcDeliveryModal extends Vue {}
       .form-input {
         display: block;
         width: 100%;
-        margin-top: 64px;
+        margin-top: 2rem;
         background-color: none;
         border: none;
         border-bottom: 1px solid #000;

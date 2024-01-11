@@ -11,25 +11,20 @@
       спецтехники на базе тракторов ЧТЗ</span
     >
     <div class="catalog-main">
-      <CatalogPartsCard
-        title="запчасти для ТРАКТОРА"
-        img="../assets/image/Drill.png"
-      />
+      <CatalogPartsCard title="запчасти для ТРАКТОРА" :img="PartsTractor" />
       <CatalogPartsCard
         title="запчасти для БУРИЛЬНЫх МАШИН"
-        img="../assets/image/Three.png"
+        :img="PartsDrill"
       />
       <CatalogPartsCard
         title="запчасти для ТРУБОУКЛАДЧИКов"
-        img="../assets/image/Drill.png"
+        :img="PartsThree"
+        slug="truboukladchiki"
       />
-      <CatalogPartsCard
-        title="запчасти для коперов"
-        img="../assets/image/Drill.png"
-      />
+      <CatalogPartsCard title="запчасти для коперов" :img="PartsPiles" />
       <CatalogPartsCard
         title="запчасти для БУЛЬДОЗЕРов"
-        img="../assets/image/Drill.png"
+        :img="PartsBulldozer"
       />
     </div>
   </div>
@@ -37,10 +32,18 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import CatalogPartsCard from "@/components/CatalogPartsCard.vue"; // @ is an alias to /src
+import PartsTractor from "../assets/image/PartsTractor.png";
+import PartsDrill from "../assets/image/PartsDrill.png";
+import PartsThree from "../assets/image/PartsThree.png";
+import PartsPiles from "../assets/image/PartsPiles.png";
+import PartsBulldozer from "../assets/image/PartsBulldozer.png";
 
 @Options({
   components: {
     CatalogPartsCard,
+  },
+  data() {
+    return { PartsTractor, PartsDrill, PartsThree, PartsPiles, PartsBulldozer };
   },
 })
 export default class Parts extends Vue {}

@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href="" class="">Назад</a>
   </div>
-  <h2 class="leas-title">Ремонт спецтехники</h2>
+  <h2 class="leas-title">Ремонт узлов и агрегатов</h2>
   <div class="service">
     <div class="service-img">
       <img class="" src="../assets/image/ServiceTechn1.png" alt="" />
@@ -38,29 +38,29 @@
       Отправить заявку
     </button>
   </div>
-  <repair-cars-modal v-show="repairCarsModalVisibility" @close="closeModal" />
+  <repair-parts-modal v-show="repairPartsModalVisibility" @close="closeModal" />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import RepairCarsModal from "@/components/Forms/RepairCarsModal.vue";
+import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
 
 @Options({
-  components: { RepairCarsModal },
+  components: { RepairPartsModal },
   data() {
     return {
-      repairCarsModalVisibility: false,
+      repairPartsModalVisibility: false,
     };
   },
   methods: {
     showModal() {
-      this.repairCarsModalVisibility = true;
+      this.repairPartsModalVisibility = true;
     },
     closeModal() {
-      this.repairCarsModalVisibility = false;
+      this.repairPartsModalVisibility = false;
     },
   },
 })
-export default class Service extends Vue {}
+export default class ServiceComponents extends Vue {}
 </script>
 <style lang="scss">
 .service {
