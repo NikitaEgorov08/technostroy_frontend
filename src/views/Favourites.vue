@@ -4,7 +4,8 @@
     <a class="select-all" href="">Удалить все</a>
 
     <div class="favourite-card" v-for="item of cartItems" :key="item.id">
-      <div class="favourite-card-img">{{ item.image }}</div>
+      <img class="favourite-card-img" :src="item.image" alt="" />
+
       <div class="favourite-card-title">{{ item.title }}</div>
       <input
         type="checkbox"
@@ -42,6 +43,8 @@
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import RequestGroupFavoritesModal from "@/components/Forms/RequestGroupFavoritesModal.vue";
+import Tractor from "../assets/image/Tractor.png";
+import Bulldozer from "../assets/image/Bulldozer.png";
 
 @Options({
   components: { RequestGroupFavoritesModal },
@@ -52,13 +55,13 @@ import RequestGroupFavoritesModal from "@/components/Forms/RequestGroupFavorites
         {
           id: 1,
           title: "Трактор МВР-1570",
-          image: "../assets/image/Drill.png",
+          image: Tractor,
           checked: false,
         },
         {
           id: 2,
-          title: "Запасная стрела для подъемника",
-          image: "../assets/image/Drill.png",
+          title: "Бульдозер",
+          image: Bulldozer,
           checked: false,
         },
       ],
@@ -91,8 +94,12 @@ export default class Favourites extends Vue {}
     grid-template-columns: 1fr 2fr 1fr;
     padding: 36px 64px;
     border-bottom: 1px solid #fc0;
+    align-items: center;
     .favourite-card-img {
       text-align: left;
+
+      width: 200px;
+      height: 160px;
     }
     .favourite-card-title {
       text-align: left;

@@ -66,6 +66,7 @@ export default class Advantage extends Vue {}
 .vertical-line {
   width: 2px;
   height: 556px;
+  margin: 0 8px;
   background-color: #fc0;
   display: flex;
   align-items: center;

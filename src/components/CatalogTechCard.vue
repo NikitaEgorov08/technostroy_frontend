@@ -1,8 +1,8 @@
 <template>
   <router-link to="/techCards" class="menu-link"
     ><div class="catalog-card">
-      <img src="../assets/image/Drill.png" />
-      <h3 class="card-title">{{ title }}</h3>
+      <img class="catalog-cart-img" :src="img" />
+      <h3 class="card-title" :class="slug">{{ title }}</h3>
       <div class="hover-link">
         <a class="link" href="">Каталог</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
@@ -15,22 +15,35 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: ["title", "img"],
+  props: ["title", "img", "slug"],
 })
 export default class CatalogTechCard extends Vue {}
 </script>
 <style>
 .catalog-card {
   position: relative;
-
+  .catalog-cart-img {
+    width: 560px;
+    height: 368px;
+  }
   .card-title {
     position: absolute;
     top: 4%;
-    left: 10%;
+
     text-transform: uppercase;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
+    &.svaeboi,
+    &.buldozery,
+    &.traktora {
+      right: 10%;
+    }
+
+    &.burilnaya-mashina,
+    &.truboukladchiki {
+      left: 10%;
+    }
   }
   .hover-link {
     display: none;
