@@ -18,7 +18,7 @@ import ServiceComponents from "../views/ServiceComponents.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: Home,
   },

@@ -11,7 +11,7 @@
       <a href="">+7 123 456 7890</a>
     </div>
     <div class="header-info">
-      <router-link to="/Home"
+      <router-link to="/"
         ><img class="logo" src="../assets/Logo.svg" alt=""
       /></router-link>
 
@@ -169,8 +169,7 @@ export default class Header extends Vue {
       font-size: 24px;
     }
     .menu-link:hover {
-      font-weight: 700;
-
+      //font-weight: 700;
       text-decoration: underline;
     }
 
