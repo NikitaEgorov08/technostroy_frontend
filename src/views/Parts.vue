@@ -10,7 +10,7 @@
       >Мы предлагаем как новые так и б/у (восстановленные) запчасти для
       спецтехники на базе тракторов ЧТЗ</span
     >
-    <div class="catalog-main">
+    <div class="catalog-main catalog-main-mobile">
       <CatalogPartsCard title="запчасти для ТРАКТОРА" :img="PartsTractor" />
       <CatalogPartsCard
         title="запчасти для БУРИЛЬНЫх МАШИН"
@@ -56,6 +56,18 @@ export default class Parts extends Vue {}
     font-size: 24px;
     margin-left: 64px;
     display: flex;
+  }
+}
+@media (max-width: 768px) {
+  .parts {
+    .catalog-main {
+    }
+  }
+  .parts .parts-subtitle {
+    font-size: 14px;
+    padding: 12px 32px;
+    margin: 0;
+    text-align: left;
   }
 }
 </style>

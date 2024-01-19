@@ -36,4 +36,10 @@ import ContactsHome from "@/components/ContactsHome.vue";
 export default class Home extends Vue {}
 </script>
 
-<style></style>
+<style>
+@media (max-width: 768px) {
+  .line {
+    display: none;
+  }
+}
+</style>

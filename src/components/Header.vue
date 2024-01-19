@@ -1,7 +1,9 @@
 <template>
   <div class="header">
     <div class="header-cont">
-      <a href="mailto:info@chelstroymash.ru">info@chelstroymash.ru</a>
+      <a class="header-mail" href="mailto:info@chelstroymash.ru"
+        >info@chelstroymash.ru</a
+      >
 
       <img src="../assets/icon/Telegram.svg" alt="" />
       <img src="../assets/icon/Whatsapp.svg" alt="" />
@@ -22,13 +24,23 @@
       <div class="search">
         <input class="search-bar" type="text" placeholder="Поиск" />
 
-        <img src="../assets/icon/Search.svg" alt="" />
+        <img class="search-icon" src="../assets/icon/Search.svg" alt="" />
       </div>
       <router-link to="/Favourites">
-        <img src="../assets/icon/Cart.svg" alt=""
+        <img class="favourites-icon" src="../assets/icon/Cart.svg" alt=""
       /></router-link>
 
       <button class="request" @click="showModal">Отправить заявку</button>
+
+      <div
+        class="hamburger-menu"
+        :class="{ close: mobileMenuVisibility }"
+        @click="mobileMenu"
+      >
+        <div class="hamburger one"></div>
+        <div class="hamburger two"></div>
+        <div class="hamburger three"></div>
+      </div>
     </div>
 
     <nav class="menu-item">
@@ -47,20 +59,24 @@
     </nav>
   </div>
   <application-for-goods v-show="cartModalVisibility" @close="closeModal" />
+  <mobile-menu v-show="mobileMenuVisibility" @close="closeMobileMenu" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import ApplicationForGoods from "./Forms/ApplicationForGoods.vue";
+import MobileMenu from "./Forms/MobileMenu.vue";
 
 @Options({
-  components: { ApplicationForGoods },
+  components: { ApplicationForGoods, MobileMenu },
   props: {
     msg: String,
   },
   data() {
     return {
       cartModalVisibility: false,
+      listIsVisible: false,
+      mobileMenuVisibility: false,
     };
   },
   methods: {
@@ -69,6 +85,19 @@ import ApplicationForGoods from "./Forms/ApplicationForGoods.vue";
     },
     closeModal() {
       this.cartModalVisibility = false;
+    },
+    openMobileMenu() {
+      this.mobileMenuVisibility = true;
+    },
+    closeMobileMenu() {
+      this.mobileMenuVisibility = false;
+    },
+    mobileMenu() {
+      if (this.mobileMenuVisibility) {
+        this.closeMobileMenu();
+      } else {
+        this.openMobileMenu();
+      }
     },
   },
 })
@@ -82,7 +111,7 @@ export default class Header extends Vue {
 .header {
   .header-cont {
     background-color: #333;
-    height: 32px;
+    padding: 8px 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -100,13 +129,14 @@ export default class Header extends Vue {
 
   .header-info {
     position: relative;
-
     background-color: #ffcc00;
     width: 100%;
-    height: 88px;
-    display: flex;
+    padding: 12px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+    grid-column-gap: 16px;
     align-items: center;
-    justify-content: end;
+
     .logo {
       position: absolute;
       top: 50%;
@@ -124,7 +154,6 @@ export default class Header extends Vue {
     .search {
       display: flex;
       align-items: center;
-      margin-right: 64px;
 
       .search-bar {
         width: 625px;
@@ -142,9 +171,9 @@ export default class Header extends Vue {
       background-color: #333;
       border: none;
       padding: 10px 20px;
+      max-width: 200px;
       color: #ffcc00;
       margin-right: 64px;
-      margin-left: 18px;
 
       cursor: pointer;
       &:hover {
@@ -160,7 +189,7 @@ export default class Header extends Vue {
     display: flex;
     justify-content: space-around;
     background-color: #333;
-    height: 80px;
+    padding: 24px 0;
     display: flex;
     align-items: center;
     .menu-link {
@@ -176,6 +205,139 @@ export default class Header extends Vue {
     .menu-link:focus {
       font-weight: 700;
       text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 1899px) {
+  .header .header-info .logo-title {
+  }
+  .header .header-info .search .search-bar {
+  }
+}
+@media (max-width: 1600px) {
+  .header .header-info {
+    grid-template-columns: 0.5fr 1fr 2fr 0.3fr 1fr;
+  }
+  .header .header-info .search .search-bar {
+    width: 400px;
+  }
+
+  .header .header-info .request {
+    margin-right: 24px;
+  }
+  .header .header-info .logo-title {
+    font-size: 12px;
+  }
+
+  .header .menu-item {
+    padding: 12px 0;
+  }
+  .header .menu-item .menu-link {
+    font-size: 16px;
+  }
+  .header .header-info .logo {
+    height: 86px;
+  }
+}
+@media (max-width: 1199px) {
+  .header .header-info .search .search-bar {
+    width: 320px;
+    height: 32px;
+  }
+  .header .header-info .search .search-icon {
+    height: 24px;
+  }
+  .header .header-info .favourites-icon {
+    display: flex;
+    height: 24px;
+  }
+  .header .menu-item .menu-link {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1000px) {
+  .header .header-info {
+    padding: 6px 0;
+    gap: 4px;
+  }
+  .header .header-info .search .search-bar {
+    width: 200px;
+  }
+  .header .header-info .logo-title {
+    font-size: 23px;
+  }
+  .header .header-info .logo-title {
+    font-size: 8px;
+  }
+  .header .header-info .logo {
+    height: 56px;
+  }
+  .header .header-info .request {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  .header .menu-item .menu-link {
+    font-size: 10px;
+  }
+}
+@media (max-width: 700px) {
+  .header .header-info .logo-title {
+    display: none;
+  }
+  .header .header-info .request {
+    display: none;
+  }
+  .header .header-info .favourites-icon {
+    display: none;
+  }
+  .header .header-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0fr 1fr;
+    gap: 8px;
+  }
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .header .header-cont .header-mail {
+    display: none;
+  }
+  .header .menu-item .menu-link {
+    display: none;
+  }
+
+  .header .header-info .logo {
+    z-index: 4;
+    left: 2%;
+  }
+  .header {
+    .header-info {
+      .hamburger-menu {
+        display: block;
+        margin: 0 auto;
+        .hamburger {
+          width: 30px;
+          height: 3px;
+          background-color: white;
+          margin: 5px;
+          background-color: #333;
+        }
+      }
+      .close {
+        .one {
+          position: absolute;
+          transform: rotate(45deg);
+        }
+        .two {
+          position: relative;
+          transform: rotate(-45deg);
+        }
+        .three {
+          display: none;
+        }
+      }
     }
   }
 }

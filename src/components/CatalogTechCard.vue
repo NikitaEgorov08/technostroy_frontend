@@ -23,7 +23,6 @@ export default class CatalogTechCard extends Vue {}
 .catalog-card {
   position: relative;
   .catalog-cart-img {
-    width: 560px;
     height: 368px;
   }
   .card-title {
@@ -75,6 +74,68 @@ export default class CatalogTechCard extends Vue {}
         margin: 0 6px;
       }
     }
+  }
+}
+@media (max-width: 1899px) {
+  .catalog-card .catalog-cart-img {
+    height: 340px;
+  }
+}
+@media (max-width: 1600px) {
+  .catalog-card .catalog-cart-img {
+    height: 280px;
+  }
+  .catalog-card .card-title {
+    &.burilnaya-mashina,
+    &.truboukladchiki {
+      left: 8%;
+      font-size: 18px;
+    }
+  }
+  .catalog-card .card-title {
+    &.svaeboi,
+    &.buldozery,
+    &.traktora {
+      right: 8%;
+      font-size: 18px;
+    }
+  }
+}
+@media (max-width: 1365px) {
+  .catalog-card .catalog-cart-img {
+    height: 240px;
+  }
+}
+@media (max-width: 1199px) {
+  .catalog-card .card-title {
+    &.burilnaya-mashina,
+    &.truboukladchiki {
+      font-size: 14px;
+    }
+  }
+  .catalog-card .card-title {
+    &.svaeboi,
+    &.buldozery,
+    &.traktora {
+      font-size: 14px;
+    }
+  }
+}
+@media (max-width: 1199px) {
+  .menu-link {
+    margin: auto 12px;
+  }
+  .catalog-card {
+  }
+  .catalog-card .catalog-cart-img {
+    height: 220px;
+  }
+}
+@media (max-width: 768px) {
+  .catalog-card .catalog-cart-img {
+    height: auto;
+    width: calc(100vw - 30px);
+    scroll-snap-align: center;
   }
 }
 </style>

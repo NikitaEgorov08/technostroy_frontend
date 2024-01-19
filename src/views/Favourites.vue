@@ -31,7 +31,9 @@
       <button class="application-favorites" @click="showModalGroupFavorites">
         Отправить заявку
       </button>
-      <button class="forms-btn">Купить в лизинг</button>
+      <button class="forms-btn" @click="showModalLeasing">
+        Купить в лизинг
+      </button>
       <a class="delite-btn" @click="deleteChecked()">Удалить выбранное</a>
     </div>
   </div>
@@ -39,18 +41,25 @@
     v-show="groupFavoritesModalVisibility"
     @close="closeModalGroupFavorites"
   />
+  <leasing-request-modal
+    v-show="leasingRequestModalVisibility"
+    @close="closeModalLeasing"
+  />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import RequestGroupFavoritesModal from "@/components/Forms/RequestGroupFavoritesModal.vue";
+import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
+
 import Tractor from "../assets/image/Tractor.png";
 import Bulldozer from "../assets/image/Bulldozer.png";
 
 @Options({
-  components: { RequestGroupFavoritesModal },
+  components: { RequestGroupFavoritesModal, LeasingRequestModal },
   data() {
     return {
       groupFavoritesModalVisibility: false,
+      leasingRequestModalVisibility: false,
       cartItems: [],
     };
   },
@@ -61,6 +70,13 @@ import Bulldozer from "../assets/image/Bulldozer.png";
 
     closeModalGroupFavorites() {
       this.groupFavoritesModalVisibility = false;
+    },
+    showModalLeasing() {
+      this.leasingRequestModalVisibility = true;
+    },
+
+    closeModalLeasing() {
+      this.leasingRequestModalVisibility = false;
     },
     deleteAll() {
       this.cartItems = [];
@@ -114,7 +130,6 @@ export default class Favourites extends Vue {}
     .favourite-card-img {
       text-align: left;
 
-      width: 200px;
       height: 160px;
     }
     .favourite-card-title {
@@ -166,6 +181,46 @@ export default class Favourites extends Vue {}
         border-bottom: 1px solid #fb0404;
       }
     }
+  }
+}
+
+@media (max-width: 1365px) {
+  .favourites {
+    padding: 32px;
+  }
+  .favourites .favourite-card {
+    padding: 24px 32px;
+    .favourite-card-img {
+      height: 120px;
+    }
+  }
+  .favourites .favourite-card {
+    height: 120px;
+  }
+
+  .favourites .select-all {
+    margin-right: 24px;
+  }
+  .favourites .favourites-buttons {
+    gap: 40px;
+    margin-right: 24px;
+  }
+}
+@media (max-width: 1000px) {
+  .favourites .favourite-card .favourite-card-img {
+    height: 80px;
+  }
+}
+@media (max-width: 768px) {
+  .favourites .favourite-card .favourite-card-img {
+    height: 56px;
+  }
+  .favourites .favourite-card {
+    grid-template-columns: 1fr 2fr 0.5fr;
+    padding: 0;
+  }
+  .favourites .favourites-buttons {
+    flex-wrap: wrap;
   }
 }
 </style>

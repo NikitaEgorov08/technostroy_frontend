@@ -80,4 +80,9 @@ export default class ServiceComponents extends Vue {}
     margin-left: auto;
   }
 }
+@media (max-width: 1000px) {
+  .service {
+    padding: 32px;
+  }
+}
 </style>

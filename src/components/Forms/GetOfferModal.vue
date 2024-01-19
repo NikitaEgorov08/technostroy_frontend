@@ -153,8 +153,8 @@ export default class GetOfferModal extends Vue {}
       .form-comment-uploading {
         display: block;
         width: 100%;
-        height: 160px;
-        margin-top: 64px;
+        height: 6rem;
+        margin-top: 2rem;
         padding: 6px 0 0 6px;
         background-color: none;
 
@@ -175,10 +175,9 @@ export default class GetOfferModal extends Vue {}
 
       .form-bottom {
         font-size: 14px;
-        margin-top: 64px;
       }
       .form-btn {
-        margin-top: 64px;
+        margin-top: 2em;
         margin-bottom: 8px;
         display: flex;
         justify-content: center;
@@ -192,6 +191,16 @@ export default class GetOfferModal extends Vue {}
         }
       }
     }
+  }
+}
+@media (max-width: 1600px) {
+  .get-offer-modal .form-container .form-info .form-input {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .get-offer-modal {
+    width: 100%;
   }
 }
 </style>

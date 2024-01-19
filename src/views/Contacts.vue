@@ -5,7 +5,7 @@
   </div>
   <h2 class="leas-title">Контакты</h2>
   <div class="contacts-home">
-    <div class="contact-block">
+    <div class="contacts-block">
       <div class="contact-info">
         <ContactCard
           name="ООО “Торговый Дом “Челябинские строительные машины”
@@ -54,9 +54,9 @@ export default class Contacts extends Vue {}
 <style>
 .contacts-home {
   padding: 0 64px;
-  .contact-block {
+  .contacts-block {
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 2fr;
     margin-top: 64px;
   }
   .contact-map {
@@ -64,6 +64,22 @@ export default class Contacts extends Vue {}
   }
   .contacts-form {
     width: 100%;
+  }
+}
+@media (max-width: 1899px) {
+  .about-info {
+    grid-column-gap: 120px;
+  }
+}
+
+@media (max-width: 1365px) {
+  .contacts-home .contacts-block {
+    margin-top: 32px;
+  }
+}
+@media (max-width: 1000px) {
+  .contacts-home {
+    padding: 32px;
   }
 }
 </style>

@@ -6,9 +6,21 @@
   <h2 class="leas-title">Ремонт спецтехники</h2>
   <div class="service">
     <div class="service-img">
-      <img class="" src="../assets/image/ServiceTechn1.png" alt="" />
-      <img class="" src="../assets/image/ServiceTechn2.png" alt="" />
-      <img class="" src="../assets/image/ServiceTechn3.png" alt="" />
+      <img
+        class="service-img-item"
+        src="../assets/image/ServiceTechn1.png"
+        alt=""
+      />
+      <img
+        class="service-img-item"
+        src="../assets/image/ServiceTechn2.png"
+        alt=""
+      />
+      <img
+        class="service-img-item"
+        src="../assets/image/ServiceTechn3.png"
+        alt=""
+      />
     </div>
     <div class="service-text">
       Также как новая модель организационной деятельности способствует
@@ -69,6 +81,9 @@ export default class Service extends Vue {}
   .service-img {
     display: flex;
     justify-content: space-between;
+    .service-img-item {
+      width: 30%;
+    }
   }
 
   .service-text {
@@ -78,6 +93,18 @@ export default class Service extends Vue {}
 
   .service-btn {
     margin-left: auto;
+  }
+}
+
+@media (max-width: 1365px) {
+  .service .service-text {
+    text-align: left;
+    padding: 40px 0;
+  }
+}
+@media (max-width: 1000px) {
+  .service {
+    padding: 32px;
   }
 }
 </style>

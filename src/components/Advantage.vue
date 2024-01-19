@@ -59,7 +59,7 @@ export default class Advantage extends Vue {}
 </script>
 <style>
 .advantage {
-  padding: 0 64px;
+  padding: 32px 64px;
   display: flex;
   justify-content: space-between;
 }
@@ -70,5 +70,28 @@ export default class Advantage extends Vue {}
   background-color: #fc0;
   display: flex;
   align-items: center;
+}
+@media (max-width: 1000px) {
+  .advantage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 32px;
+  }
+  .vertical-line {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .advantage {
+    flex-wrap: nowrap;
+
+    scroll-behavior: smooth;
+    justify-content: space-between;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
 }
 </style>

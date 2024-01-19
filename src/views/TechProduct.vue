@@ -2,14 +2,20 @@
   <h2>Буровая машина БМП 045</h2>
   <div class="tech-product">
     <div class="tech-product-hero">
+      <span class="ru-sng-mobile">Доставка по России и СНГ</span>
+      <div class="top-mobile">
+        <a class="favourite-btn-mobile" @click="addToCart">В избранное</a>
+        <span class="status-mobile">В наличии</span>
+      </div>
       <div class="tech-product-gallery">
         <img class="tech-card-img" src="../assets/image/Drill2.png" />
       </div>
       <div class="tech-product-info">
-        <span class="">Доставка по России и СНГ</span>
+        <span class="ru-sng">Доставка по России и СНГ</span>
+
         <span class="status">В наличии</span>
 
-        <h3>Буровая машина БМП 045</h3>
+        <h3>{{ title }}</h3>
         <p class="product-info">
           Буровая машина передвижная предназначена для бурения скважин
           вращательным способом со шнековой очисткой под сваи, опоры и для
@@ -26,11 +32,14 @@
         </p>
         <a class="detailed-btn" href="">Подробнее</a>
         <div class="tech-product-buttons">
-          <a class="favourite-btn" href="">В избранное</a>
+          <a class="favourite-btn" @click="addToCart">В избранное</a>
           <button class="request-btn" @click="showModalPrice">
             Запросить цену
           </button>
-          <button class="forms-btn" @click="showModalLeasing">
+          <button
+            class="forms-btn forms-btn-adaptive"
+            @click="showModalLeasing"
+          >
             Купить в лизинг
           </button>
         </div>
@@ -74,6 +83,7 @@ import GetOfferModal from "@/components/Forms/GetOfferModal.vue";
       repairPriceModalVisibility: false,
       leasingRequestModalVisibility: false,
       getOfferModalVisibility: false,
+      title: "Буровая машина БМП 045",
     };
   },
   methods: {
@@ -98,6 +108,23 @@ import GetOfferModal from "@/components/Forms/GetOfferModal.vue";
     closeModalOffer() {
       this.getOfferModalVisibility = false;
     },
+    addToCart() {
+      const tovar = {
+        id: Math.round(Math.random() * 100),
+        title: this.title,
+        image: "http://localhost:8080/img/Tractor.135f9fd1.png",
+        checked: false,
+      };
+      const currentCart = localStorage.getItem("cart");
+
+      if (currentCart) {
+        const currentCartItems = JSON.parse(currentCart!);
+        currentCartItems.push(tovar);
+        localStorage.setItem("cart", JSON.stringify(currentCartItems));
+      } else {
+        localStorage.setItem("cart", JSON.stringify([tovar]));
+      }
+    },
   },
 })
 export default class TechProduct extends Vue {}
@@ -112,6 +139,7 @@ export default class TechProduct extends Vue {}
     position: relative;
     .tech-product-gallery {
       .tech-card-img {
+        display: flex;
         max-width: 80%;
       }
     }
@@ -121,7 +149,6 @@ export default class TechProduct extends Vue {}
       right: 2%;
     }
     .tech-product-info {
-      margin-left: 86px;
       text-align: left;
 
       .detailed-btn {
@@ -135,6 +162,7 @@ export default class TechProduct extends Vue {}
         justify-content: space-between;
         align-items: center;
         margin-bottom: 80px;
+        flex-wrap: wrap;
         .favourite-btn {
           position: relative;
           text-decoration: none;
@@ -145,17 +173,104 @@ export default class TechProduct extends Vue {}
             position: absolute;
             right: -20%;
           }
+          &:active {
+            &::after {
+              content: url("../assets/icon/FavouriteBlack.svg");
+              position: absolute;
+              right: -20%;
+            }
+          }
         }
       }
       .get-offer {
         margin: 0 auto;
       }
     }
+    .top-mobile {
+      display: none;
+    }
   }
   .description {
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: left;
+  }
+}
+@media (max-width: 1199px) {
+  .forms-btn-adaptive {
+    margin-left: auto;
+    margin-top: 12px;
+  }
+}
+@media (max-width: 1000px) {
+  .tech-product {
+    padding: 32px;
+  }
+  .tech-product .tech-product-hero {
+    display: block;
+    padding: 0;
+  }
+  .tech-product .tech-product-hero .tech-product-gallery .tech-card-img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .tech-product .tech-product-hero .status {
+    display: none;
+  }
+  .tech-product .tech-product-hero .ru-sng {
+    display: none;
+  }
+  .tech-product
+    .tech-product-hero
+    .tech-product-info
+    .tech-product-buttons
+    .favourite-btn {
+    display: none;
+  }
+  .tech-product .tech-product-hero {
+    .ru-sng-mobile {
+      text-align: left;
+
+      align-items: center;
+      display: flex;
+      gap: 8px;
+      &::before {
+        content: url("../assets/icon/Delivery-icon.svg");
+      }
+    }
+    .top-mobile {
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 0;
+      .favourite-btn-mobile {
+        position: relative;
+        text-decoration: none;
+        color: #f60707;
+
+        &::after {
+          content: url("../assets/icon/Favourite.svg");
+          position: absolute;
+          right: -20%;
+        }
+        &:active {
+          &::after {
+            content: url("../assets/icon/FavouriteBlack.svg");
+            position: absolute;
+            right: -20%;
+          }
+        }
+      }
+    }
+  }
+  .tech-product .tech-product-hero .tech-product-info .tech-product-buttons {
+    margin-bottom: 40px;
+  }
+  .tech-product .description {
+    display: block;
+    .descr {
+      margin: 40px 0;
+    }
   }
 }
 </style>

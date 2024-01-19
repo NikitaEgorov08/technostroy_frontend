@@ -130,10 +130,9 @@ export default class ApplicationForGoods extends Vue {}
       }
       .goods-form-bottom {
         font-size: 14px;
-        margin-top: 64px;
       }
       .goods-form-btn {
-        margin-top: 64px;
+        margin-top: 2rem;
         margin-bottom: 8px;
         display: flex;
         justify-content: center;
@@ -147,6 +146,14 @@ export default class ApplicationForGoods extends Vue {}
         }
       }
     }
+  }
+}
+@media (max-width: 1600px) {
+}
+
+@media (max-width: 768px) {
+  .application-for-goods {
+    width: 100%;
   }
 }
 </style>

@@ -44,4 +44,14 @@ export default class Payment extends Vue {}
     font-size: 24px;
   }
 }
+@media (max-width: 1600px) {
+  .payment .payment-info {
+    font-size: 18px;
+  }
+}
+@media (max-width: 1199px) {
+  .payment .payment-info {
+    font-size: 14px;
+  }
+}
 </style>

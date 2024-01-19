@@ -1,5 +1,9 @@
 <template>
   <div class="tech-card">
+    <div class="tech-card-top-mobile">
+      <a class="favourite-btn-mobile" @click="addToCart">В избранное</a>
+      <span class="status mobile">В наличии</span>
+    </div>
     <img class="tech-card-img" src="../assets/image/Drill2.png" />
     <div class="tech-card-item">
       <h3 class="card-title">{{ title }}</h3>
@@ -87,7 +91,7 @@ export default class TechCard extends Vue {}
   display: grid;
   grid-template-columns: 1fr 2fr;
   .tech-card-img {
-    display: flex;
+    background-size: cover;
   }
   .tech-card-top {
     position: absolute;
@@ -116,16 +120,77 @@ export default class TechCard extends Vue {}
     .status {
     }
   }
+  .tech-card-top-mobile {
+    display: none;
+  }
   .tech-card-item {
     text-align: left;
     margin-left: 86px;
     .card-title {
     }
     .tech-card-buttons {
+      position: absolute;
+      bottom: 10%;
+      right: 1%;
+      display: flex;
+      width: 60%;
+      justify-content: space-between;
+    }
+  }
+}
+@media (max-width: 1600px) {
+  .tech-card .tech-card-img {
+    height: auto;
+    width: 100%;
+  }
+  .tech-card .tech-card-item {
+    margin-left: 48px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 1000px) {
+  .tech-card {
+    display: block;
+
+    margin: 32px;
+  }
+  .tech-card .tech-card-item .tech-card-buttons {
+    position: inherit;
+    width: 100%;
+  }
+  .tech-card .tech-card-img {
+    margin: 32px 0;
+  }
+  .tech-card-top {
+    display: none;
+  }
+  .tech-card {
+    .tech-card-top-mobile {
       display: flex;
       justify-content: space-between;
-      margin-top: 200px;
+
+      .favourite-btn-mobile {
+        position: relative;
+        text-decoration: none;
+        color: #f60707;
+        margin-right: 56px;
+        &::after {
+          content: url("../assets/icon/Favourite.svg");
+          position: absolute;
+          right: -20%;
+        }
+        &:active {
+          &::after {
+            content: url("../assets/icon/FavouriteBlack.svg");
+            position: absolute;
+            right: -20%;
+          }
+        }
+      }
     }
+  }
+  .tech-card .tech-card-item {
+    margin-left: 0;
   }
 }
 </style>

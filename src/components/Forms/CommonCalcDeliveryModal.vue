@@ -139,8 +139,8 @@ export default class CommonCalcDeliveryModal extends Vue {}
       .form-comment {
         display: block;
         width: 100%;
-        height: 160px;
-        margin-top: 64px;
+        height: 6rem;
+        margin-top: 2rem;
         background-color: none;
 
         border: 1px solid #000;
@@ -148,10 +148,9 @@ export default class CommonCalcDeliveryModal extends Vue {}
       }
       .form-bottom {
         font-size: 14px;
-        margin-top: 64px;
       }
       .form-btn {
-        margin-top: 64px;
+        margin-top: 2rem;
         margin-bottom: 8px;
         display: flex;
         justify-content: center;
@@ -165,6 +164,17 @@ export default class CommonCalcDeliveryModal extends Vue {}
         }
       }
     }
+  }
+}
+
+@media (max-width: 1600px) {
+  .common-calc-delivery-modal .form-container .form-info .form-input {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .common-calc-delivery-modal {
+    width: 100%;
   }
 }
 </style>

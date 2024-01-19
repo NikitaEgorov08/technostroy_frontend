@@ -1,7 +1,7 @@
 <template>
   <div class="component-card">
     <div class="component-card-top">
-      <a class="favourite-btn" href="">В избранное</a>
+      <a class="favourite-btn" @click="addToCart">В избранное</a>
       <span class="status">В наличии</span>
     </div>
     <img class="component-card-img" src="../assets/image/Service-img.png" />
@@ -19,6 +19,25 @@ import { Options, Vue } from "vue-class-component";
 @Options({
   components: {},
   props: ["img", "title", "text"],
+  methods: {
+    addToCart() {
+      const tovar = {
+        id: Math.round(Math.random() * 100),
+        title: this.title,
+        image: "http://localhost:8080/img/Tractor.135f9fd1.png",
+        checked: false,
+      };
+      const currentCart = localStorage.getItem("cart");
+
+      if (currentCart) {
+        const currentCartItems = JSON.parse(currentCart!);
+        currentCartItems.push(tovar);
+        localStorage.setItem("cart", JSON.stringify(currentCartItems));
+      } else {
+        localStorage.setItem("cart", JSON.stringify([tovar]));
+      }
+    },
+  },
 })
 export default class ComponentCard extends Vue {}
 </script>
@@ -71,6 +90,24 @@ export default class ComponentCard extends Vue {}
       margin: 0 auto;
       margin-top: 80px;
     }
+  }
+}
+@media (max-width: 1600px) {
+  .component-card {
+    padding: 24px;
+  }
+  .component-card .service-card-info .card-text {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1365px) {
+  .component-card {
+    padding: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .component-card {
+    margin-top: 16px;
   }
 }
 </style>

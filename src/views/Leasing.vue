@@ -172,18 +172,6 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 export default class Leasing extends Vue {}
 </script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-body {
-  margin: 0;
-  background-color: #f2f2f2;
-}
-
 .leasing {
   .leas-info {
     display: grid;
@@ -286,6 +274,111 @@ body {
       font-weight: 700;
       text-transform: uppercase;
     }
+  }
+}
+@media (max-width: 1600px) {
+  .leasing .leas-info .leas-info-right .leas-logo {
+    margin-left: 40%;
+    margin-bottom: 32px;
+  }
+  .leasing .leas-info .leas-info-right {
+    padding: 28px 16px;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item .item-text {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1365px) {
+  .leasing .leas-info .leas-info-right .leas-logo {
+    width: 50%;
+  }
+  .leasing .leas-info .leas-info-left {
+    margin-right: 24px;
+  }
+  .leasing .leas-info .leas-info-right .info-right-text {
+    font-size: 14px;
+  }
+  .leasing .leas-bottom .leas-bottom-title {
+    font-size: 24px;
+    margin-right: 24px;
+  }
+  .leasing .leas-info {
+    padding: 32px 64px 80px;
+  }
+  .leasing .leas-chart .leas-chart-title {
+    font-size: 28px;
+  }
+  .leasing .leas-chart .leas-chart-block {
+    display: flex;
+    justify-content: space-around;
+    padding: 32px 0;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item {
+    padding: 16px;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item .item-circle {
+    font-size: 16px;
+
+    padding: 40px;
+  }
+  .leasing .leas-chart .leas-chart-block hr {
+    margin-top: 62px;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item .item-text {
+    margin-top: 32px;
+    height: 120px;
+    width: 80px;
+
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .leasing .leas-info {
+    padding: 32px;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item .item-circle {
+    font-size: 14px;
+    padding: 24px;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item .item-text {
+    height: 120px;
+    width: 56px;
+
+    font-size: 8px;
+  }
+  .leasing .leas-bottom {
+    padding: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .leasing .leas-info {
+    display: block;
+  }
+  .leasing .leas-chart {
+    padding: 0 32px;
+  }
+  .leasing .leas-chart .leas-chart-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .leasing .leas-chart .leas-chart-block hr {
+    display: none;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item {
+    margin: 0 auto;
+  }
+  .leasing .leas-chart .leas-chart-block .leas-chart-item .item-text {
+    height: 120px;
+    width: auto;
+    font-size: 12px;
+  }
+  .leasing .leas-bottom {
+    display: block;
+  }
+  .leasing .leas-bottom .leas-bottom-title {
+    margin: 24px 0;
+    text-align: left;
   }
 }
 </style>

@@ -25,8 +25,4 @@ import Advantage from "@/components/Advantage.vue";
 export default class About extends Vue {}
 </script>
 
-<style>
-.about {
-  margin-top: 48px;
-}
-</style>
+<style></style>

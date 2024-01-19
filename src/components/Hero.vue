@@ -21,16 +21,24 @@ export default class Home extends Vue {}
     height: 100%;
   }
 }
-h1 {
-  font-family: Roboto;
-  font-size: 64px;
-  font-weight: 500;
-  position: absolute;
-  left: 50%;
-  bottom: 2%;
-  transform: translateX(-50%);
-  color: rgba(255, 255, 255, 1);
-  text-wrap: nowrap;
-  margin: 0;
+
+@media (max-width: 1600px) {
+  .hero {
+    height: calc(100vh - 154px);
+  }
+}
+@media (max-width: 1000px) {
+  .hero {
+    height: calc(100vh - 120px);
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+  }
+  .hero .banner {
+    width: 100%;
+    height: auto;
+  }
 }
 </style>

@@ -141,7 +141,7 @@ export default class RepairPartsModal extends Vue {}
         display: block;
         width: 100%;
         height: 160px;
-        margin-top: 64px;
+        margin-top: 2rem;
         background-color: none;
 
         border: 1px solid #000;
@@ -149,7 +149,6 @@ export default class RepairPartsModal extends Vue {}
       }
       .form-bottom {
         font-size: 14px;
-        margin-top: 64px;
       }
       .form-btn {
         margin-top: 64px;
@@ -166,6 +165,11 @@ export default class RepairPartsModal extends Vue {}
         }
       }
     }
+  }
+}
+@media (max-width: 768px) {
+  .repair-parts-modal {
+    width: 100%;
   }
 }
 </style>

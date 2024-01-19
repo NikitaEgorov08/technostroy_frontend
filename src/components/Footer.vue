@@ -51,6 +51,37 @@
         </div>
       </div>
     </div>
+    <span class="footer-bottom"
+      >*Информация, представленная на сайте, не является публичной офертой</span
+    >
+  </div>
+  <div class="footer-mobile">
+    <div class="footer-mobile-top">
+      <img class="footer-mobile-logo" src="../assets/Logo.svg" alt="" />
+    </div>
+    <div class="footer-mobile-menu">
+      <nav class="menu-item">
+        <h3 class="footer-title">КОМПАНИЯ</h3>
+        <a class="menu-link" href="/tech">Спецтехника</a>
+        <a class="menu-link" href="/leasing">Лизинг</a>
+        <a class="menu-link" href="/parts">Запчасти</a>
+        <a class="menu-link" href="/ServiceCatalog">Ремонт спецтехники</a>
+        <a class="menu-link" href="/paymentAndDelivery">Оплата и доставка</a>
+        <a class="menu-link" href="/contacts">Контакты</a>
+      </nav>
+      <nav class="menu-item">
+        <h3 class="footer-title">КАТАЛОГ</h3>
+        <a class="menu-link" href="/techCards">Трактора</a>
+        <a class="menu-link" href="">Бурильные машины</a>
+        <a class="menu-link" href="">Бульдозеры</a>
+        <a class="menu-link" href="">Трубоукладчики</a>
+        <a class="menu-link" href="">Машины для забивки и погружения </a>
+        <a class="menu-link" href="">Запчасти </a>
+      </nav>
+    </div>
+    <span class="footer-bottom"
+      >*Информация, представленная на сайте, не является публичной офертой</span
+    >
   </div>
 </template>
 <script lang="ts">
@@ -63,6 +94,7 @@ export default class Footer extends Vue {}
 </script>
 <style>
 .footer {
+  position: relative;
   margin-top: 42px;
   padding: 46px 180px;
   height: 100vh;
@@ -156,6 +188,111 @@ export default class Footer extends Vue {}
           height: 40px;
         }
       }
+    }
+  }
+  .footer-bottom {
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    padding-bottom: 12px;
+    width: 100%;
+  }
+}
+.footer-mobile {
+  display: none;
+}
+@media (max-width: 1899px) {
+  .footer .footer-menu {
+    grid-column-gap: 16px;
+  }
+}
+@media (max-width: 1600px) {
+  .footer .footer-top .catalog .catalog-link {
+    font-size: 18px;
+  }
+  .footer .footer-top .contact .contact-link {
+    font-size: 18px;
+  }
+  .footer .footer-top .catalog .circle {
+    width: 48px;
+    height: 48px;
+  }
+  .footer .footer-top .contact .circle {
+    width: 48px;
+    height: 48px;
+  }
+  .footer .footer-menu .menu-item .menu-link {
+    font-size: 18px;
+  }
+  .footer .footer-menu .contact-footer .contact-footer-info {
+    font-size: 18px;
+  }
+}
+@media (max-width: 1365px) {
+  .footer .footer-top .catalog {
+    grid-template-columns: 2fr 0.5fr 1fr;
+    display: grid;
+  }
+  .footer .footer-top .contact {
+    grid-template-columns: 2fr 0.5fr 1fr;
+    display: grid;
+  }
+}
+@media (max-width: 1199px) {
+  .footer .footer-top .catalog .arrow {
+    height: 32px;
+  }
+  .footer .footer-top .contact .arrow {
+    height: 32px;
+  }
+}
+@media (max-width: 1000px) {
+  .footer {
+    padding: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .footer {
+    display: none;
+  }
+  .footer-mobile {
+    display: block;
+    height: 100vh;
+    position: relative;
+    .footer-mobile-top {
+      width: 100%;
+
+      background-color: #ffcc00;
+      .footer-mobile-logo {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        margin-left: 32px;
+      }
+    }
+    .footer-mobile-menu {
+      text-align: left;
+      padding: 0 32px;
+      .menu-item {
+        .menu-link {
+          display: block;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: #949494;
+          margin: 12px 0;
+        }
+      }
+    }
+    .footer-bottom {
+      font-size: 12px;
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      padding-bottom: 12px;
+      width: 100%;
     }
   }
 }

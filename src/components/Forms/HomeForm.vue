@@ -96,4 +96,33 @@ export default class HomeForm extends Vue {}
     height: 100%;
   }
 }
+@media (max-width: 1899px) {
+  .home-form {
+    width: 100%;
+  }
+  .home-form .form-container {
+    padding: 16px 24px;
+    width: 80%;
+  }
+  .home-form .form-img {
+    height: 100%;
+    width: 40%;
+  }
+}
+@media (max-width: 1600px) {
+  .home-form {
+    margin: 24px auto;
+  }
+}
+@media (max-width: 768px) {
+  .home-form {
+    width: 100%;
+  }
+  .home-form .form-img {
+    display: none;
+  }
+  .home-form .form-container {
+    width: 100%;
+  }
+}
 </style>

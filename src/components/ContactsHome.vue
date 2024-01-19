@@ -52,10 +52,16 @@ export default class ContactsHome extends Vue {}
   padding: 0 92px;
   .contact-block {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr;
   }
   .contact-map {
     width: 100%;
+  }
+}
+@media (max-width: 1600px) {
+  .contacts-home .contact-block {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 </style>

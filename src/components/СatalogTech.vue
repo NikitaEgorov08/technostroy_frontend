@@ -41,4 +41,21 @@ export default class CatalogTech extends Vue {}
   justify-content: center;
   margin-top: 64px;
 }
+@media (max-width: 1365px) {
+  .catalog-main {
+    margin-top: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .catalog-main {
+    flex-wrap: nowrap;
+
+    scroll-behavior: smooth;
+    justify-content: space-between;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+}
 </style>

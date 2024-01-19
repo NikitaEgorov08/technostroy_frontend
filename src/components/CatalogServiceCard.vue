@@ -46,6 +46,7 @@ export default class CatalogServiceCard extends Vue {}
 <style>
 .catalog-service-card {
   display: flex;
+
   padding: 64px;
   .service-img {
     width: 466px;
@@ -63,9 +64,50 @@ export default class CatalogServiceCard extends Vue {}
     }
     .service-card-btn {
       position: absolute;
-      bottom: 0;
+
       right: 0;
     }
+  }
+}
+@media (max-width: 1600px) {
+  .catalog-service-card .service-img {
+    height: 280px;
+    margin-right: 40px;
+  }
+  .catalog-service-card {
+  }
+}
+@media (max-width: 1365px) {
+  .catalog-service-card {
+    padding: 32px 64px;
+  }
+  .catalog-service-card .service-img {
+    height: 240px;
+    margin-right: 24px;
+  }
+  .catalog-service-card .service-card-info .card-text {
+    font-size: 16px;
+  }
+}
+@media (max-width: 1000px) {
+  .catalog-service-card {
+    padding: 32px;
+    display: block;
+  }
+  .catalog-service-card .service-img {
+    height: auto;
+    margin-right: 0;
+  }
+  .catalog-service-card .service-card-info .service-card-btn {
+    position: static;
+    display: flex;
+
+    margin: 24px auto;
+  }
+}
+@media (max-width: 768px) {
+  .catalog-service-card .service-img {
+    width: 100%;
   }
 }
 </style>

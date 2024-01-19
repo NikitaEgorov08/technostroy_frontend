@@ -33,6 +33,21 @@ export default class Home extends Vue {}
 body {
   margin: 0;
   background-color: #f2f2f2;
+
+  ::-webkit-scrollbar {
+    height: 6px; /* высота для горизонтального скролла */
+    background-color: #f6f8f4;
+    border-radius: 9em;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #ffcc00;
+    border-radius: 9em;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #333;
+  }
+
+  /* Стрелки */
 }
 h3 {
   font-size: 24px;
@@ -60,6 +75,18 @@ h2 {
   text-transform: uppercase;
   margin-top: 80px;
   color: #000;
+}
+h1 {
+  font-family: Roboto;
+  font-size: 64px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 1);
+  text-wrap: nowrap;
+  margin: 0;
 }
 .home-title {
   font-size: 32px;
@@ -153,5 +180,57 @@ textarea:focus {
 
 .favourite-btn {
   cursor: pointer;
+}
+
+@media (max-width: 1600px) {
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 1365px) {
+  h2 {
+    font-size: 28px;
+
+    margin-top: 40px;
+  }
+  .home-title {
+    font-size: 28px;
+
+    margin-top: 40px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 1199px) {
+  h1 {
+    font-size: 48px;
+  }
+}
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 40px;
+  }
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 18px;
+    margin-left: 32px;
+    margin-top: 40px;
+  }
+  .home-title {
+    font-size: 18px;
+
+    margin-top: 40px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
 }
 </style>

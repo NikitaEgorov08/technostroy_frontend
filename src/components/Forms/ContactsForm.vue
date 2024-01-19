@@ -55,7 +55,7 @@ export default class ContactsForm extends Vue {}
 </script>
 <style>
 .contacts-form {
-  margin: 51px 151px;
+  margin: 51px 64px;
   .form-container {
     background-color: #d0d0d0;
 
@@ -70,6 +70,7 @@ export default class ContactsForm extends Vue {}
     .form-info {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 8px;
     }
     .contacts-form-title {
       margin-bottom: 0;
@@ -105,6 +106,11 @@ export default class ContactsForm extends Vue {}
       margin-left: 4px;
       color: rgba(0, 0, 0, 0.5);
     }
+  }
+}
+@media (max-width: 1199px) {
+  .contacts-form .form-container {
+    padding: 24px;
   }
 }
 </style>

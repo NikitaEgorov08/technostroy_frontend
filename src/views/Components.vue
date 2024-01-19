@@ -57,4 +57,20 @@ export default class Components extends Vue {}
     padding: 64px 80px;
   }
 }
+@media (max-width: 1199px) {
+  .components .components-catalog {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 1000px) {
+  .components .components-catalog {
+    grid-template-columns: 1fr 1fr;
+    padding: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .components .components-catalog {
+    display: block;
+  }
+}
 </style>

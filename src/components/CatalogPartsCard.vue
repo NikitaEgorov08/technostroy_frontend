@@ -45,4 +45,58 @@ export default class CatalogPartsCard extends Vue {}
     }
   }
 }
+@media (max-width: 1899px) {
+  .catalog-parts-card .parts-card-img {
+    width: 520px;
+    &.truboukladchiki {
+      width: 500px;
+    }
+  }
+}
+@media (max-width: 1600px) {
+  .catalog-parts-card .parts-card-img {
+    width: 380px;
+    height: 268px;
+    &.truboukladchiki {
+      width: 360px;
+      height: 252px;
+    }
+  }
+  .catalog-parts-card .parts-card-title {
+    font-size: 16px;
+
+    width: calc(100% - 22px);
+    padding: 16px 0;
+  }
+}
+@media (max-width: 1199px) {
+  .catalog-parts-card .parts-card-img {
+    width: 340px;
+    height: 228px;
+    &.truboukladchiki {
+      width: 320px;
+      height: 214px;
+    }
+  }
+  .catalog-parts-card .parts-card-title {
+    width: calc(100% - 20px);
+  }
+}
+@media (max-width: 768px) {
+  .parts {
+    padding-bottom: 24px;
+  }
+  .catalog-parts-card .parts-card-img {
+    height: auto;
+
+    width: 100vw;
+    scroll-snap-align: center;
+  }
+  .catalog-parts-card .parts-card-img {
+    &.truboukladchiki {
+      width: 100vw;
+      height: auto;
+    }
+  }
+}
 </style>

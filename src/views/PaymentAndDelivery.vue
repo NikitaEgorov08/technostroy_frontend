@@ -72,24 +72,24 @@
       </div>
     </div>
     <div class="pay-del-info">
-      <div class="info-title">документы</div>
+      <div class="info-title">Документы</div>
       <div class="info-text">
         Отгрузка товара осуществляется по факту поступления оплаты (если иное не
         предусмотрено статусом клиента в соответствии с системой лояльности),
         при наличии паспорта, доверенности или печати.
       </div>
-      <div class="info-title">сроки доставки</div>
+      <div class="info-title">Сроки доставки</div>
       <div class="info-text">
         Ориентировочные сроки доставки указаны на странице оформлении заказа
         (при выборе доставки ТК «Деловые линии»). Отследить поступление заказа
         можно на сайте перевозчика по трековому номеру, указанному в личном
         кабинете.
       </div>
-      <div class="info-title">стоимость доставки</div>
+      <div class="info-title">Стоимость доставки</div>
       <div class="info-text">
         Указывается при оформлении заказа и отдельной строкой в счете.
       </div>
-      <div class="info-title">оплата</div>
+      <div class="info-title">Оплата</div>
       <div class="info-text">
         Осуществляется при выборе ТК «Деловые линии» на странице оформления
         заказа до ближайшего к Покупателю терминала транспортной компании при
@@ -155,6 +155,27 @@ export default class Payment extends Vue {}
     margin: 0 auto;
     display: block;
     margin-top: 80px;
+  }
+}
+@media (max-width: 1365px) {
+  .pay-del-cont {
+    padding: 32px 64px;
+  }
+  .pay-del-cont .pay-del-info .info-title {
+    margin: 24px 0;
+  }
+}
+@media (max-width: 1000px) {
+  .pay-del-cont {
+    padding: 32px;
+  }
+  .pay-del-cont .payment-and-delivery {
+    grid-column-gap: 32px;
+  }
+}
+@media (max-width: 768px) {
+  .pay-del-cont .payment-and-delivery {
+    display: block;
   }
 }
 </style>

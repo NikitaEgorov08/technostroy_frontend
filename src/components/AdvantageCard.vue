@@ -35,12 +35,49 @@ export default class AdvantageCard extends Vue {}
     font-size: 24px;
   }
   .card-text {
-    margin-top: 24px;
+    margin-top: 16px;
     text-align: left;
   }
   .card-text2 {
-    margin-top: 24px;
+    margin-top: 16px;
     text-align: left;
+  }
+}
+@media (max-width: 1600px) {
+  .advantage-card .card-title {
+    font-size: 18px;
+  }
+  .advantage-card .card-text {
+    font-size: 14px;
+  }
+  .advantage-card .card-text2 {
+    font-size: 14px;
+  }
+  .advantage-card .icon {
+    padding: 16px;
+  }
+}
+@media (max-width: 1199px) {
+  .advantage-card .card-title {
+    font-size: 16px;
+  }
+  .advantage-card .card-text {
+    font-size: 14px;
+  }
+  .advantage-card .card-text2 {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1000px) {
+  .advantage-card {
+    width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .advantage-card {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    width: calc(100vw - 30px);
   }
 }
 </style>

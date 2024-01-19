@@ -33,4 +33,34 @@ export default class SubPartsCard extends Vue {}
   .parts-card-img {
   }
 }
+@media (max-width: 1600px) {
+  .sub-parts-card {
+    height: 300px;
+  }
+  .sub-parts-card .parts-card-img {
+    height: 360px;
+  }
+  .sub-parts-card .parts-card-title {
+    font-size: 18px;
+
+    width: calc(100% - 32px);
+  }
+}
+@media (max-width: 1199px) {
+  .sub-parts-card .parts-card-img {
+    height: 300px;
+  }
+  .sub-parts-card .parts-card-title {
+    width: calc(100% - 26px);
+  }
+}
+@media (max-width: 768px) {
+  .sub-parts {
+    padding-bottom: 24px;
+  }
+  .sub-parts-card .parts-card-img {
+    width: 100vw;
+    scroll-snap-align: center;
+  }
+}
 </style>
