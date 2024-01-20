@@ -2,13 +2,13 @@
   <div class="component-card">
     <div class="component-card-top">
       <a class="favourite-btn" @click="addToCart">В избранное</a>
-      <span class="status">В наличии</span>
+      <span class="status" v-show="inStock">В наличии</span>
     </div>
-    <img class="component-card-img" src="../assets/image/Service-img.png" />
+    <img class="component-card-img" :src="img" />
     <div class="service-card-info">
       <h3 class="card-title">{{ title }}</h3>
-      <p class="card-text">{{ text }}</p>
-      <router-link to="/ComponentProduct" class="detail">Подробнее</router-link>
+      <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>
+      <router-link :to="url" class="detail">Подробнее</router-link>
       <button class="forms-btn service-card-btn">Купить</button>
     </div>
   </div>
@@ -18,7 +18,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: ["img", "title", "text"],
+  props: ["img", "title", "text", "url", "inStock"],
   methods: {
     addToCart() {
       const tovar = {

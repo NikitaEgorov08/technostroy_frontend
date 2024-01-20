@@ -13,7 +13,7 @@
         <router-link to="/parts" class="menu-link">ЗАПЧАСТИ</router-link>
       </li>
       <li class="mobile-menu-item" @click="$emit('close')">
-        <router-link to="/ServiceCatalog" class="menu-link"
+        <router-link to="/services" class="menu-link"
           >РЕМОНТ СПЕЦТЕХНИКИ</router-link
         >
       </li>

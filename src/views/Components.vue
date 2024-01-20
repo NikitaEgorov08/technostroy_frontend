@@ -9,29 +9,20 @@
 
     <div class="components-catalog">
       <ComponentCard
-        img="../assets/image/Three.png"
-        title="Название товара"
-        text="Лишь интерактивные прототипы формируют глобальную экономическую сеть и при этом —  заблокированы в рамках своих собственных рациональных ограничений. "
-      />
-      <ComponentCard
-        img="../assets/image/Three.png"
-        title="Название товара"
-        text="Лишь интерактивные прототипы формируют глобальную экономическую сеть и при этом —  заблокированы в рамках своих собственных рациональных ограничений. "
-      />
-      <ComponentCard
-        img="../assets/image/Three.png"
-        title="Название товара"
-        text="Лишь интерактивные прототипы формируют глобальную экономическую сеть и при этом —  заблокированы в рамках своих собственных рациональных ограничений. "
-      />
-      <ComponentCard
-        img="../assets/image/Three.png"
-        title="Название товара"
-        text="Лишь интерактивные прототипы формируют глобальную экономическую сеть и при этом —  заблокированы в рамках своих собственных рациональных ограничений. "
-      />
-      <ComponentCard
-        img="../assets/image/Three.png"
-        title="Название товара"
-        text="Лишь интерактивные прототипы формируют глобальную экономическую сеть и при этом —  заблокированы в рамках своих собственных рациональных ограничений. "
+        v-for="part of parts"
+        :key="part.id"
+        :url="
+          '/parts/' +
+          $route.params.idCat +
+          '/' +
+          $route.params.idSub +
+          '/' +
+          part.id
+        "
+        :img="part.image"
+        :title="part.title"
+        :text="part.description"
+        :inStock="part.in_stock"
       />
     </div>
   </div>
@@ -43,6 +34,22 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
 @Options({
   components: {
     ComponentCard,
+  },
+  data() {
+    return {
+      parts: [],
+    };
+  },
+  mounted() {
+    fetch(
+      `http://45.12.238.17:8000/api/parts?category=${this.$route.params.idCat}&subcategory=${this.$route.params.idSub}`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.parts = data;
+      });
   },
 })
 export default class Components extends Vue {}

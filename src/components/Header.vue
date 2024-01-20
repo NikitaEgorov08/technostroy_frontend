@@ -47,7 +47,7 @@
       <router-link to="/tech" class="menu-link">СПЕЦТЕХНИКА</router-link>
       <router-link to="/leasing" class="menu-link">ЛИЗИНГ</router-link>
       <router-link to="/parts" class="menu-link">ЗАПЧАСТИ</router-link>
-      <router-link to="/ServiceCatalog" class="menu-link"
+      <router-link to="/services" class="menu-link"
         >РЕМОНТ СПЕЦТЕХНИКИ</router-link
       >
       <router-link to="/about" class="menu-link">О КОМПАНИИ</router-link>
@@ -58,6 +58,12 @@
       <router-link to="/contacts" class="menu-link">КОНТАКТЫ</router-link>
     </nav>
   </div>
+
+  <img
+    class="header-modal-mobile"
+    src="../assets/icon/Hero-modal-mobile.svg"
+    @click="showModal"
+  />
   <application-for-goods v-show="cartModalVisibility" @close="closeModal" />
   <mobile-menu v-show="mobileMenuVisibility" @close="closeMobileMenu" />
 </template>
@@ -133,7 +139,7 @@ export default class Header extends Vue {
     width: 100%;
     padding: 12px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr 0.5fr 1fr;
+    grid-template-columns: 0.5fr 1fr 2fr 0.5fr 1fr;
     grid-column-gap: 16px;
     align-items: center;
 
@@ -207,6 +213,9 @@ export default class Header extends Vue {
       text-decoration: underline;
     }
   }
+}
+.header-modal-mobile {
+  display: none;
 }
 
 @media (max-width: 1899px) {
@@ -339,6 +348,34 @@ export default class Header extends Vue {
         }
       }
     }
+    .top {
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      scroll-behavior: smooth;
+      cursor: pointer;
+      opacity: 0.7;
+
+      .arrow-top-text {
+        display: block;
+        font-size: 10px;
+        text-decoration: underline;
+        color: #ffcc00;
+      }
+      &:hover {
+        .arrow-top {
+          margin-bottom: 10px;
+          transition: 1s;
+        }
+      }
+    }
+  }
+  .header-modal-mobile {
+    display: block;
+    position: fixed;
+    right: 5%;
+    top: 25%;
+    z-index: 2;
   }
 }
 </style>

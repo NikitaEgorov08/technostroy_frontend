@@ -35,6 +35,7 @@ export default class Home extends Vue {}
 @media (max-width: 768px) {
   .hero {
     height: auto;
+    position: relative;
   }
   .hero .banner {
     width: 100%;

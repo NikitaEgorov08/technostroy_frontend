@@ -11,20 +11,12 @@
       спецтехники на базе тракторов ЧТЗ</span
     >
     <div class="catalog-main catalog-main-mobile">
-      <CatalogPartsCard title="запчасти для ТРАКТОРА" :img="PartsTractor" />
       <CatalogPartsCard
-        title="запчасти для БУРИЛЬНЫх МАШИН"
-        :img="PartsDrill"
-      />
-      <CatalogPartsCard
-        title="запчасти для ТРУБОУКЛАДЧИКов"
-        :img="PartsThree"
-        slug="truboukladchiki"
-      />
-      <CatalogPartsCard title="запчасти для коперов" :img="PartsPiles" />
-      <CatalogPartsCard
-        title="запчасти для БУЛЬДОЗЕРов"
-        :img="PartsBulldozer"
+        v-for="item of categories"
+        :key="item.id"
+        :url="'/parts/' + item.id"
+        :img="item.image"
+        :title="item.title"
       />
     </div>
   </div>
@@ -43,7 +35,23 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
     CatalogPartsCard,
   },
   data() {
-    return { PartsTractor, PartsDrill, PartsThree, PartsPiles, PartsBulldozer };
+    return {
+      categories: [],
+      PartsTractor,
+      PartsDrill,
+      PartsThree,
+      PartsPiles,
+      PartsBulldozer,
+    };
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/parts-categories/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.categories = data;
+      });
   },
 })
 export default class Parts extends Vue {}

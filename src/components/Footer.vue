@@ -20,7 +20,7 @@
         <a class="menu-link" href="/tech">Спецтехника</a>
         <a class="menu-link" href="/leasing">Лизинг</a>
         <a class="menu-link" href="/parts">Запчасти</a>
-        <a class="menu-link" href="/ServiceCatalog">Ремонт спецтехники</a>
+        <a class="menu-link" href="/services">Ремонт спецтехники</a>
         <a class="menu-link" href="/paymentAndDelivery">Оплата и доставка</a>
         <a class="menu-link" href="/contacts">Контакты</a>
       </nav>
@@ -54,6 +54,10 @@
     <span class="footer-bottom"
       >*Информация, представленная на сайте, не является публичной офертой</span
     >
+    <div class="top" @click="toTop">
+      <img class="arrow-top" src="../assets/icon/Arrow-top.svg" />
+      <span class="arrow-top-text">ВВЕРХ</span>
+    </div>
   </div>
   <div class="footer-mobile">
     <div class="footer-mobile-top">
@@ -65,7 +69,7 @@
         <a class="menu-link" href="/tech">Спецтехника</a>
         <a class="menu-link" href="/leasing">Лизинг</a>
         <a class="menu-link" href="/parts">Запчасти</a>
-        <a class="menu-link" href="/ServiceCatalog">Ремонт спецтехники</a>
+        <a class="menu-link" href="/services">Ремонт спецтехники</a>
         <a class="menu-link" href="/paymentAndDelivery">Оплата и доставка</a>
         <a class="menu-link" href="/contacts">Контакты</a>
       </nav>
@@ -82,6 +86,10 @@
     <span class="footer-bottom"
       >*Информация, представленная на сайте, не является публичной офертой</span
     >
+    <div class="top-mobile" @click="toTop" v-show="arrowVisible">
+      <img class="arrow-top-mobile" src="../assets/icon/Arrow-top.svg" />
+      <span class="arrow-top-text-mobile">ВВЕРХ</span>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -89,6 +97,30 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
+  data() {
+    return {
+      scTimer: 0,
+      scY: 0,
+      arrowVisible: false,
+    };
+  },
+  mounted() {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > window.innerHeight / 2) {
+        this.arrowVisible = true;
+      } else {
+        this.arrowVisible = false;
+      }
+    });
+  },
+  methods: {
+    toTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
+  },
 })
 export default class Footer extends Vue {}
 </script>
@@ -199,7 +231,29 @@ export default class Footer extends Vue {}
     padding-bottom: 12px;
     width: 100%;
   }
+  .top {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    scroll-behavior: smooth;
+    cursor: pointer;
+    opacity: 0.7;
+
+    .arrow-top-text {
+      display: block;
+      font-size: 10px;
+      text-decoration: underline;
+      color: #ffcc00;
+    }
+    &:hover {
+      .arrow-top {
+        margin-bottom: 10px;
+        transition: 1s;
+      }
+    }
+  }
 }
+
 .footer-mobile {
   display: none;
 }
@@ -293,6 +347,27 @@ export default class Footer extends Vue {}
       transform: translateX(50%);
       padding-bottom: 12px;
       width: 100%;
+    }
+    .top-mobile {
+      position: fixed;
+      bottom: 5%;
+      right: 5%;
+      scroll-behavior: smooth;
+      cursor: pointer;
+      opacity: 0.7;
+
+      .arrow-top-text-mobile {
+        display: block;
+        font-size: 10px;
+        text-decoration: underline;
+        color: #ffcc00;
+      }
+      &:active {
+        .arrow-top-mobile {
+          margin-bottom: 10px;
+          transition: 1s;
+        }
+      }
     }
   }
 }

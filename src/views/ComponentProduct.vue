@@ -182,6 +182,12 @@ export default class TechProduct extends Vue {}
         margin: 0 auto;
       }
     }
+    .ru-sng-mobile {
+      display: none;
+    }
+    .top-mobile {
+      display: none;
+    }
     .component-product .tech-product-hero .top-mobile {
       display: none;
     }
@@ -191,9 +197,11 @@ export default class TechProduct extends Vue {}
   }
 }
 @media (max-width: 1199px) {
-  .forms-btn-adaptive {
-    margin-left: auto;
-    margin-top: 12px;
+  .component-product
+    .tech-product-hero
+    .component-product-info
+    .component-product-buttons {
+    gap: 8px;
   }
 }
 @media (max-width: 1000px) {

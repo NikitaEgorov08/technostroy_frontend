@@ -3,48 +3,19 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href="" class="">Назад</a>
   </div>
-  <h2 class="leas-title">Ремонт спецтехники</h2>
+  <h2 class="leas-title">{{ title }}</h2>
   <div class="service">
     <div class="service-img">
       <img
+        v-for="item of gallery"
+        :key="item.image"
         class="service-img-item"
-        src="../assets/image/ServiceTechn1.png"
-        alt=""
-      />
-      <img
-        class="service-img-item"
-        src="../assets/image/ServiceTechn2.png"
-        alt=""
-      />
-      <img
-        class="service-img-item"
-        src="../assets/image/ServiceTechn3.png"
+        :src="item.image"
         alt=""
       />
     </div>
     <div class="service-text">
-      Также как новая модель организационной деятельности способствует
-      подготовке и реализации глубокомысленных рассуждений. Учитывая ключевые
-      сценарии поведения, понимание сути ресурсосберегающих технологий играет
-      важную роль в формировании модели развития. Повседневная практика
-      показывает, что укрепление и развитие внутренней структуры позволяет
-      оценить значение приоретизации разума над эмоциями. Предварительные выводы
-      неутешительны: начало повседневной работы по формированию позиции является
-      качественно новой ступенью поэтапного и последовательного развития
-      общества. Противоположная точка зрения подразумевает, что диаграммы связей
-      представляют собой не что иное, как квинтэссенцию победы маркетинга над
-      разумом и должны быть подвергнуты целой серии независимых исследований.
-      Банальные, но неопровержимые выводы, а также представители современных
-      социальных резервов, инициированные исключительно синтетически,
-      рассмотрены исключительно в разрезе маркетинговых и финансовых
-      предпосылок. Являясь всего лишь частью общей картины, явные признаки
-      победы институционализации и по сей день остаются уделом либералов,
-      которые жаждут быть превращены в посмешище, хотя само их существование
-      приносит несомненную пользу обществу. С другой стороны, существующая
-      теория не оставляет шанса для своевременного выполнения сверхзадачи. Как
-      принято считать, стремящиеся вытеснить традиционное производство,
-      нанотехнологии и по сей день остаются уделом либералов, которые жаждут
-      быть ассоциативно распределены по отраслям.
+      {{ full_text }}
     </div>
     <button class="forms-btn service-btn" @click="showModal">
       Отправить заявку
@@ -60,6 +31,9 @@ import RepairCarsModal from "@/components/Forms/RepairCarsModal.vue";
   components: { RepairCarsModal },
   data() {
     return {
+      gallery: [],
+      title: "",
+      full_text: "",
       repairCarsModalVisibility: false,
     };
   },
@@ -70,6 +44,20 @@ import RepairCarsModal from "@/components/Forms/RepairCarsModal.vue";
     closeModal() {
       this.repairCarsModalVisibility = false;
     },
+  },
+  mounted() {
+    const serviceID = this.$route.params.id;
+
+    fetch("http://45.12.238.17:8000/api/services/" + serviceID)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.title = data.title;
+        this.full_text = data.full_text;
+        this.gallery = data.gallery;
+        console.log(this.gallery);
+      });
   },
 })
 export default class Service extends Vue {}

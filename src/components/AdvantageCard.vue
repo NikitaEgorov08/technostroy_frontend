@@ -1,6 +1,6 @@
 <template>
   <div class="advantage-card">
-    <img class="icon" src="../assets/icon/Advantage1.svg" />
+    <img class="icon" :src="img" />
     <div class="card-title">{{ title }}</div>
     <div class="card-text">{{ text }}</div>
     <div class="card-text2">{{ text2 }}</div>
@@ -23,8 +23,8 @@ export default class AdvantageCard extends Vue {}
   padding: 0 12px;
   margin-top: 24px;
   .icon {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     background-color: #ffcc00;
     border-radius: 50%;
     padding: 32px;
@@ -33,6 +33,7 @@ export default class AdvantageCard extends Vue {}
   .card-title {
     text-align: left;
     font-size: 24px;
+    height: 64px;
   }
   .card-text {
     margin-top: 16px;
@@ -58,6 +59,10 @@ export default class AdvantageCard extends Vue {}
   }
 }
 @media (max-width: 1199px) {
+  .advantage-card {
+    height: 600px;
+  }
+
   .advantage-card .card-title {
     font-size: 16px;
   }
@@ -71,10 +76,12 @@ export default class AdvantageCard extends Vue {}
 @media (max-width: 1000px) {
   .advantage-card {
     width: 90%;
+    height: 512px;
   }
 }
 @media (max-width: 768px) {
   .advantage-card {
+    height: 512px;
     scroll-snap-align: center;
     flex-shrink: 0;
     width: calc(100vw - 30px);

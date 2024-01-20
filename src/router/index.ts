@@ -38,9 +38,24 @@ const routes: Array<RouteRecordRaw> = [
     component: Parts,
   },
   {
-    path: "/serviceCatalog",
+    path: "/parts/:id",
+    name: "SubParts",
+    component: SubParts,
+  },
+  {
+    path: "/parts/:idCat/:idSub",
+    name: "Components",
+    component: Components,
+  },
+  {
+    path: "/services",
     name: "ServiceCatalog",
     component: ServiceCatalog,
+  },
+  {
+    path: "/services/:id",
+    name: "Service",
+    component: Service,
   },
   {
     path: "/about",
@@ -73,40 +88,15 @@ const routes: Array<RouteRecordRaw> = [
     component: TechProduct,
   },
   {
-    path: "/subParts",
-    name: "SubParts",
-    component: SubParts,
-  },
-  {
-    path: "/components",
-    name: "Components",
-    component: Components,
-  },
-  {
     path: "/componentProduct",
     name: "ComponentProduct",
     component: ComponentProduct,
-  },
-  {
-    path: "/service",
-    name: "Service",
-    component: Service,
   },
   {
     path: "/serviceComponents",
     name: "ServiceComponents",
     component: ServiceComponents,
   },
-
-  /* {
-    path: "/Tech",
-    name: "Tech",
-    route level code-splitting
-    this generates a separate chunk (about.[hash].js) for this route
-     which is lazy-loaded when the route is visited.
-    component: () =>
-      import(webpackChunkName: "Tech"  "../views/Tech.vue"),
-  }, */
 ];
 
 const router = createRouter({

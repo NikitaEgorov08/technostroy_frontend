@@ -5,11 +5,16 @@
       <a href="" class="">Назад</a>
     </div>
 
-    <h2 class="parts-title">Запасные части к тракторам</h2>
+    <h2 class="parts-title">Запасные части</h2>
 
     <div class="catalog-main">
-      <SubPartsCard title="узлы/агрегаты" :img="Engines" />
-      <SubPartsCard title="комплектующие" :img="Components" />
+      <SubPartsCard
+        v-for="item of subcategories"
+        :key="item.id"
+        :url="'/parts/' + $route.params.id + '/' + item.id"
+        :img="item.image"
+        :title="item.title"
+      />
     </div>
   </div>
 </template>
@@ -24,7 +29,18 @@ import Components from "../assets/image/Components.png";
     SubPartsCard,
   },
   data() {
-    return { Engines, Components };
+    return { subcategories: [], Engines, Components };
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/parts-subcategories/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.subcategories = data;
+
+        console.log(this.subcategories);
+      });
   },
 })
 export default class SubParts extends Vue {}

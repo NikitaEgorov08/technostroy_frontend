@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/Components" class="sub-parts-card">
+  <router-link :to="url" class="sub-parts-card">
     <h3 class="parts-card-title">{{ title }}</h3>
     <img class="parts-card-img" :src="img" />
   </router-link>
@@ -9,7 +9,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: ["title", "img"],
+  props: ["title", "img", "url"],
 })
 export default class SubPartsCard extends Vue {}
 </script>

@@ -82,4 +82,15 @@ export default class Contacts extends Vue {}
     padding: 32px;
   }
 }
+@media (max-width: 768px) {
+  .contacts-form {
+    margin: 32px;
+  }
+  .contacts-home .contacts-block {
+    display: block;
+  }
+  .contacts-form .form-container .form-info {
+    display: block;
+  }
+}
 </style>

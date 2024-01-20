@@ -8,7 +8,7 @@
         <span class="status-mobile">В наличии</span>
       </div>
       <div class="tech-product-gallery">
-        <img class="tech-card-img" src="../assets/image/Drill2.png" />
+        <!--  <img class="tech-card-img" src="../assets/image/Drill2.png" /> -->
       </div>
       <div class="tech-product-info">
         <span class="ru-sng">Доставка по России и СНГ</span>
@@ -36,10 +36,7 @@
           <button class="request-btn" @click="showModalPrice">
             Запросить цену
           </button>
-          <button
-            class="forms-btn forms-btn-adaptive"
-            @click="showModalLeasing"
-          >
+          <button class="forms-btn" @click="showModalLeasing">
             Купить в лизинг
           </button>
         </div>
@@ -74,9 +71,15 @@ import { Options, Vue } from "vue-class-component";
 import RepairPriceModal from "@/components/Forms/RepairPriceModal.vue";
 import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 import GetOfferModal from "@/components/Forms/GetOfferModal.vue";
+import CarouselTech from "@/components/CarouselTech.vue";
 
 @Options({
-  components: { RepairPriceModal, LeasingRequestModal, GetOfferModal },
+  components: {
+    RepairPriceModal,
+    LeasingRequestModal,
+    GetOfferModal,
+    CarouselTech,
+  },
   props: ["title", "text", "img"],
   data() {
     return {
@@ -189,6 +192,9 @@ export default class TechProduct extends Vue {}
     .top-mobile {
       display: none;
     }
+    .ru-sng-mobile {
+      display: none;
+    }
   }
   .description {
     display: grid;
@@ -197,9 +203,8 @@ export default class TechProduct extends Vue {}
   }
 }
 @media (max-width: 1199px) {
-  .forms-btn-adaptive {
-    margin-left: auto;
-    margin-top: 12px;
+  .tech-product .tech-product-hero .tech-product-info .tech-product-buttons {
+    gap: 8px;
   }
 }
 @media (max-width: 1000px) {
