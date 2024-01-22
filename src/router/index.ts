@@ -48,6 +48,11 @@ const routes: Array<RouteRecordRaw> = [
     component: Components,
   },
   {
+    path: "/parts/:idCat/:idSub/:idPart",
+    name: "ComponentProduct",
+    component: ComponentProduct,
+  },
+  {
     path: "/services",
     name: "ServiceCatalog",
     component: ServiceCatalog,
@@ -86,11 +91,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/techProduct",
     name: "TechProduct",
     component: TechProduct,
-  },
-  {
-    path: "/componentProduct",
-    name: "ComponentProduct",
-    component: ComponentProduct,
   },
   {
     path: "/serviceComponents",

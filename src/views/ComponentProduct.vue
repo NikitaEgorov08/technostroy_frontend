@@ -1,5 +1,5 @@
 <template>
-  <h2>Ковш бульдозерный</h2>
+  <h2>{{ title }}</h2>
   <div class="component-product">
     <div class="tech-product-hero">
       <span class="ru-sng-mobile">Доставка по России и СНГ</span>
@@ -8,26 +8,16 @@
         <span class="status-mobile">В наличии</span>
       </div>
       <div class="tech-product-gallery">
-        <img class="tech-card-img" src="../assets/image/bucket.png" />
+        <img class="tech-card-img" :src="img" />
       </div>
       <div class="component-product-info">
         <span class="ru-sng">Доставка по России и СНГ</span>
-        <span class="status">В наличии</span>
+        <span class="status" v-if="inStock">В наличии</span>
+        <span class="status" v-else>Под заказ</span>
 
         <h3>{{ title }}</h3>
         <p class="product-info">
-          Буровая машина передвижная предназначена для бурения скважин
-          вращательным способом со шнековой очисткой под сваи, опоры и для
-          других инженерно-строительных целей.
-          <br />
-          Буровая машина передвижная представляет собой многоцелевую установку с
-          механическим приводом вращения бурильного инструмента, смонтированную
-          на шасси гусеничного трактора-болотохода.
-          <br />
-          Буровая машина оснащена поворотной кассетой, что позволяет облегчить
-          монтаж, демонтаж шнековой колонны и производить бурение комплектом
-          бурового инструмента (щнек L- 4,5м., шнек с удлинителем L- 4,2/8,2м.,
-          буровая головка) скважин глубиной до 12м.
+          {{ text }}
         </p>
 
         <div class="component-product-buttons">
@@ -38,6 +28,7 @@
           <button
             class="forms-btn forms-btn-adaptive"
             @click="showModalLeasing"
+            v-if="allowLeasing"
           >
             Купить в лизинг
           </button>
@@ -70,14 +61,18 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
 
 @Options({
   components: { RepairPriceModal, LeasingRequestModal, CalcDeliveryModal },
-  props: ["title", "text", "img"],
+
   data() {
     return {
       repairPriceModalVisibility: false,
       leasingRequestModalVisibility: false,
 
       calcDeliveryModalVisibility: false,
-      title: "Ковш бульдозерный",
+      title: "",
+      text: "",
+      img: "",
+      inStock: false,
+      allowLeasing: false,
     };
   },
   methods: {
@@ -119,6 +114,20 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
         localStorage.setItem("cart", JSON.stringify([tovar]));
       }
     },
+  },
+  mounted() {
+    const id = this.$route.params.idPart;
+    fetch("http://45.12.238.17:8000/api/parts/" + id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.title = data.title;
+        this.text = data.description;
+        this.img = data.image;
+        this.inStock = data.in_stock;
+        this.allowLeasing = data.allow_leasing;
+      });
   },
 })
 export default class TechProduct extends Vue {}

@@ -11,28 +11,24 @@
           name="ООО “Торговый Дом “Челябинские строительные машины”
             
             "
-          jurAdd="Юридический адрес: Россия, г.Уфа, 450112, ул. Льва Толстого д. 13 пом. 4 
-            
-             "
-          jurInfo="
-  
-              ИНН 0274162807 
-              ОГРН 1120280003117"
-          officeAdd="Адрес офиса: Россия, г. Уфа 450112, ул. Льва Толстого д. 13 пом. 4 "
+          jurAdd="Россия, 454078, г.Челябинск, ул. Барбюса, 75-66"
+          jurInfo="ИНН 7449076417 ОГРН 1087449002783"
+          officeAdd="Адрес офиса: Россия, г. Челябинск, ул. Енисейская, 41А "
           tel1="8 (917) 425-59-99 "
           tel2="8 (347) 216-30-37 "
           mail="info@mail.ru "
         />
       </div>
 
-      <div
-        class="contact-map"
-        ref="yandexMap"
-        type="text/javascript"
-        charset="utf-8"
-        async
-        src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A46fc543e47755b45764179e017c7cfd387f00dd490a25e09f8cdb67738e3c95f&amp;width=636&amp;height=475&amp;lang=ru_RU&amp;scroll=true"
-      ></div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.441062853625!2d61.48377038174769!3d55.140076672890714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43c5f2ed685e9081%3A0x469f62de13194086!2z0YPQuy4g0JXQvdC40YHQtdC50YHQutCw0Y8sIDQx0LAsINCn0LXQu9GP0LHQuNC90YHQuiwg0KfQtdC70Y_QsdC40L3RgdC60LDRjyDQvtCx0LsuLCA0NTQxMTk!5e0!3m2!1sru!2sru!4v1705936614733!5m2!1sru!2sru"
+        width="90%"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
   </div>
   <ContactsForm />
@@ -57,6 +53,7 @@ export default class Contacts extends Vue {}
   .contacts-block {
     display: grid;
     grid-template-columns: 1fr 2fr;
+    gap: 16px;
     margin-top: 64px;
   }
   .contact-map {
