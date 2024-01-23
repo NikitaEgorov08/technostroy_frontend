@@ -138,7 +138,7 @@ import CarouselTech from "@/components/CarouselTech.vue";
       })
       .then((data) => {
         this.title = data.title;
-        this.text = data.description;
+        this.text = data.text_description;
         this.img = data.image;
         this.inStock = data.in_stock;
         this.allowLeasing = data.allow_leasing;
