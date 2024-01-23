@@ -1,7 +1,7 @@
 <template>
   <div class="back" id="TechCards">
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-    <a href="" class="">Назад</a>
+    <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">бурильные машины</h2>
   <div class="catalog-service">
@@ -27,6 +27,12 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
 @Options({
   components: {
     TechCard,
+  },
+  methods: {
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
+    },
   },
 })
 export default class TechCards extends Vue {}

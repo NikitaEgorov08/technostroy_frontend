@@ -92,7 +92,7 @@ import Bulldozer from "../assets/image/Bulldozer.png";
           .map((item: any) => item.id);
 
         const newCart = parsed.filter(
-          (item: any) => !checkedElements.includes(item.id)
+          (item: any) => !checkedElements.includes(item.id),
         );
         localStorage.setItem("cart", JSON.stringify(newCart));
         this.cartItems = newCart;

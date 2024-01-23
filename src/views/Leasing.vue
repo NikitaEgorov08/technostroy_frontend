@@ -2,7 +2,7 @@
   <div class="leasing">
     <div class="back">
       <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-      <a href="" class="">Назад</a>
+      <a href class="" @click="back">Назад</a>
     </div>
     <h2 class="leas-title">Лизинг</h2>
     <div class="leas-info">
@@ -163,9 +163,12 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
     },
-
     closeModalLeasing() {
       this.leasingRequestModalVisibility = false;
+    },
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
     },
   },
 })
@@ -177,29 +180,36 @@ export default class Leasing extends Vue {}
     display: grid;
     grid-template-columns: 2fr 1fr;
     padding: 64px 64px 80px;
+
     .leas-info-left {
       text-align: left;
       font-size: 18px;
       margin-right: 82px;
+
       .info-left-title {
         font-weight: 700;
         margin-bottom: 16px;
       }
+
       .info-left-text {
         margin-bottom: 32px;
       }
     }
+
     .leas-info-right {
       background-color: #d9d9d9;
       padding: 98px 28px;
       text-align: left;
+
       .leas-logo {
         margin-left: 50%;
         margin-bottom: 72px;
       }
+
       .info-right-text {
         margin-bottom: 32px;
       }
+
       .info-right-title {
         font-weight: 700;
         margin-bottom: 16px;
@@ -209,6 +219,7 @@ export default class Leasing extends Vue {}
 
   .leas-chart {
     padding: 0 120px;
+
     .leas-chart-title {
       color: #000;
       text-align: left;
@@ -216,12 +227,15 @@ export default class Leasing extends Vue {}
       font-weight: 700;
       text-transform: uppercase;
     }
+
     .leas-chart-block {
       display: flex;
       justify-content: space-around;
       padding: 82px 0;
+
       .leas-chart-item {
         padding: 24px;
+
         .item-circle {
           color: #000;
 
@@ -239,6 +253,7 @@ export default class Leasing extends Vue {}
           border-radius: 50%;
           margin: 0 auto;
         }
+
         .item-text {
           display: flex;
           color: #000;
@@ -252,6 +267,7 @@ export default class Leasing extends Vue {}
           font-size: 18px;
         }
       }
+
       hr {
         border: none;
         border-top: 1px dashed #000;
@@ -267,6 +283,7 @@ export default class Leasing extends Vue {}
     justify-content: space-between;
     align-items: center;
     padding: 120px;
+
     .leas-bottom-title {
       color: #000;
 
@@ -276,6 +293,7 @@ export default class Leasing extends Vue {}
     }
   }
 }
+
 @media (max-width: 1600px) {
   .leasing .leas-info .leas-info-right .leas-logo {
     margin-left: 40%;
@@ -288,6 +306,7 @@ export default class Leasing extends Vue {}
     font-size: 16px;
   }
 }
+
 @media (max-width: 1365px) {
   .leasing .leas-info .leas-info-right .leas-logo {
     width: 50%;
@@ -351,6 +370,7 @@ export default class Leasing extends Vue {}
     padding: 32px;
   }
 }
+
 @media (max-width: 768px) {
   .leasing .leas-info {
     display: block;

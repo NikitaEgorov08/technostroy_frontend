@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-    <a href="" class="">Назад</a>
+    <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">Ремонт узлов и агрегатов</h2>
   <div class="service">
@@ -58,6 +58,10 @@ import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
     closeModal() {
       this.repairPartsModalVisibility = false;
     },
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
+    },
   },
 })
 export default class ServiceComponents extends Vue {}
@@ -80,6 +84,7 @@ export default class ServiceComponents extends Vue {}
     margin-left: auto;
   }
 }
+
 @media (max-width: 1000px) {
   .service {
     padding: 32px;

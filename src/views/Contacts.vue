@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-    <a href="" class="">Назад</a>
+    <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">Контакты</h2>
   <div class="contacts-home">
@@ -36,11 +36,18 @@ import { Options, Vue } from "vue-class-component";
 import HomeForm from "@/components/Forms/HomeForm.vue"; // @ is an alias to /src
 import ContactCard from "@/components/ContactCard.vue"; // @ is an alias to /src
 import ContactsForm from "@/components/Forms/ContactsForm.vue";
+
 @Options({
   components: {
     HomeForm,
     ContactCard,
     ContactsForm,
+  },
+  methods: {
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
+    },
   },
 })
 export default class Contacts extends Vue {}
@@ -48,19 +55,23 @@ export default class Contacts extends Vue {}
 <style>
 .contacts-home {
   padding: 0 64px;
+
   .contacts-block {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 16px;
     margin-top: 64px;
   }
+
   .contact-map {
     width: 100%;
   }
+
   .contacts-form {
     width: 100%;
   }
 }
+
 @media (max-width: 1899px) {
   .about-info {
     grid-column-gap: 120px;
@@ -72,18 +83,22 @@ export default class Contacts extends Vue {}
     margin-top: 32px;
   }
 }
+
 @media (max-width: 1000px) {
   .contacts-home {
     padding: 32px;
   }
 }
+
 @media (max-width: 768px) {
   .contacts-form {
     margin: 32px;
   }
+
   .contacts-home .contacts-block {
     display: block;
   }
+
   .contacts-form .form-container .form-info {
     display: block;
   }

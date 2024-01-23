@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-    <a href="" class="">Назад</a>
+    <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">ОПЛАТА И ДОСТАВКА</h2>
   <div class="pay-del-cont">
@@ -123,9 +123,12 @@ import CommonCalcDeliveryModal from "@/components/Forms/CommonCalcDeliveryModal.
     showModal() {
       this.commonCalcDeliveryModalVisibility = true;
     },
-
     closeModal() {
       this.commonCalcDeliveryModalVisibility = false;
+    },
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
     },
   },
 })
@@ -135,44 +138,54 @@ export default class Payment extends Vue {}
 .pay-del-cont {
   padding: 64px;
   text-align: left;
+
   .pay-del-title {
   }
+
   .payment-and-delivery {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
     grid-column-gap: 120px;
   }
+
   .pay-del-info {
     text-align: left;
+
     .info-title {
       margin: 40px 0 24px;
       font-size: 24px;
       font-weight: 700;
     }
   }
+
   .pay-del-btn {
     margin: 0 auto;
     display: block;
     margin-top: 80px;
   }
 }
+
 @media (max-width: 1365px) {
   .pay-del-cont {
     padding: 32px 64px;
   }
+
   .pay-del-cont .pay-del-info .info-title {
     margin: 24px 0;
   }
 }
+
 @media (max-width: 1000px) {
   .pay-del-cont {
     padding: 32px;
   }
+
   .pay-del-cont .payment-and-delivery {
     grid-column-gap: 32px;
   }
 }
+
 @media (max-width: 768px) {
   .pay-del-cont .payment-and-delivery {
     display: block;

@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-    <a href="" class="">Назад</a>
+    <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">{{ title }}</h2>
   <div class="service">
@@ -44,6 +44,10 @@ import RepairCarsModal from "@/components/Forms/RepairCarsModal.vue";
     closeModal() {
       this.repairCarsModalVisibility = false;
     },
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
+    },
   },
   mounted() {
     const serviceID = this.$route.params.id;
@@ -69,6 +73,7 @@ export default class Service extends Vue {}
   .service-img {
     display: flex;
     justify-content: space-between;
+
     .service-img-item {
       width: 30%;
     }
@@ -90,6 +95,7 @@ export default class Service extends Vue {}
     padding: 40px 0;
   }
 }
+
 @media (max-width: 1000px) {
   .service {
     padding: 32px;

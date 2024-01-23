@@ -2,7 +2,7 @@
   <div class="tech">
     <div class="back">
       <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-      <a href="" class="">Назад</a>
+      <a href class="" @click="back">Назад</a>
     </div>
 
     <h2>СПЕЦТЕХНИКА</h2>
@@ -17,6 +17,12 @@ import CatalogTech from "@/components/СatalogTech.vue";
 @Options({
   components: {
     CatalogTech,
+  },
+  methods: {
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
+    },
   },
 })
 export default class Tech extends Vue {}
@@ -39,9 +45,11 @@ body {
   .back {
     text-align: left;
     margin-left: 80px;
+
     .back-arrow {
       margin-right: 12px;
     }
+
     a {
       color: #000;
     }

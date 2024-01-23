@@ -2,7 +2,7 @@
   <div class="sub-parts">
     <div class="back">
       <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-      <a href="" class="">Назад</a>
+      <a href class="" @click="back">Назад</a>
     </div>
 
     <h2 class="parts-title">Запасные части</h2>
@@ -30,6 +30,12 @@ import Components from "../assets/image/Components.png";
   },
   data() {
     return { subcategories: [], Engines, Components };
+  },
+  methods: {
+    back(e: Event) {
+      e.preventDefault();
+      this.$router.back();
+    },
   },
   mounted() {
     fetch("http://45.12.238.17:8000/api/parts-subcategories/")
