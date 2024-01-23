@@ -10,7 +10,7 @@
       <img src="../assets/icon/Vk.svg" alt="" />
       <img src="../assets/icon/Tel.svg" alt="" />
 
-      <a href="tel:+79080859717">+7 908 085 9717</a>
+      <a href="tel:+79193519559">+7 (919) 351-95-59</a>
     </div>
     <div class="header-info">
       <router-link to="/"

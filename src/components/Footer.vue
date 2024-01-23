@@ -36,9 +36,9 @@
       <div class="contact-footer">
         <h3 class="footer-title">КОНТАКТЫ</h3>
         <p class="contact-footer-info">
-          +7 (908) 085-97-17 <br />
+          +7 (919) 351-95-59 <br />
           Отдел продаж <br />
-          +7 (908) 085-97-17 <br />
+          +7 (919) 351-95-59 <br />
           info@chelstroymash.ru <br />
           09:00 - 18:00 (UTC +5)<br />
           454012, г. Челябинск, Копейское шоссе, д.23 <br />
