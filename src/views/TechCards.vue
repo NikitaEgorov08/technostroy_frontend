@@ -3,20 +3,16 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h2 class="leas-title">бурильные машины</h2>
+  <h2 class="leas-title">{{ title }}</h2>
   <div class="catalog-service">
     <TechCard
-      img=""
-      title="Буровая машина БМП 045"
-      text="Буровая машина передвижная предназначена для бурения скважин вращательным способом со шнековой очисткой под сваи, опоры и для других инженерно-строительных целей."
-    />
-  </div>
-
-  <div class="catalog-service">
-    <TechCard
-      img=""
-      title="Буровая машина БМП 045"
-      text="Буровая машина передвижная предназначена для бурения скважин вращательным способом со шнековой очисткой под сваи, опоры и для других инженерно-строительных целей."
+      v-for="car of cars"
+      :key="car.id"
+      :title="car.title"
+      :img="car.image"
+      :allowLeasing="car.allow_leasing"
+      :inStock="car.in_stock"
+      :text="car.text_description"
     />
   </div>
 </template>
@@ -28,11 +24,27 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
   components: {
     TechCard,
   },
+  data() {
+    return {
+      cars: [],
+    };
+  },
   methods: {
     back(e: Event) {
       e.preventDefault();
       this.$router.back();
     },
+  },
+
+  mounted() {
+    const idCarCat = this.$route.params.idCarCat;
+    fetch(`http://45.12.238.17:8000/api/cars?category=${idCarCat}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.cars = data;
+      });
   },
 })
 export default class TechCards extends Vue {}

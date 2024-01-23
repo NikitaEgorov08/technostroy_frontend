@@ -28,6 +28,16 @@ const routes: Array<RouteRecordRaw> = [
     component: Tech,
   },
   {
+    path: "/tech/:idCarCat",
+    name: "TechCards",
+    component: TechCards,
+  },
+  {
+    path: "/tech/:idCarCat/:idCar",
+    name: "TechProduct",
+    component: TechProduct,
+  },
+  {
     path: "/leasing",
     name: "Leasing",
     component: Leasing,
@@ -82,16 +92,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "PaymentAndDelivery",
     component: PaymentAndDelivery,
   },
-  {
-    path: "/techCards",
-    name: "TechCards",
-    component: TechCards,
-  },
-  {
-    path: "/techProduct",
-    name: "TechProduct",
-    component: TechProduct,
-  },
+
   {
     path: "/serviceComponents",
     name: "ServiceComponents",

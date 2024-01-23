@@ -1,18 +1,19 @@
 <template>
   <div class="catalog-main">
-    <CatalogTechCard title="ТРАКТОРА" :img="Tractor" slug="traktora" />
     <CatalogTechCard
-      title="БУРИЛЬНЫЕ МАШИНЫ"
-      :img="Drill"
-      slug="burilnaya-mashina"
+      v-for="category of categories"
+      :key="category.id"
+      :title="category.title"
+      :img="category.image"
+      :slug="
+        category.title === 'Трактора'
+          ? 'traktora'
+          : category.title === 'Бульдозеры'
+          ? 'buldozery'
+          : null
+      "
+      :url="'/tech/' + category.id"
     />
-    <CatalogTechCard
-      title="ТРУБОУКЛАДЧИКИ"
-      :img="Three"
-      slug="truboukladchiki"
-    />
-    <CatalogTechCard title="СВАЕБОИ/копры" :img="Piles" slug="svaeboi" />
-    <CatalogTechCard title="БУЛЬДОЗЕРЫ" :img="Bulldozer" slug="buldozery" />
   </div>
 </template>
 <script lang="ts">
@@ -29,7 +30,23 @@ import Bulldozer from "../assets/image/Bulldozer.png";
     CatalogTechCard,
   },
   data() {
-    return { Tractor, Drill, Three, Piles, Bulldozer };
+    return {
+      Tractor,
+      Drill,
+      Three,
+      Piles,
+      Bulldozer,
+      categories: [],
+    };
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/cars-categories/")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.categories = data;
+      });
   },
 })
 export default class CatalogTech extends Vue {}

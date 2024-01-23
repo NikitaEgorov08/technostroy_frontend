@@ -47,8 +47,10 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
     },
   },
   mounted() {
+    const idCat = this.$route.params.idCat;
+    const idSub = this.$route.params.idSub;
     fetch(
-      `http://45.12.238.17:8000/api/parts?category=${this.$route.params.idCat}&subcategory=${this.$route.params.idSub}`,
+      `http://45.12.238.17:8000/api/parts?category=${idCat}&subcategory=${idSub}`
     )
       .then((response) => {
         return response.json();

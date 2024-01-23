@@ -4,12 +4,12 @@
       <a class="favourite-btn-mobile" @click="addToCart">В избранное</a>
       <span class="status mobile">В наличии</span>
     </div>
-    <img class="tech-card-img" src="../assets/image/Drill2.png" />
+    <img class="tech-card-img" :src="img" />
     <div class="tech-card-item">
       <h3 class="card-title">{{ title }}</h3>
-      <p class="card-text">{{ text }}</p>
+      <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>
       <div class="tech-card-buttons">
-        <button class="forms-btn" @click="showModalLeasing">
+        <button class="forms-btn" @click="showModalLeasing" v-if="allowLeasing">
           Купить в лизинг
         </button>
         <router-link to="/techProduct" class="forms-btn">Подробнее</router-link>
@@ -17,7 +17,8 @@
     </div>
     <div class="tech-card-top">
       <a class="favourite-btn" @click="addToCart">В избранное</a>
-      <span class="status">В наличии</span>
+      <span class="status" v-show="inStock">В наличии</span>
+      <span class="status" v-show="!inStock">Под заказ</span>
     </div>
   </div>
   <leasing-request-modal
@@ -31,7 +32,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 
 @Options({
   components: { LeasingRequestModal },
-  props: ["title", "text", "img"],
+  props: ["title", "text", "img", "allowLeasing", "inStock"],
 
   data() {
     return {
@@ -129,11 +130,8 @@ export default class TechCard extends Vue {}
     .card-title {
     }
     .tech-card-buttons {
-      position: absolute;
-      bottom: 10%;
-      right: 1%;
       display: flex;
-      width: 60%;
+      flex-wrap: wrap;
       justify-content: space-between;
     }
   }
@@ -154,10 +152,7 @@ export default class TechCard extends Vue {}
 
     margin: 32px;
   }
-  .tech-card .tech-card-item .tech-card-buttons {
-    position: inherit;
-    width: 100%;
-  }
+
   .tech-card .tech-card-img {
     margin: 32px 0;
   }
