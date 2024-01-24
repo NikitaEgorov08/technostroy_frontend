@@ -10,6 +10,12 @@
           ? 'traktora'
           : category.title === 'Бульдозеры'
           ? 'buldozery'
+          : category.title === 'Сваебои/Копры'
+          ? 'svaeboi'
+          : category.title === 'Трубоукладчики'
+          ? 'truboukladchiki'
+          : category.title === 'Бурильные машины'
+          ? 'burilniye_mashiny'
           : null
       "
       :url="'/tech/' + category.id"
