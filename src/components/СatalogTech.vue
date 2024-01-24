@@ -15,7 +15,7 @@
           : category.title === 'Трубоукладчики'
           ? 'truboukladchiki'
           : category.title === 'Бурильные машины'
-          ? 'burilniye_mashiny'
+          ? 'burilnaya-mashina'
           : null
       "
       :url="'/tech/' + category.id"
