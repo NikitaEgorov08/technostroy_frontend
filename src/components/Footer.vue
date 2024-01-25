@@ -17,21 +17,26 @@
     <div class="footer-menu">
       <nav class="menu-item">
         <h3 class="footer-title">КОМПАНИЯ</h3>
-        <a class="menu-link" href="/tech">Спецтехника</a>
-        <a class="menu-link" href="/leasing">Лизинг</a>
-        <a class="menu-link" href="/parts">Запчасти</a>
-        <a class="menu-link" href="/services">Ремонт спецтехники</a>
-        <a class="menu-link" href="/paymentAndDelivery">Оплата и доставка</a>
-        <a class="menu-link" href="/contacts">Контакты</a>
+        <router-link class="menu-link" to="/tech">Спецтехника</router-link>
+        <router-link class="menu-link" to="/leasing">Лизинг</router-link>
+        <router-link class="menu-link" to="/parts">Запчасти</router-link>
+        <router-link class="menu-link" to="/services"
+          >Ремонт спецтехники</router-link
+        >
+        <router-link class="menu-link" to="/paymentAndDelivery"
+          >Оплата и доставка</router-link
+        >
+        <router-link class="menu-link" to="/contacts">Контакты</router-link>
       </nav>
       <nav class="menu-item">
         <h3 class="footer-title">КАТАЛОГ</h3>
-        <a class="menu-link" href="/techCards">Трактора</a>
-        <a class="menu-link" href="">Бурильные машины</a>
-        <a class="menu-link" href="">Бульдозеры</a>
-        <a class="menu-link" href="">Трубоукладчики</a>
-        <a class="menu-link" href="">Машины для забивки и погружения </a>
-        <a class="menu-link" href="">Запчасти </a>
+        <router-link
+          class="menu-link"
+          v-for="category of categories"
+          :key="category.id"
+          :to="'/tech/' + category.id"
+          >{{ category.title }}</router-link
+        >
       </nav>
       <div class="contact-footer">
         <h3 class="footer-title">КОНТАКТЫ</h3>
@@ -66,21 +71,26 @@
     <div class="footer-mobile-menu">
       <nav class="menu-item">
         <h3 class="footer-title">КОМПАНИЯ</h3>
-        <a class="menu-link" href="/tech">Спецтехника</a>
-        <a class="menu-link" href="/leasing">Лизинг</a>
-        <a class="menu-link" href="/parts">Запчасти</a>
-        <a class="menu-link" href="/services">Ремонт спецтехники</a>
-        <a class="menu-link" href="/paymentAndDelivery">Оплата и доставка</a>
-        <a class="menu-link" href="/contacts">Контакты</a>
+        <router-link class="menu-link" to="/tech">Спецтехника</router-link>
+        <router-link class="menu-link" to="/leasing">Лизинг</router-link>
+        <router-link class="menu-link" to="/parts">Запчасти</router-link>
+        <router-link class="menu-link" to="/services"
+          >Ремонт спецтехники</router-link
+        >
+        <router-link class="menu-link" to="/paymentAndDelivery"
+          >Оплата и доставка</router-link
+        >
+        <router-link class="menu-link" to="/contacts">Контакты</router-link>
       </nav>
       <nav class="menu-item">
         <h3 class="footer-title">КАТАЛОГ</h3>
-        <a class="menu-link" href="/techCards">Трактора</a>
-        <a class="menu-link" href="">Бурильные машины</a>
-        <a class="menu-link" href="">Бульдозеры</a>
-        <a class="menu-link" href="">Трубоукладчики</a>
-        <a class="menu-link" href="">Машины для забивки и погружения </a>
-        <a class="menu-link" href="">Запчасти </a>
+        <router-link
+          class="menu-link"
+          v-for="category of categories"
+          :key="category.id"
+          :to="'/tech/' + category.id"
+          >{{ category.title }}</router-link
+        >
       </nav>
     </div>
     <span class="footer-bottom"
@@ -102,17 +112,10 @@ import { Options, Vue } from "vue-class-component";
       scTimer: 0,
       scY: 0,
       arrowVisible: false,
+      categories: [],
     };
   },
-  mounted() {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > window.innerHeight / 2) {
-        this.arrowVisible = true;
-      } else {
-        this.arrowVisible = false;
-      }
-    });
-  },
+
   methods: {
     toTop() {
       window.scrollTo({
@@ -120,6 +123,15 @@ import { Options, Vue } from "vue-class-component";
         behavior: "smooth",
       });
     },
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/cars-categories/")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        this.categories = data;
+      });
   },
 })
 export default class Footer extends Vue {}
