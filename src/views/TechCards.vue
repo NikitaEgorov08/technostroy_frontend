@@ -13,6 +13,7 @@
       :allowLeasing="car.allow_leasing"
       :inStock="car.in_stock"
       :text="car.text_description"
+      :url="'/tech/' + $router.params.idCarCat + '/' + car.id"
     />
   </div>
 </template>
