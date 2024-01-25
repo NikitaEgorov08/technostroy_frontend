@@ -4,7 +4,7 @@
     <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">{{ title }}</h2>
-  <div class="catalog-service">
+  <div class="catalog-service" v-if="cars.length">
     <TechCard
       v-for="car of cars"
       :key="car.id"
@@ -15,6 +15,9 @@
       :text="car.text_description"
       :url="'/tech/' + $route.params.idCarCat + '/' + car.id"
     />
+  </div>
+  <div class="catalog-service empty" v-else>
+    <h2>К сожалению, в данной категории нет товаров</h2>
   </div>
 </template>
 <script lang="ts">
