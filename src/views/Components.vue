@@ -7,7 +7,7 @@
 
     <h2 class="parts-title">Запасные части</h2>
 
-    <div class="components-catalog">
+    <div class="components-catalog" v-if="parts.length">
       <ComponentCard
         v-for="part of parts"
         :key="part.id"
@@ -25,6 +25,7 @@
         :inStock="part.in_stock"
       />
     </div>
+    <h3 v-else>К сожалению, в данной категории нет товаров</h3>
   </div>
 </template>
 <script lang="ts">

@@ -16,9 +16,7 @@
       :url="'/tech/' + $route.params.idCarCat + '/' + car.id"
     />
   </div>
-  <div class="catalog-service empty" v-else>
-    <h2>К сожалению, в данной категории нет товаров</h2>
-  </div>
+  <h3 v-else>К сожалению, в данной категории нет товаров</h3>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
