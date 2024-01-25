@@ -12,7 +12,7 @@
         <button class="forms-btn" @click="showModalLeasing" v-if="allowLeasing">
           Купить в лизинг
         </button>
-        <router-link :to="'url'" class="forms-btn">Подробнее</router-link>
+        <router-link :to="url" class="forms-btn">Подробнее</router-link>
       </div>
     </div>
     <div class="tech-card-top">

@@ -36,14 +36,14 @@
         </button>
       </div>
     </div>
-    <div class="description">
+    <div class="description" v-if="character.length">
       <div class="descr">
         <h3>Характеристики модели</h3>
         <p v-for="item of character" :key="item.key">
           {{ item.key }}, {{ item.value }}
         </p>
       </div>
-      <div class="equipment">
+      <div class="equipment" v-if="complectation.length">
         <h3>Комплектация модели</h3>
         <p v-for="item of complectation" :key="item.key">
           {{ item.key }}, {{ item.value }}
