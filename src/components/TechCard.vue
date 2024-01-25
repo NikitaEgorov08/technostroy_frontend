@@ -93,6 +93,7 @@ export default class TechCard extends Vue {}
   grid-template-columns: 1fr 2fr;
   .tech-card-img {
     background-size: cover;
+    max-width: 320px;
   }
   .tech-card-top {
     position: absolute;
