@@ -5,7 +5,7 @@
       <a href class="" @click="back">Назад</a>
     </div>
 
-    <h2 class="parts-title">Запасные части к тракторам</h2>
+    <h2 class="parts-title">Запасные части</h2>
 
     <div class="components-catalog">
       <ComponentCard
