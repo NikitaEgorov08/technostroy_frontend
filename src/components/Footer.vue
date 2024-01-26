@@ -7,8 +7,8 @@
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
       </div>
-      <div class="contact">
-        <a class="contact-link" href="">Отправить заявку</a>
+      <div class="contact" @click="showModal">
+        <a class="contact-link">Отправить заявку</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
       </div>
@@ -101,18 +101,21 @@
       <span class="arrow-top-text-mobile">ВВЕРХ</span>
     </div>
   </div>
+  <contact-form v-show="contactFormVisibility" @close="closeModal" />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import ContactForm from "./Forms/ContactForm.vue";
 
 @Options({
-  components: {},
+  components: { ContactForm },
   data() {
     return {
       scTimer: 0,
       scY: 0,
       arrowVisible: false,
       categories: [],
+      contactFormVisibility: false,
     };
   },
 
@@ -122,6 +125,13 @@ import { Options, Vue } from "vue-class-component";
         top: 0,
         behavior: "smooth",
       });
+    },
+
+    showModal() {
+      this.contactFormVisibility = true;
+    },
+    closeModal() {
+      this.contactFormVisibility = false;
     },
   },
   mounted() {
@@ -154,6 +164,7 @@ export default class Footer extends Vue {}
     .catalog {
       display: flex;
       align-items: center;
+      cursor: pointer;
       .catalog-link {
         text-decoration: none;
         font-size: 24px;
@@ -174,6 +185,7 @@ export default class Footer extends Vue {}
     .contact {
       display: flex;
       align-items: center;
+      cursor: pointer;
       .contact-link {
         text-decoration: none;
         font-size: 24px;
@@ -298,11 +310,11 @@ export default class Footer extends Vue {}
 }
 @media (max-width: 1365px) {
   .footer .footer-top .catalog {
-    grid-template-columns: 2fr 0.5fr 1fr;
+    grid-template-columns: 1fr 0.5fr 1fr;
     display: grid;
   }
   .footer .footer-top .contact {
-    grid-template-columns: 2fr 0.5fr 1fr;
+    grid-template-columns: 1fr 0.5fr 1fr;
     display: grid;
   }
 }

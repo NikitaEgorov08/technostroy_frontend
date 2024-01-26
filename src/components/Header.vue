@@ -64,33 +64,33 @@
     src="../assets/icon/Hero-modal-mobile.svg"
     @click="showModal"
   />
-  <application-for-goods v-show="cartModalVisibility" @close="closeModal" />
+  <contact-form v-show="contactFormVisibility" @close="closeModal" />
   <mobile-menu v-show="mobileMenuVisibility" @close="closeMobileMenu" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import ApplicationForGoods from "./Forms/ApplicationForGoods.vue";
+import ContactForm from "./Forms/ContactForm.vue";
 import MobileMenu from "./Forms/MobileMenu.vue";
 
 @Options({
-  components: { ApplicationForGoods, MobileMenu },
+  components: { ContactForm, MobileMenu },
   props: {
     msg: String,
   },
   data() {
     return {
-      cartModalVisibility: false,
+      contactFormVisibility: false,
       listIsVisible: false,
       mobileMenuVisibility: false,
     };
   },
   methods: {
     showModal() {
-      this.cartModalVisibility = true;
+      this.contactFormVisibility = true;
     },
     closeModal() {
-      this.cartModalVisibility = false;
+      this.contactFormVisibility = false;
     },
     openMobileMenu() {
       this.mobileMenuVisibility = true;
