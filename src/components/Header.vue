@@ -22,9 +22,32 @@
         ЧЕЛЯБИНСКИЕ СТРОИТЕЛЬНЫЕ МАШИНЫ</span
       >
       <div class="search">
-        <input class="search-bar" type="text" placeholder="Поиск" />
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="Поиск"
+          @input="search"
+          v-model="searchStr"
+        />
 
         <img class="search-icon" src="../assets/icon/Search.svg" alt="" />
+        <div class="search-result" v-if="searched.length">
+          <div
+            class="search-result-item"
+            v-for="item of searched"
+            :key="item.id"
+          >
+            <router-link
+              :to="constructLink(item)"
+              @click="
+                searched = [];
+                searchStr = '';
+              "
+            >
+              {{ item.title }}</router-link
+            >
+          </div>
+        </div>
       </div>
       <router-link to="/Favourites">
         <img class="favourites-icon" src="../assets/icon/Cart.svg" alt=""
@@ -83,7 +106,16 @@ import MobileMenu from "./Forms/MobileMenu.vue";
       contactFormVisibility: false,
       listIsVisible: false,
       mobileMenuVisibility: false,
+      parts: [],
+      tech: [],
+      searched: [],
+      searchStr: "",
     };
+  },
+  computed: {
+    allProducts() {
+      return [...this.tech, ...this.parts];
+    },
   },
   methods: {
     showModal() {
@@ -105,6 +137,39 @@ import MobileMenu from "./Forms/MobileMenu.vue";
         this.openMobileMenu();
       }
     },
+    search(e: any) {
+      const value = e.target.value;
+      if (!value.length) {
+        this.searched = [];
+        return;
+      }
+      const searched = this.allProducts.filter(
+        (item: any) =>
+          item.title.toLowerCase().indexOf(value.toLowerCase()) > -1
+      );
+      this.searched = searched;
+    },
+    constructLink(item: any) {
+      return `/${item.type}/${
+        item.category_id ? item.category_id : item.category
+      }/${item.subcategory_id ? item.subcategory_id : item.id}${
+        item.subcategory_id ? "/" + item.id : ""
+      }`;
+    },
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/parts")
+      .then((res) => res.json())
+      .then(
+        (data) =>
+          (this.parts = data.map((item: any) => ({ ...item, type: "parts" })))
+      );
+    fetch("http://45.12.238.17:8000/api/cars")
+      .then((res) => res.json())
+      .then(
+        (data) =>
+          (this.tech = data.map((item: any) => ({ ...item, type: "tech" })))
+      );
   },
 })
 export default class Header extends Vue {
@@ -158,6 +223,7 @@ export default class Header extends Vue {
       font-weight: 800;
     }
     .search {
+      position: relative;
       display: flex;
       align-items: center;
 
@@ -169,6 +235,19 @@ export default class Header extends Vue {
         border: none;
         padding-left: 16px;
         margin-right: 16px;
+      }
+
+      .search-result {
+        position: absolute;
+        top: 100%;
+        margin-top: 16px;
+        left: 0;
+        background-color: #fff;
+        padding: 16px;
+        z-index: 99;
+        text-align: left;
+        border-radius: 16px;
+        width: 100%;
       }
     }
     .request {
