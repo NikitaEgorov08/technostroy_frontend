@@ -5,7 +5,7 @@
       <a href class="" @click="back">Назад</a>
     </div>
 
-    <h2 class="parts-title">Запасные части</h2>
+    <h2 class="parts-title">{{ categoryTitle }}</h2>
 
     <div class="catalog-main">
       <SubPartsCard
@@ -29,7 +29,7 @@ import Components from "../assets/image/Components.png";
     SubPartsCard,
   },
   data() {
-    return { subcategories: [], Engines, Components };
+    return { subcategories: [], Engines, Components, categoryTitle: "" };
   },
   methods: {
     back(e: Event) {
@@ -38,14 +38,18 @@ import Components from "../assets/image/Components.png";
     },
   },
   mounted() {
+    const currentCategory = this.$route.params.id;
     fetch("http://45.12.238.17:8000/api/parts-subcategories/")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         this.subcategories = data;
-
-        console.log(this.subcategories);
+      });
+    fetch("http://45.12.238.17:8000/api/parts-categories/" + currentCategory)
+      .then((res) => res.json())
+      .then((data) => {
+        this.categoryTitle = data.title;
       });
   },
 })

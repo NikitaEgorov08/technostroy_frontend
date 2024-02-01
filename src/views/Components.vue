@@ -5,7 +5,7 @@
       <a href class="" @click="back">Назад</a>
     </div>
 
-    <h2 class="parts-title">Запасные части</h2>
+    <h2 class="parts-title">{{ headline }}</h2>
 
     <div class="components-catalog" v-if="parts.length">
       <ComponentCard
@@ -39,12 +39,19 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
   data() {
     return {
       parts: [],
+      subcategoryTitle: "",
+      categoryTitle: "",
     };
   },
   methods: {
     back(e: Event) {
       e.preventDefault();
       this.$router.back();
+    },
+  },
+  computed: {
+    headline() {
+      return this.categoryTitle.replace("Запчасти", this.subcategoryTitle);
     },
   },
   mounted() {
@@ -59,6 +66,12 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
       .then((data) => {
         this.parts = data;
       });
+    fetch("http://45.12.238.17:8000/api/parts-categories/" + idCat)
+      .then((res) => res.json())
+      .then((data) => (this.categoryTitle = data.title));
+    fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
+      .then((res) => res.json())
+      .then((data) => (this.subcategoryTitle = data.title));
   },
 })
 export default class Components extends Vue {}
