@@ -9,16 +9,29 @@
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>
       <router-link :to="url" class="detail">Подробнее</router-link>
-      <button class="forms-btn service-card-btn">Купить</button>
+      <button class="forms-btn service-card-btn" @click="showModalPrice">
+        Купить
+      </button>
     </div>
   </div>
+  <repair-price-modal
+    v-show="repairPriceModalVisibility"
+    @close="closeModalPrice"
+    :product_title="title"
+  />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
+import RepairPriceModal from "@/components/Forms/RepairPriceModal.vue";
 
 @Options({
-  components: {},
+  components: { RepairPriceModal },
   props: ["img", "title", "text", "url", "inStock"],
+  data() {
+    return {
+      repairPriceModalVisibility: false,
+    };
+  },
   methods: {
     addToCart() {
       const tovar = {
@@ -36,6 +49,13 @@ import { Options, Vue } from "vue-class-component";
       } else {
         localStorage.setItem("cart", JSON.stringify([tovar]));
       }
+    },
+    showModalPrice() {
+      this.repairPriceModalVisibility = true;
+    },
+
+    closeModalPrice() {
+      this.repairPriceModalVisibility = false;
     },
   },
 })

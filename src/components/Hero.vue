@@ -59,6 +59,7 @@ export default class Home extends Vue {}
   .menu label:focus {
     background: #fff;
   }
+
   .slide {
     width: 100%;
     height: 100%;

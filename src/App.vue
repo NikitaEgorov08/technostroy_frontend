@@ -90,6 +90,7 @@ h1 {
   margin: 0;
   z-index: 900;
 }
+
 .home-title {
   font-size: 32px;
   font-style: normal;

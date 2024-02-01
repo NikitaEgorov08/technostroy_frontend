@@ -42,6 +42,7 @@
   <repair-price-modal
     v-show="repairPriceModalVisibility"
     @close="closeModalPrice"
+    :product_title="title"
   />
   <leasing-request-modal
     v-show="leasingRequestModalVisibility"
@@ -50,6 +51,7 @@
   <calc-delivery-modal
     v-show="calcDeliveryModalVisibility"
     @close="closeModalDelivery"
+    :product_title="title"
   />
 </template>
 <script lang="ts">
@@ -66,7 +68,6 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
     return {
       repairPriceModalVisibility: false,
       leasingRequestModalVisibility: false,
-
       calcDeliveryModalVisibility: false,
       title: "",
       text: "",
@@ -79,21 +80,18 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
     showModalDelivery() {
       this.calcDeliveryModalVisibility = true;
     },
-
     closeModalDelivery() {
       this.calcDeliveryModalVisibility = false;
     },
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
     },
-
     closeModalLeasing() {
       this.leasingRequestModalVisibility = false;
     },
     showModalPrice() {
       this.repairPriceModalVisibility = true;
     },
-
     closeModalPrice() {
       this.repairPriceModalVisibility = false;
     },
