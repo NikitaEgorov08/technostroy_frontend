@@ -81,12 +81,14 @@ h1 {
   font-size: 64px;
   font-weight: 500;
   position: absolute;
-  left: 50%;
+  left: 55%;
+  width: 70%;
   bottom: 2%;
   transform: translateX(-50%);
   color: rgba(255, 255, 255, 1);
   text-wrap: nowrap;
   margin: 0;
+  z-index: 900;
 }
 .home-title {
   font-size: 32px;
@@ -217,6 +219,8 @@ textarea:focus {
 @media (max-width: 768px) {
   h1 {
     font-size: 24px;
+    width: 100%;
+    left: 50%;
   }
   h2 {
     font-size: 18px;

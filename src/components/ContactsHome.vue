@@ -6,10 +6,9 @@
         <ContactCard
           name="ООО “Торговый Дом “Челябинские строительные машины”"
           jurInfo="ИНН 7449076417 ОГРН 1087449002783"
-          jurAdd="Юридический адрес: Россия, 454078, г.Челябинск, ул. Барбюса, 75-66"
-          officeAdd="Адрес офиса: Россия, г. Челябинск, ул. Енисейская, 41А"
+          jurAdd="Юридический адрес: Россия, 4454012, г. Челябинск, Копейское шоссе, д.23"
+          officeAdd="Адрес офиса: Россия, г. Челябинск, Копейское шоссе, д.23"
           tel1="+7 (919) 351-95-59"
-          tel2="+7 (919) 351-95-59"
           mail="info@chelstroymash.ru"
         />
       </div>
@@ -48,6 +47,7 @@ export default class ContactsHome extends Vue {}
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
     gap: 16px;
+    margin-top: 36px;
     .contact-map {
       width: 90%;
     }

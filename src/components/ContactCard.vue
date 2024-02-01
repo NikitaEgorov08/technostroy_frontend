@@ -6,7 +6,6 @@
 
     <div class="cont-info">{{ officeAdd }}</div>
     <div class="cont-info">{{ tel1 }}</div>
-    <div class="cont-info">{{ tel2 }}</div>
 
     <div class="cont-info">{{ mail }}</div>
 
