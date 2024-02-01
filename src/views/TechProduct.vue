@@ -21,7 +21,7 @@
         <p class="product-info">
           {{ text }}
         </p>
-        <a class="detailed-btn" href="">Подробнее</a>
+        <a class="detailed-btn" href="#desc">Подробнее</a>
         <div class="tech-product-buttons">
           <a class="favourite-btn" @click="addToCart">В избранное</a>
           <button class="request-btn" @click="showModalPrice">
@@ -36,7 +36,7 @@
         </button>
       </div>
     </div>
-    <div class="description" v-if="character.length">
+    <div class="description" v-if="character.length" id="desc">
       <div class="descr">
         <h3>Характеристики модели</h3>
         <p v-for="item of character" :key="item.key">
@@ -294,5 +294,8 @@ export default class TechProduct extends Vue {}
       margin: 40px 0;
     }
   }
+}
+* {
+  scroll-behavior: smooth;
 }
 </style>
