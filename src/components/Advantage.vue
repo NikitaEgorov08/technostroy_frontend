@@ -1,37 +1,14 @@
 <template>
   <h2 class="home-title">НАШИ ПРЕИМУЩЕСТВА</h2>
   <div class="advantage">
-    <AdvantageCard
-      :img="Advantage1"
-      title="Осуществляем
-    ремонт и техническую поддержку техники"
-      text="Наша команда состоит из
-    опытных мастеров, которые постоянно совершенствуются и проходят обучение,
-    чтобы быть в курсе последних технологий и решений."
-      text2="Мы
-    предоставляем гарантию на все выполненные работы и установленные запчасти."
-    />
-    <div class="vertical-line"></div>
-    <AdvantageCard
-      :img="Advantage2"
-      title="Работаем без посредников"
-      text="Мы работаем без посредников. Имеем собственную ремонтную базу, на которой осуществляем ремонт и восстановление спецтехники. "
-      text2="Мы предлагаем широкий выбор спецтехники на базе ЧТЗ, а также индивидуальный подход к каждому клиенту."
-    />
-    <div class="vertical-line"></div>
-    <AdvantageCard
-      :img="Advantage3"
-      title="Продаем  запасные части и навесное оборудование"
-      text="В нашем ассортименте вы найдете как новые, так и бывшие в употреблении запчасти для всех видов спецтехники, а также по Вашему запросу укомплектуем спецтехнику навесным оборудованием (новым/востановленным) для выполнения различных работ. "
-      text2="Мы заботимся о своих клиентах и предлагаем новые и б/у запчасти по доступным ценам."
-    />
-    <div class="vertical-line"></div>
-    <AdvantageCard
-      :img="Advantage4"
-      title="Организуем  доставку"
-      text="Мы организуем доставку спецтехники и запасных частей, сотрудничаем с проверенными автоперевозчиками и транспортными компаниями."
-      text2="Наша компания заботится о своих клиентах и стремится сделать процесс приобретения спецтехники максимально комфортным и быстрым для вас."
-    />
+    <template v-for="(item, idx) of advantages" :key="item.id">
+      <AdvantageCard
+        :img="item.icon"
+        :title="item.title"
+        :text="item.description"
+      />
+      <div class="vertical-line" v-if="idx + 1 !== advantages.length"></div>
+    </template>
   </div>
 </template>
 <script lang="ts">
@@ -49,7 +26,12 @@ import Advantage4 from "../assets/icon/Advantage4.svg";
     AdvantageCard,
   },
   data() {
-    return { Advantage1, Advantage2, Advantage3, Advantage4 };
+    return { Advantage1, Advantage2, Advantage3, Advantage4, advantages: [] };
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/benefits")
+      .then((res) => res.json())
+      .then((data) => (this.advantages = data));
   },
 })
 export default class Advantage extends Vue {}

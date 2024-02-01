@@ -3,7 +3,6 @@
     <img class="icon" :src="img" />
     <div class="card-title">{{ title }}</div>
     <div class="card-text">{{ text }}</div>
-    <div class="card-text2">{{ text2 }}</div>
   </div>
 </template>
 <script lang="ts">
@@ -11,7 +10,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: ["img", "title", "text", "text2"],
+  props: ["img", "title", "text"],
 })
 export default class AdvantageCard extends Vue {}
 </script>
