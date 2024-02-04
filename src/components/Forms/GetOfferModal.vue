@@ -24,31 +24,17 @@
           type="text"
           placeholder="Введите ваш e-mail*"
         />
-
-        <div class="form-comment-uploading">
-          <span class="plasehold">Карточка предприятия</span>
-          <input
-            class="uploade-file"
-            type="file"
-            id="example"
-            name="file"
-            placeholder="Карточка предприятия"
-            multiple
-          />
-          <button
-            class="uploading-delite"
-            onclick="document.getElementById('example') .value='';"
-          >
-            Очистить
-          </button>
-
-          <!--  <div class="file-upload">
-            <label>
-              <input type="file" name="file" class="uploade-file" multiple />
-              <span>Прикрепить файл</span>
-            </label>
-          </div> -->
-        </div>
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Введите название компании"
+        />
+        <textarea
+          class="form-comment"
+          type="text"
+          placeholder="Комментарий"
+          v-model="message"
+        ></textarea>
 
         <p class="form-bottom">
           * Отправляя заявку, Вы выражаете согласие на обработку персональных
@@ -149,28 +135,15 @@ export default class GetOfferModal extends Vue {}
         border: none;
         border-bottom: 1px solid #000;
       }
-
-      .form-comment-uploading {
+      .form-comment {
         display: block;
         width: 100%;
         height: 6rem;
         margin-top: 2rem;
-        padding: 6px 0 0 6px;
         background-color: none;
 
         border: 1px solid #000;
         resize: none;
-        .plasehold {
-          color: rgb(133, 133, 133);
-        }
-        .uploade-file {
-          display: block;
-          margin-top: 6px;
-          margin-bottom: 6px;
-        }
-        .uploading-delite {
-          display: flex;
-        }
       }
 
       .form-bottom {

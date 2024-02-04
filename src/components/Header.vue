@@ -7,7 +7,6 @@
 
       <img src="../assets/icon/Telegram.svg" alt="" />
       <img src="../assets/icon/Whatsapp.svg" alt="" />
-      <img src="../assets/icon/Vk.svg" alt="" />
       <img src="../assets/icon/Tel.svg" alt="" />
 
       <a href="tel:+79193519559">+7 (919) 351-95-59</a>
@@ -53,7 +52,7 @@
         <img class="favourites-icon" src="../assets/icon/Cart.svg" alt=""
       /></router-link>
 
-      <button class="request" @click="showModal">Отправить заявку</button>
+      <button class="request" @click="showModal">Заказать звонок</button>
 
       <div
         class="hamburger-menu"

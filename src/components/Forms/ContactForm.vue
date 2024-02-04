@@ -14,19 +14,25 @@
           class="contact-form-input"
           type="text"
           placeholder="Введите ваше имя*"
+          v-model="name"
+        />
+
+        <input
+          class="contact-form-input"
+          type="text"
+          placeholder="Введите ваш номер телефона*"
+          v-model="phone"
         />
         <input
           class="contact-form-input"
           type="text"
           placeholder="Введите ваш e-mail*"
-        />
-        <input
-          class="contact-form-input"
-          type="text"
-          placeholder="Введите ваш номер телефона*"
+          v-model="email"
         />
         <div class="contact-form-btn">
-          <button class="btn">Отправить заявку</button>
+          <button class="btn" @click="sendRequest" :disabled="btnDisabled">
+            {{ isLoading ? "Загрузка..." : "Отправить заявку" }}
+          </button>
         </div>
         <img class="castle" src="../../assets/icon/Castle.svg" alt="" />
         <span class="contact-form-bottom"
@@ -41,6 +47,28 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
+  data() {
+    return {
+      name: "",
+      phone: "",
+      email: "",
+    };
+  },
+  computed: {
+    btnDisabled() {
+      return !this.name.length || !this.phone.length || !this.email.length;
+    },
+  },
+  methods: {
+    sendRequest() {
+      this.isLoading = true;
+      const data = {
+        name: this.name,
+        phone: this.phone,
+        email: this.email,
+      };
+    },
+  },
 })
 export default class ContactForm extends Vue {}
 </script>
@@ -50,7 +78,7 @@ export default class ContactForm extends Vue {}
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  z-index: 999;
   width: 40%;
 
   .form-container {

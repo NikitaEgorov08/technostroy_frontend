@@ -12,7 +12,10 @@
       <img class="background-form" src="../../assets/image/Gears.png" alt="" />
       <div class="form-info">
         <p class="form-title">Заявка на лизинг:</p>
-
+        <span class="form-subtitle"
+          >*Внимание! Заявку на лизинг можно оформить только на
+          спецтехнику.</span
+        >
         <input class="form-input" type="text" placeholder="Введите ваше имя*" />
         <input
           class="form-input"
@@ -132,7 +135,12 @@ export default class LeasingRequestModal extends Vue {}
         text-align: center;
         font-size: 24px;
       }
-
+      .form-subtitle {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+        color: #fb0404;
+      }
       .form-input {
         display: block;
         width: 100%;

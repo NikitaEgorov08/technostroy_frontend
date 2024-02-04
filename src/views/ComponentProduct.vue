@@ -16,6 +16,9 @@
         <span class="status" v-else>Под заказ</span>
 
         <h3>{{ title }}</h3>
+        <span class="compatibility">Совместим с: {{ compatibility }}</span>
+        <span class="article-number">Артикул: {{ article_number }}</span>
+
         <p class="product-info">
           {{ text }}
         </p>
@@ -74,6 +77,8 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
       img: "",
       inStock: false,
       allowLeasing: false,
+      compatibility: "",
+      article_number: "",
     };
   },
   methods: {
@@ -125,6 +130,8 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
         this.img = data.image;
         this.inStock = data.in_stock;
         this.allowLeasing = data.allow_leasing;
+        this.compatibility = data.compatibility;
+        this.article_number = data.article_number;
       });
   },
 })
@@ -187,6 +194,10 @@ export default class TechProduct extends Vue {}
       }
       .calc-delivery {
         margin: 0 auto;
+      }
+      .compatibility {
+        display: block;
+        margin-top: 8px;
       }
     }
     .ru-sng-mobile {

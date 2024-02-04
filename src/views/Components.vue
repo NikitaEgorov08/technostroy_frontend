@@ -23,6 +23,8 @@
         :title="part.title"
         :text="part.description"
         :inStock="part.in_stock"
+        :compatibility="part.compatibility"
+        :article_number="part.article_number"
       />
     </div>
     <h3 v-else>К сожалению, в данной категории нет товаров</h3>

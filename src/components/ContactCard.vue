@@ -13,7 +13,6 @@
       <img class="soc" src="../assets/icon/Telegram.svg" alt="" />
       <img class="soc" src="../assets/icon/Whatsapp.svg" alt="" />
       <img class="soc" src="../assets/icon/Mail.svg" alt="" />
-      <img class="soc" src="../assets/icon/Vk.svg" alt="" />
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@
         <div class="circle"></div>
       </div>
       <div class="contact" @click="showModal">
-        <a class="contact-link">Отправить заявку</a>
+        <a class="contact-link">Заказать звонок</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
       </div>
@@ -52,7 +52,6 @@
           <img class="soc" src="../assets/icon/Telegram.svg" alt="" />
           <img class="soc" src="../assets/icon/Whatsapp.svg" alt="" />
           <img class="soc" src="../assets/icon/Mail.svg" alt="" />
-          <img class="soc" src="../assets/icon/Vk.svg" alt="" />
         </div>
       </div>
     </div>

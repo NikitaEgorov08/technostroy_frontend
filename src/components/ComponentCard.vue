@@ -7,6 +7,8 @@
     <img class="component-card-img" :src="img" />
     <div class="service-card-info">
       <h3 class="card-title">{{ title }}</h3>
+      <span class="compatibility">Совместим с: {{ compatibility }}</span>
+      <span class="article-number">Артикул: {{ article_number }}</span>
       <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>
       <router-link :to="url" class="detail">Подробнее</router-link>
       <button class="forms-btn service-card-btn" @click="showModalPrice">
@@ -26,7 +28,15 @@ import RepairPriceModal from "@/components/Forms/RepairPriceModal.vue";
 
 @Options({
   components: { RepairPriceModal },
-  props: ["img", "title", "text", "url", "inStock"],
+  props: [
+    "img",
+    "title",
+    "text",
+    "url",
+    "inStock",
+    "compatibility",
+    "article_number",
+  ],
   data() {
     return {
       repairPriceModalVisibility: false,
@@ -109,6 +119,10 @@ export default class ComponentCard extends Vue {}
     .service-card-btn {
       margin: 0 auto;
       margin-top: 80px;
+    }
+    .compatibility {
+      display: block;
+      margin-top: 8px;
     }
   }
 }
