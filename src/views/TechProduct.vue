@@ -52,14 +52,20 @@
     </div>
   </div>
   <repair-price-modal
+    :product_title="title"
     v-show="repairPriceModalVisibility"
     @close="closeModalPrice"
   />
   <leasing-request-modal
+    :product_title="title"
     v-show="leasingRequestModalVisibility"
     @close="closeModalLeasing"
   />
-  <get-offer-modal v-show="getOfferModalVisibility" @close="closeModalOffer" />
+  <get-offer-modal
+    :product_title="title"
+    v-show="getOfferModalVisibility"
+    @close="closeModalOffer"
+  />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
@@ -83,6 +89,7 @@ import CarouselTech from "@/components/CarouselTech.vue";
       title: "",
       text: "",
       img: "",
+      product_name: "",
       inStock: false,
       allowLeasing: false,
       character: [],

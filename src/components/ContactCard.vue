@@ -37,7 +37,6 @@ export default class ContactCard extends Vue {}
   .cont-info {
     margin-top: 12px;
   }
-
   .social {
     .soc {
       margin-right: 16px;

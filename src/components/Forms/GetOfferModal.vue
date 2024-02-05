@@ -1,33 +1,51 @@
 <template>
-  <div class="get-offer-modal" :style="{ display: visible ? 'block' : 'none' }">
+  <div class="get-offer-modal">
     <div class="form-container">
-      <div class="close-container" @click="$emit('close')">
+      <div class="close-container" @click="close">
         <div class="close-hover"></div>
         <div class="close"></div>
       </div>
 
-      <img class="background-form" src="../../assets/image/Gears.png" alt="" />
-      <div class="form-info">
-        <p class="form-title">Получить коммерческое предложение на:</p>
+      <img
+        class="background-form"
+        src="../../assets/image/Gears.png"
+        alt=""
+        v-show="!isError && !isSuccess"
+      />
+      <p class="form-title-success" v-show="isSuccess">Отправлено успешно</p>
+      <p class="form-title-error" v-show="isError">Произошла ошибка</p>
+      <div class="form-info" v-show="!isError && !isSuccess">
+        <p class="form-title">
+          Получить коммерческое предложение на:
+          <span v-if="product_title">{{ `: ${product_title}` }}</span>
+        </p>
         <span class="form-subtitle"
           >Оставьте Ваши данные, чтобы мы связались с Вами и ответили на все
           интересующие Вас вопросы</span
         >
-        <input class="form-input" type="text" placeholder="Введите ваше имя*" />
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Введите ваше имя*"
+          v-model="name"
+        />
         <input
           class="form-input"
           type="text"
           placeholder="Введите ваш номер телефона*"
+          v-model="phone"
         />
         <input
           class="form-input"
           type="text"
           placeholder="Введите ваш e-mail*"
+          v-model="email"
         />
         <input
           class="form-input"
           type="text"
           placeholder="Введите название компании"
+          v-model="company_name"
         />
         <textarea
           class="form-comment"
@@ -41,7 +59,9 @@
           данных и соглашаетесь с политикой конфиденциальности
         </p>
         <div class="form-btn">
-          <button class="btn">Заказать КП</button>
+          <button class="btn" @click="sendRequest" :disabled="btnDisabled">
+            {{ isLoading ? "Загрузка..." : "Заказать КП" }}
+          </button>
         </div>
       </div>
     </div>
@@ -52,18 +72,67 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: { visible: Boolean },
+  props: { visible: Boolean, product_title: String },
   data() {
     return {
-      /* formItems: [
-                {
-                  id: 1,
-                  title: "Заявка на группу товаров",
-                  name: "",
-                  checked: false,
-                },
-              ], */
+      name: "",
+      phone: "",
+      email: "",
+      company_name: "",
+      message: "",
+      isError: false,
+      isSuccess: false,
+      isLoading: false,
     };
+  },
+  computed: {
+    btnDisabled() {
+      return (
+        !this.name.length ||
+        !this.phone.length ||
+        !this.email.length ||
+        !this.company_name.length ||
+        !this.message.length
+      );
+    },
+  },
+  methods: {
+    sendRequest() {
+      this.isLoading = true;
+      const data = {
+        name: this.name,
+        phone: this.phone,
+        email: this.email,
+        company_name: this.company_name,
+        message: this.message,
+      };
+      fetch("http://45.12.238.17:8000/api/requests-kp/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
+        if (!response.ok) {
+          this.isError = true;
+          this.isLoading = false;
+        } else {
+          const data = response.json();
+          this.isSuccess = true;
+          this.isLoading = false;
+        }
+      });
+    },
+    close() {
+      this.name = "";
+      this.phone = "";
+      this.email = "";
+      this.company_name = "";
+      this.message = "";
+      this.isError = false;
+      this.isSuccess = false;
+      this.$emit("close");
+    },
   },
 })
 export default class GetOfferModal extends Vue {}
@@ -150,11 +219,26 @@ export default class GetOfferModal extends Vue {}
         font-size: 14px;
       }
       .form-btn {
-        margin-top: 2em;
+        margin-top: 2rem;
         margin-bottom: 8px;
         display: flex;
         justify-content: center;
         .btn {
+          color: #000;
+
+          border: none;
+          background-color: #ffcc00;
+          border-radius: 6px;
+          padding: 8px 20px;
+          &:hover {
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+          }
+          &:active {
+            box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+          }
+        }
+        .btn:disabled,
+        .btn[disabled] {
           color: rgba(255, 204, 0, 0.5);
 
           border: none;
@@ -163,6 +247,26 @@ export default class GetOfferModal extends Vue {}
           padding: 8px 20px;
         }
       }
+    }
+    .form-title-success {
+      background-color: #fff;
+      text-align: left;
+      padding: 64px;
+      color: green;
+      margin: 0;
+      text-align: center;
+      align-items: center;
+      display: flex;
+    }
+    .form-title-error {
+      background-color: #fff;
+      text-align: left;
+      padding: 64px;
+      color: red;
+      margin: 0;
+      text-align: center;
+      align-items: center;
+      display: flex;
     }
   }
 }

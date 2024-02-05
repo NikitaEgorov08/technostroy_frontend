@@ -10,7 +10,11 @@
       </button>
     </div>
   </div>
-  <repair-cars-modal v-show="repairCarsModalVisibility" @close="closeModal" />
+  <repair-cars-modal
+    :product_title="title"
+    v-show="repairCarsModalVisibility"
+    @close="closeModal"
+  />
   <repair-parts-modal v-show="repairPartsModalVisibility" @close="closeModal" />
 </template>
 <script lang="ts">

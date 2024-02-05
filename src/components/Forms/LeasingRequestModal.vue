@@ -15,7 +15,10 @@
       <p class="form-title-success" v-show="isSuccess">Отправлено успешно</p>
       <p class="form-title-error" v-show="isError">Произошла ошибка</p>
       <div class="form-info" v-show="!isError && !isSuccess">
-        <p class="form-title">Заявка на лизинг</p>
+        <p class="form-title">
+          Заявка на лизинг
+          <span v-if="product_title">{{ `: ${product_title}` }}</span>
+        </p>
         <span class="form-subtitle"
           >*Внимание! Заявку на лизинг можно оформить только на
           спецтехнику.</span
@@ -82,7 +85,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: { visible: Boolean },
+  props: { visible: Boolean, product_title: String },
   data() {
     return {
       name: "",
