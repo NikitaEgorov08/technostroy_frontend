@@ -10,19 +10,25 @@
           class="home-form-input"
           type="text"
           placeholder="Введите ваше имя*"
+          v-model="name"
+        />
+
+        <input
+          class="home-form-input"
+          type="text"
+          placeholder="Введите ваш номер телефона*"
+          v-model="phone"
         />
         <input
           class="home-form-input"
           type="text"
           placeholder="Введите ваш e-mail*"
-        />
-        <input
-          class="home-form-input"
-          type="text"
-          placeholder="Введите ваш номер телефона*"
+          v-model="email"
         />
         <div class="home-form-btn">
-          <button class="btn">Отправить заявку</button>
+          <button class="btn" @click="sendRequest" :disabled="btnDisabled">
+            {{ isLoading ? "Загрузка..." : "Отправить заявку" }}
+          </button>
         </div>
         <img class="castle" src="../../assets/icon/Castle.svg" alt="" />
         <span class="home-form-bottom"
@@ -38,6 +44,55 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
+  data() {
+    return {
+      name: "",
+      phone: "",
+      email: "",
+      isError: false,
+      isSuccess: false,
+      isLoading: false,
+    };
+  },
+  computed: {
+    btnDisabled() {
+      return !this.name.length || !this.phone.length || !this.email.length;
+    },
+  },
+  methods: {
+    sendRequest() {
+      this.isLoading = true;
+      const data = {
+        name: this.name,
+        phone: this.phone,
+        email: this.email,
+      };
+      fetch("http://45.12.238.17:8000/api/requests-call/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((response) => {
+        if (!response.ok) {
+          this.isError = true;
+          this.isLoading = false;
+        } else {
+          const data = response.json();
+          this.isSuccess = true;
+          this.isLoading = false;
+        }
+      });
+    },
+    close() {
+      this.name = "";
+      this.phone = "";
+      this.email = "";
+      this.isError = false;
+      this.isSuccess = false;
+      this.$emit("close");
+    },
+  },
 })
 export default class HomeForm extends Vue {}
 </script>
@@ -72,12 +127,28 @@ export default class HomeForm extends Vue {}
       border: none;
       border-bottom: 1px solid #000;
     }
+
     .home-form-btn {
       margin-top: 14px;
       margin-bottom: 8px;
       display: flex;
       justify-content: end;
       .btn {
+        color: #000;
+
+        border: none;
+        background-color: #ffcc00;
+        border-radius: 6px;
+        padding: 8px 20px;
+        &:hover {
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+        &:active {
+          box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+        }
+      }
+      .btn:disabled,
+      .btn[disabled] {
         color: rgba(255, 204, 0, 0.5);
 
         border: none;
@@ -92,6 +163,7 @@ export default class HomeForm extends Vue {}
       margin-left: 4px;
     }
   }
+
   .form-img {
     height: 100%;
   }

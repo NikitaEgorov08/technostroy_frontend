@@ -4,6 +4,7 @@
     <a href class="" @click="back">Назад</a>
   </div>
   <h2 class="leas-title">ОПЛАТА И ДОСТАВКА</h2>
+
   <div class="pay-del-cont">
     <h3 class="pay-del-title">ДОСТАВКА</h3>
     <div class="payment-and-delivery">
@@ -64,6 +65,11 @@
         </ul>
       </div>
     </div>
+    <div class="del-image">
+      <img src="../assets/image/delivery.png" alt="" class="del-img" />
+      <div class="line-del-img"></div>
+    </div>
+
     <div class="pay-del-info">
       <div class="info-title">Документы</div>
       <div class="info-text">
@@ -78,8 +84,13 @@
         груза и оплачивается покупателем самостоятельно.
       </div>
 
-      <div class="info-title">Оплата</div>
+      <div class="info-title">Оплата доставки</div>
       <div class="info-text">Оплата доставки производится Покупателем.</div>
+      <div class="info-title">Оплата товара</div>
+      <div class="info-text">
+        Счет выставляется юридическому лицу, оплата производится на расчетный
+        счет продавца.
+      </div>
     </div>
     <button class="forms-btn pay-del-btn" @click="showModal">
       Расчитать стоимость доставки
@@ -120,9 +131,33 @@ export default class Payment extends Vue {}
 .pay-del-cont {
   padding: 64px;
   text-align: left;
+  position: relative;
+
+  .del-image {
+    width: 100vw;
+    position: absolute;
+    top: 44%;
+    left: 0;
+    .del-img {
+      width: 30%;
+      position: absolute;
+      right: 5%;
+      bottom: -80%;
+    }
+    .line-del-img {
+      position: relative;
+
+      width: 100%;
+      height: 1px;
+      background-color: #ffcc00;
+      margin-top: 80px;
+    }
+  }
 
   .pay-del-info {
+    position: relative;
     text-align: left;
+    margin-top: 20%;
 
     .info-title {
       margin: 40px 0 24px;
@@ -146,14 +181,57 @@ export default class Payment extends Vue {}
   .pay-del-cont .pay-del-info .info-title {
     margin: 24px 0;
   }
+  .pay-del-cont .del-image .del-img {
+    bottom: -65%;
+  }
+  .pay-del-cont .del-image {
+    top: 48%;
+  }
 }
-
+@media (max-width: 1025px) {
+  .pay-del-cont .del-image .del-img {
+    bottom: -45%;
+  }
+  .pay-del-cont .del-image {
+    top: 50%;
+  }
+}
 @media (max-width: 1000px) {
   .pay-del-cont {
     padding: 32px;
   }
 }
+@media (max-width: 600px) {
+  .pay-del-cont .del-image .del-img {
+    bottom: -30%;
+  }
+  .pay-del-cont .del-image {
+    top: 55%;
+  }
+}
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
+  .pay-del-cont .del-image .del-img {
+    bottom: -20%;
+  }
+  .pay-del-cont .del-image {
+    top: 58%;
+  }
+}
+@media (max-width: 440px) {
+  .pay-del-cont .del-image .del-img {
+    bottom: -20%;
+  }
+  .pay-del-cont .del-image {
+    top: 60%;
+  }
+}
+@media (max-width: 400px) {
+  .pay-del-cont .del-image .del-img {
+    bottom: -20%;
+  }
+  .pay-del-cont .del-image {
+    top: 62%;
+  }
 }
 </style>
