@@ -34,6 +34,8 @@
         <span class="home-form-bottom"
           >Ваши данные никогда не будут переданы третьим лицам</span
         >
+        <p class="form-title-success" v-show="isSuccess">Отправлено успешно</p>
+        <p class="form-title-error" v-show="isError">Произошла ошибка</p>
       </div>
     </div>
     <img class="form-img" src="../../assets/image/Home-form.png" alt="" />
@@ -62,6 +64,9 @@ import { Options, Vue } from "vue-class-component";
   methods: {
     sendRequest() {
       this.isLoading = true;
+      this.isSuccess = false;
+
+      this.isError = false;
       const data = {
         name: this.name,
         phone: this.phone,
@@ -75,22 +80,23 @@ import { Options, Vue } from "vue-class-component";
         body: JSON.stringify(data),
       }).then((response) => {
         if (!response.ok) {
+          this.isSuccess = false;
+
           this.isError = true;
           this.isLoading = false;
+          this.name = "";
+          this.phone = "";
+          this.email = "";
         } else {
           const data = response.json();
           this.isSuccess = true;
+          this.isError = false;
           this.isLoading = false;
+          this.name = "";
+          this.phone = "";
+          this.email = "";
         }
       });
-    },
-    close() {
-      this.name = "";
-      this.phone = "";
-      this.email = "";
-      this.isError = false;
-      this.isSuccess = false;
-      this.$emit("close");
     },
   },
 })
@@ -161,6 +167,16 @@ export default class HomeForm extends Vue {}
     .home-form-bottom {
       font-size: 8px;
       margin-left: 4px;
+    }
+    .form-title-success {
+      color: green;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .form-title-error {
+      color: red;
+      text-align: center;
+      margin-top: 2rem;
     }
   }
 

@@ -10,9 +10,15 @@
     <div class="cont-info">{{ mail }}</div>
 
     <div class="social">
-      <img class="soc" src="../assets/icon/Telegram.svg" alt="" />
-      <img class="soc" src="../assets/icon/Whatsapp.svg" alt="" />
-      <img class="soc" src="../assets/icon/Mail.svg" alt="" />
+      <a href="https://t.me/+79193519559"
+        ><img class="soc" src="../assets/icon/Telegram.svg"
+      /></a>
+      <a href="https://wa.me/79193519559"
+        ><img class="soc" src="../assets/icon/Whatsapp.svg"
+      /></a>
+      <a href="mailto:info@chelstroymash.ru">
+        <img class="soc" src="../assets/icon/Mail.svg" alt=""
+      /></a>
     </div>
   </div>
 </template>
@@ -31,6 +37,7 @@ export default class ContactCard extends Vue {}
   .cont-info {
     margin-top: 12px;
   }
+
   .social {
     .soc {
       margin-right: 16px;

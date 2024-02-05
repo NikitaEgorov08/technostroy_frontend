@@ -4,9 +4,13 @@
       <a class="header-mail" href="mailto:info@chelstroymash.ru"
         >info@chelstroymash.ru</a
       >
+      <a href="https://t.me/+79193519559"
+        ><img src="../assets/icon/Telegram.svg"
+      /></a>
+      <a href="https://wa.me/79193519559"
+        ><img src="../assets/icon/Whatsapp.svg"
+      /></a>
 
-      <img src="../assets/icon/Telegram.svg" alt="" />
-      <img src="../assets/icon/Whatsapp.svg" alt="" />
       <img src="../assets/icon/Tel.svg" alt="" />
 
       <a href="tel:+79193519559">+7 (919) 351-95-59</a>
@@ -190,6 +194,8 @@ export default class Header extends Vue {
       color: #ffcc00;
       text-decoration: none;
       margin-right: 16px;
+      display: flex;
+      align-items: center;
     }
 
     img {
