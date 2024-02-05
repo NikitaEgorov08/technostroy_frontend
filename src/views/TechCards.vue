@@ -1,7 +1,17 @@
 <template>
   <div class="back" id="TechCards">
-    <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-    <a href class="" @click="back">Назад</a>
+    <div>
+      <!--      <span>
+        <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
+        <a href class="" @click="back">Назад</a>
+      </span>-->
+      <span v-for="(item, idx) of breadcrumbs" :key="item.id">
+        <router-link :to="item.link">{{ item.title }}</router-link>
+        <span style="padding: 0 8px" v-if="idx + 1 !== breadcrumbs.length"
+          >/</span
+        >
+      </span>
+    </div>
   </div>
   <h2 class="leas-title">{{ title }}</h2>
   <div class="catalog-service" v-if="cars.length">
@@ -30,6 +40,7 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
     return {
       title: "",
       cars: [],
+      breadcrumbs: [],
     };
   },
   methods: {
@@ -58,6 +69,14 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
       })
       .then((data) => {
         this.cars = data;
+      });
+    fetch("http://45.12.238.17:8000/api/cars-categories/" + idCarCat)
+      .then((res) => res.json())
+      .then((data) => {
+        this.breadcrumbs = [
+          { id: 0, title: "Каталог", link: `/tech/` },
+          { id: data.id, title: data.title, link: `/tech/${idCarCat}` },
+        ];
       });
   },
 })

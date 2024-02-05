@@ -47,7 +47,7 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
   methods: {
     back(e: Event) {
       e.preventDefault();
-      this.$router.back();
+      this.$router.push("/");
     },
   },
   mounted() {

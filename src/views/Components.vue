@@ -1,8 +1,14 @@
 <template>
   <div class="components">
     <div class="back">
-      <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-      <a href class="" @click="back">Назад</a>
+      <div>
+        <span v-for="(item, idx) of breadcrumbs" :key="item.id">
+          <router-link :to="item.link">{{ item.title }}</router-link>
+          <span style="padding: 0 8px" v-if="idx + 1 !== breadcrumbs.length"
+            >/</span
+          >
+        </span>
+      </div>
     </div>
 
     <h2 class="parts-title">{{ headline }}</h2>
@@ -43,6 +49,7 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
       parts: [],
       subcategoryTitle: "",
       categoryTitle: "",
+      breadcrumbs: [],
     };
   },
   methods: {
@@ -74,6 +81,23 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
     fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
       .then((res) => res.json())
       .then((data) => (this.subcategoryTitle = data.title));
+    fetch("http://45.12.238.17:8000/api/parts-categories/" + idCat)
+      .then((res) => res.json())
+      .then((data) => {
+        fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
+          .then((res) => res.json())
+          .then((cat) => {
+            this.breadcrumbs = [
+              { id: 0, title: "Каталог", link: `/parts/` },
+              { id: data.id, title: data.title, link: `/parts/${idCat}` },
+              {
+                id: cat.id,
+                title: cat.title,
+                link: `/parts/${idCat}/${idSub}`,
+              },
+            ];
+          });
+      });
   },
 })
 export default class Components extends Vue {}

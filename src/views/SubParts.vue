@@ -1,8 +1,14 @@
 <template>
   <div class="sub-parts">
     <div class="back">
-      <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
-      <a href class="" @click="back">Назад</a>
+      <div>
+        <span v-for="(item, idx) of breadcrumbs" :key="item.id">
+          <router-link :to="item.link">{{ item.title }}</router-link>
+          <span style="padding: 0 8px" v-if="idx + 1 !== breadcrumbs.length"
+            >/</span
+          >
+        </span>
+      </div>
     </div>
 
     <h2 class="parts-title">{{ categoryTitle }}</h2>
@@ -29,7 +35,13 @@ import Components from "../assets/image/Components.png";
     SubPartsCard,
   },
   data() {
-    return { subcategories: [], Engines, Components, categoryTitle: "" };
+    return {
+      subcategories: [],
+      Engines,
+      Components,
+      categoryTitle: "",
+      breadcrumbs: [],
+    };
   },
   methods: {
     back(e: Event) {
@@ -50,6 +62,14 @@ import Components from "../assets/image/Components.png";
       .then((res) => res.json())
       .then((data) => {
         this.categoryTitle = data.title;
+      });
+    fetch("http://45.12.238.17:8000/api/parts-categories/" + currentCategory)
+      .then((res) => res.json())
+      .then((data) => {
+        this.breadcrumbs = [
+          { id: 0, title: "Каталог", link: `/parts/` },
+          { id: data.id, title: data.title, link: `/parts/${currentCategory}` },
+        ];
       });
   },
 })
