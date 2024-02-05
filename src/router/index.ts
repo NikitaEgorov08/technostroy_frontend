@@ -107,5 +107,8 @@ const router = createRouter({
   },
   routes,
 });
-
+router.afterEach((to, from) => {
+  const path = to.path.split("/").filter((i) => i);
+  localStorage.setItem("breadcrumbs", JSON.stringify(path));
+});
 export default router;

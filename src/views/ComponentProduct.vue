@@ -1,4 +1,14 @@
 <template>
+  <div class="back">
+    <div>
+      <span v-for="(item, idx) of breadcrumbs" :key="item.id">
+        <router-link :to="item.link">{{ item.title }}</router-link>
+        <span style="padding: 0 8px" v-if="idx + 1 !== breadcrumbs.length"
+          >/</span
+        >
+      </span>
+    </div>
+  </div>
   <h2>{{ title }}</h2>
   <div class="component-product">
     <div class="tech-product-hero">
@@ -79,6 +89,7 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
       allowLeasing: false,
       compatibility: "",
       article_number: "",
+      breadcrumbs: [],
     };
   },
   methods: {
@@ -120,6 +131,8 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
   },
   mounted() {
     const id = this.$route.params.idPart;
+    const idCat = this.$route.params.idCat;
+    const idSub = this.$route.params.idSub;
     fetch("http://45.12.238.17:8000/api/parts/" + id)
       .then((res) => {
         return res.json();
@@ -132,6 +145,29 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
         this.allowLeasing = data.allow_leasing;
         this.compatibility = data.compatibility;
         this.article_number = data.article_number;
+
+        fetch("http://45.12.238.17:8000/api/parts-categories/" + idCat)
+          .then((res) => res.json())
+          .then((cat) => {
+            fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
+              .then((res) => res.json())
+              .then((sub) => {
+                this.breadcrumbs = [
+                  { id: 0, title: "Каталог", link: `/parts/` },
+                  { id: cat.id, title: cat.title, link: `/parts/${idCat}` },
+                  {
+                    id: sub.id,
+                    title: sub.title,
+                    link: `/parts/${idCat}/${idSub}`,
+                  },
+                  {
+                    id: data.id,
+                    title: data.title,
+                    link: `/parts/${idCat}/${idSub}/${id}`,
+                  },
+                ];
+              });
+          });
       });
   },
 })

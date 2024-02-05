@@ -1,4 +1,14 @@
 <template>
+  <div class="back" id="TechCards">
+    <div>
+      <span v-for="(item, idx) of breadcrumbs" :key="item.id">
+        <router-link :to="item.link">{{ item.title }}</router-link>
+        <span style="padding: 0 8px" v-if="idx + 1 !== breadcrumbs.length"
+          >/</span
+        >
+      </span>
+    </div>
+  </div>
   <h2>{{ title }}</h2>
   <div class="tech-product">
     <div class="tech-product-hero">
@@ -94,6 +104,7 @@ import CarouselTech from "@/components/CarouselTech.vue";
       allowLeasing: false,
       character: [],
       complectation: [],
+      breadcrumbs: [],
     };
   },
   methods: {
@@ -138,6 +149,7 @@ import CarouselTech from "@/components/CarouselTech.vue";
   },
   mounted() {
     const idCar = this.$route.params.idCar;
+    const idCarCat = this.$route.params.idCarCat;
 
     fetch(`http://45.12.238.17:8000/api/cars/${idCar}`)
       .then((res) => {
@@ -151,6 +163,16 @@ import CarouselTech from "@/components/CarouselTech.vue";
         this.allowLeasing = data.allow_leasing;
         this.character = data.character;
         this.complectation = data.complectation;
+
+        fetch("http://45.12.238.17:8000/api/cars-categories/" + idCarCat)
+          .then((res) => res.json())
+          .then((bc) => {
+            this.breadcrumbs = [
+              { id: 0, title: "Каталог", link: `/tech/` },
+              { id: bc.id, title: bc.title, link: `/tech/${idCarCat}` },
+              { id: data.id, title: data.title, link: `/tech/${idCarCat}` },
+            ];
+          });
       });
   },
 })

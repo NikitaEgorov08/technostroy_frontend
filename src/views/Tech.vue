@@ -21,7 +21,7 @@ import CatalogTech from "@/components/СatalogTech.vue";
   methods: {
     back(e: Event) {
       e.preventDefault();
-      this.$router.back();
+      this.$router.push("/");
     },
   },
 })
