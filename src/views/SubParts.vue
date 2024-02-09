@@ -56,7 +56,7 @@ import Components from "../assets/image/Components.png";
         return response.json();
       })
       .then((data) => {
-        this.subcategories = data;
+        this.subcategories = data.reverse();
       });
     fetch("http://45.12.238.17:8000/api/parts-categories/" + currentCategory)
       .then((res) => res.json())
