@@ -64,7 +64,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: { visible: Boolean, product_title: String },
+  props: { visible: Boolean, product_title: String, type: String },
   data() {
     return {
       name: "",
@@ -90,7 +90,7 @@ import { Options, Vue } from "vue-class-component";
   methods: {
     sendRequest() {
       this.isLoading = true;
-      const data = {
+      const data: any = {
         name: this.name,
         phone: this.phone,
         email: this.email,
@@ -98,22 +98,41 @@ import { Options, Vue } from "vue-class-component";
         product_name: this.product_title,
         is_devlivery: false,
       };
-      fetch("http://45.12.238.17:8000/api/requests-parts/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }).then((response) => {
-        if (!response.ok) {
-          this.isError = true;
-          this.isLoading = false;
-        } else {
-          const data = response.json();
-          this.isSuccess = true;
-          this.isLoading = false;
-        }
-      });
+      if (this.type === "tech") {
+        fetch("http://45.12.238.17:8000/api/requests-tech/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }).then((response) => {
+          if (!response.ok) {
+            this.isError = true;
+            this.isLoading = false;
+          } else {
+            const data = response.json();
+            this.isSuccess = true;
+            this.isLoading = false;
+          }
+        });
+      } else if (this.type === "parts") {
+        fetch("http://45.12.238.17:8000/api/requests-parts/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }).then((response) => {
+          if (!response.ok) {
+            this.isError = true;
+            this.isLoading = false;
+          } else {
+            const data = response.json();
+            this.isSuccess = true;
+            this.isLoading = false;
+          }
+        });
+      }
     },
     close() {
       this.name = "";

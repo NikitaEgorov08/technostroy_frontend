@@ -53,6 +53,7 @@
     </div>
   </div>
   <repair-price-modal
+    type="parts"
     v-show="repairPriceModalVisibility"
     @close="closeModalPrice"
     :product_title="title"
