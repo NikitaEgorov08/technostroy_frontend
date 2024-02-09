@@ -22,27 +22,35 @@
     </button>
   </div>
   <repair-cars-modal v-show="repairCarsModalVisibility" @close="closeModal" />
+  <repair-parts-modal v-show="repairPartsModalVisibility" @close="closeModal" />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import RepairCarsModal from "@/components/Forms/RepairCarsModal.vue";
+import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
 
 @Options({
-  components: { RepairCarsModal },
+  components: { RepairPartsModal, RepairCarsModal },
   data() {
     return {
       gallery: [],
       title: "",
       full_text: "",
       repairCarsModalVisibility: false,
+      repairPartsModalVisibility: false,
     };
   },
   methods: {
     showModal() {
-      this.repairCarsModalVisibility = true;
+      if (this.title.toUpperCase() === "РЕМОНТ СПЕЦТЕХНИКИ") {
+        this.repairCarsModalVisibility = true;
+      } else {
+        this.repairPartsModalVisibility = true;
+      }
     },
     closeModal() {
       this.repairCarsModalVisibility = false;
+      this.repairPartsModalVisibility = false;
     },
     back(e: Event) {
       e.preventDefault();
