@@ -64,6 +64,7 @@ import ContactsForm from "@/components/Forms/ContactsForm.vue";
     fetch("http://45.12.238.17:8000/api/contacts")
       .then((res) => res.json())
       .then((data) => {
+        data = data[0];
         this.phone_1 = data.phone_1;
         this.phone_2 = data.phone_2;
         this.inn = data.inn;
