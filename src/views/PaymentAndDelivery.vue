@@ -65,10 +65,10 @@
         </ul>
       </div>
     </div>
-    <div class="del-image">
+    <!--    <div class="del-image">
       <img src="../assets/image/delivery.png" alt="" class="del-img" />
       <div class="line-del-img"></div>
-    </div>
+    </div>-->
 
     <div class="pay-del-info">
       <div class="info-title">Документы</div>
@@ -133,7 +133,7 @@ export default class Payment extends Vue {}
   text-align: left;
   position: relative;
 
-  .del-image {
+  /*.del-image {
     width: 100vw;
     position: absolute;
     top: 44%;
@@ -152,12 +152,12 @@ export default class Payment extends Vue {}
       background-color: #ffcc00;
       margin-top: 80px;
     }
-  }
+  }*/
 
   .pay-del-info {
     position: relative;
     text-align: left;
-    margin-top: 20%;
+    margin-top: 64px;
 
     .info-title {
       margin: 40px 0 24px;
