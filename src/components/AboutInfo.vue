@@ -22,9 +22,7 @@
         ТОРГОВОГО ДОМА <br />
         "ЧЕЛЯБИНСКИЕ СТРОИТЕЛЬНЫЕ МАШИНЫ"
       </div>
-      <div class="info-text">
-        {{ text }}
-      </div>
+      <div class="info-text" v-html="text"></div>
     </div>
   </div>
 </template>
