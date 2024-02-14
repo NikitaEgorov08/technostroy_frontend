@@ -1,8 +1,8 @@
 <template>
   <div class="payment">
     <h2 class="home-title">ОПЛАТА И ДОСТАВКА</h2>
-    <div class="payment-info">
-      <h3>ДОСТАВКА</h3>
+    <div class="payment-info" v-html="text"></div>
+    <!--      <h3>ДОСТАВКА</h3>
       <h4>Спецтехника</h4>
       ТД “Челябинские строительные машины” организует доставку товаров по всей
       территории России. <br />Варианты доставки: <br />
@@ -21,7 +21,7 @@
       тонны, доставка заказа от склада ООО до транспортной компании
       осуществляется бесплатно. Далее по тарифам ТК за счет покупателя. Расчет
       произведем в процессе оформления Вами заказа.
-    </div>
+    </div>-->
   </div>
 </template>
 <script lang="ts">
@@ -29,6 +29,16 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
+  data() {
+    return {
+      text: "",
+    };
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/delivery-main")
+      .then((res) => res.json())
+      .then((data) => (this.text = data[0].text));
+  },
 })
 export default class Payment extends Vue {}
 </script>
