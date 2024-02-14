@@ -6,8 +6,8 @@
     </div>
     <h2 class="leas-title">Лизинг</h2>
     <div class="leas-info">
-      <div class="leas-info-left">
-        <div class="info-left-title">Что это такое?</div>
+      <div class="leas-info-left" v-html="text"></div>
+      <!--        <div class="info-left-title">Что это такое?</div>
         <div class="info-left-text">
           Лизинг – финансовая услуга, цель которой - упрощение приобретения
           спецтехники для расширения или модернизации действующего парка.<br />
@@ -49,8 +49,10 @@
           <li>аванс от 10% до 49% стоимости спецтехники;</li>
           <li>срок лизинга от 1 года до 5 лет;</li>
           <li>2 документа для принятия решения о финансировании.</li>
-        </ul>
+        </ul>-->
+      <!--
       </div>
+-->
 
       <div class="leas-info-right">
         <img class="leas-logo" src="../assets/icon/trans-leas.svg" alt="" />
@@ -157,6 +159,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
   data() {
     return {
       leasingRequestModalVisibility: false,
+      text: "",
     };
   },
   methods: {
@@ -170,6 +173,11 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
       e.preventDefault();
       this.$router.back();
     },
+  },
+  mounted() {
+    fetch("http://45.12.238.17:8000/api/leasing")
+      .then((res) => res.json())
+      .then((data) => (this.text = data[0].text));
   },
 })
 export default class Leasing extends Vue {}
