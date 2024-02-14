@@ -34,16 +34,13 @@
         <a class="detailed-btn" href="#desc">Подробнее</a>
         <div class="tech-product-buttons">
           <a class="favourite-btn" @click="addToCart">В избранное</a>
-          <button class="request-btn" @click="showModalPrice">
-            Запросить цену
+          <button class="request-btn" @click="showRequestTechModal">
+            Оставить заявку
           </button>
           <button class="forms-btn" @click="showModalLeasing">
             Купить в лизинг
           </button>
         </div>
-        <button class="forms-btn get-offer" @click="showModalOffer">
-          Получить коммерческое предложение
-        </button>
       </div>
     </div>
     <div class="description" v-if="character.length" id="desc">
@@ -61,22 +58,17 @@
       </div>
     </div>
   </div>
-  <repair-price-modal
-    type="tech"
-    :product_title="title"
-    v-show="repairPriceModalVisibility"
-    @close="closeModalPrice"
-  />
   <leasing-request-modal
     :product_title="title"
     v-show="leasingRequestModalVisibility"
     @close="closeModalLeasing"
   />
-  <get-offer-modal
+  <request-tech
+    type="tech"
     :product_title="title"
-    v-show="getOfferModalVisibility"
-    @close="closeModalOffer"
-  />
+    v-show="requestTechModalVisibility"
+    @close="closeRequestTechModal"
+  ></request-tech>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
@@ -84,9 +76,11 @@ import RepairPriceModal from "@/components/Forms/RepairPriceModal.vue";
 import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 import GetOfferModal from "@/components/Forms/GetOfferModal.vue";
 import CarouselTech from "@/components/CarouselTech.vue";
+import RequestTech from "@/components/Forms/RequestTech.vue";
 
 @Options({
   components: {
+    RequestTech,
     RepairPriceModal,
     LeasingRequestModal,
     GetOfferModal,
@@ -94,9 +88,8 @@ import CarouselTech from "@/components/CarouselTech.vue";
   },
   data() {
     return {
-      repairPriceModalVisibility: false,
+      requestTechModalVisibility: false,
       leasingRequestModalVisibility: false,
-      getOfferModalVisibility: false,
       title: "",
       text: "",
       img: "",
@@ -109,26 +102,17 @@ import CarouselTech from "@/components/CarouselTech.vue";
     };
   },
   methods: {
-    showModalPrice() {
-      this.repairPriceModalVisibility = true;
-    },
-
-    closeModalPrice() {
-      this.repairPriceModalVisibility = false;
-    },
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
     },
-
     closeModalLeasing() {
       this.leasingRequestModalVisibility = false;
     },
-    showModalOffer() {
-      this.getOfferModalVisibility = true;
+    showRequestTechModal() {
+      this.requestTechModalVisibility = true;
     },
-
-    closeModalOffer() {
-      this.getOfferModalVisibility = false;
+    closeRequestTechModal() {
+      this.requestTechModalVisibility = false;
     },
     addToCart() {
       const tovar = {

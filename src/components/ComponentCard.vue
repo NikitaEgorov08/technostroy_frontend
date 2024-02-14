@@ -16,18 +16,20 @@
       </button>
     </div>
   </div>
-  <repair-price-modal
+  <request-tech
     v-show="repairPriceModalVisibility"
     @close="closeModalPrice"
     :product_title="title"
+    type="part"
   />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
 import RepairPriceModal from "@/components/Forms/RepairPriceModal.vue";
+import RequestTech from "@/components/Forms/RequestTech.vue";
 
 @Options({
-  components: { RepairPriceModal },
+  components: { RequestTech, RepairPriceModal },
   props: [
     "img",
     "title",

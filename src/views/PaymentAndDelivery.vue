@@ -92,9 +92,9 @@
         счет продавца.
       </div>
     </div>
-    <button class="forms-btn pay-del-btn" @click="showModal">
+    <!--    <button class="forms-btn pay-del-btn" @click="showModal">
       Расчитать стоимость доставки
-    </button>
+    </button>-->
   </div>
   <common-calc-delivery-modal
     v-show="commonCalcDeliveryModalVisibility"

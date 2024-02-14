@@ -36,7 +36,7 @@
         <div class="component-product-buttons">
           <a class="favourite-btn" @click="addToCart">В избранное</a>
           <button class="request-btn" @click="showModalPrice">
-            Запросить цену
+            Оставить заявку
           </button>
           <button
             class="forms-btn forms-btn-adaptive"
@@ -46,27 +46,20 @@
             Купить в лизинг
           </button>
         </div>
-        <button class="forms-btn calc-delivery" @click="showModalDelivery">
-          Расчитать стоимость доставки
-        </button>
       </div>
     </div>
   </div>
-  <repair-price-modal
-    type="parts"
-    v-show="repairPriceModalVisibility"
-    @close="closeModalPrice"
-    :product_title="title"
-  />
+
   <leasing-request-modal
     v-show="leasingRequestModalVisibility"
     @close="closeModalLeasing"
   />
-  <calc-delivery-modal
-    v-show="calcDeliveryModalVisibility"
-    @close="closeModalDelivery"
+  <request-tech
+    type="part"
     :product_title="title"
-  />
+    @close="closeModalPrice"
+    v-show="priceModalVisibility"
+  ></request-tech>
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
@@ -74,13 +67,19 @@ import RepairPriceModal from "@/components/Forms/RepairPriceModal.vue";
 import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 
 import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
+import RequestTech from "@/components/Forms/RequestTech.vue";
 
 @Options({
-  components: { RepairPriceModal, LeasingRequestModal, CalcDeliveryModal },
+  components: {
+    RequestTech,
+    RepairPriceModal,
+    LeasingRequestModal,
+    CalcDeliveryModal,
+  },
 
   data() {
     return {
-      repairPriceModalVisibility: false,
+      priceModalVisibility: false,
       leasingRequestModalVisibility: false,
       calcDeliveryModalVisibility: false,
       title: "",
@@ -94,12 +93,6 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
     };
   },
   methods: {
-    showModalDelivery() {
-      this.calcDeliveryModalVisibility = true;
-    },
-    closeModalDelivery() {
-      this.calcDeliveryModalVisibility = false;
-    },
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
     },
@@ -107,10 +100,10 @@ import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
       this.leasingRequestModalVisibility = false;
     },
     showModalPrice() {
-      this.repairPriceModalVisibility = true;
+      this.priceModalVisibility = true;
     },
     closeModalPrice() {
-      this.repairPriceModalVisibility = false;
+      this.priceModalVisibility = false;
     },
     addToCart() {
       const tovar = {
