@@ -85,7 +85,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: { visible: Boolean, product_title: String },
+  props: { visible: Boolean, product_title: String, many: Boolean },
   data() {
     return {
       name: "",
@@ -117,6 +117,43 @@ import { Options, Vue } from "vue-class-component";
   methods: {
     sendRequest() {
       this.isLoading = true;
+
+      if (this.many) {
+        const cart = localStorage.getItem("cart");
+        const parsed = JSON.parse(cart || "");
+        if (parsed) {
+          for (const item of parsed) {
+            const data = {
+              name: this.name,
+              phone: this.phone,
+              email: this.email,
+              company_name: this.company_name,
+              inn: this.inn,
+              pay_percent: this.pay_percent,
+              message: this.message,
+              product_name: item.title,
+            };
+            fetch("http://45.12.238.17:8000/api/requests-leasing/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }).then((response) => {
+              if (!response.ok) {
+                this.isError = true;
+                this.isLoading = false;
+              } else {
+                const data = response.json();
+                this.isSuccess = true;
+                this.isLoading = false;
+              }
+            });
+          }
+        }
+        return;
+      }
+
       const data = {
         name: this.name,
         phone: this.phone,
@@ -125,6 +162,7 @@ import { Options, Vue } from "vue-class-component";
         inn: this.inn,
         pay_percent: this.pay_percent,
         message: this.message,
+        product_name: this.product_title,
       };
       fetch("http://45.12.238.17:8000/api/requests-leasing/", {
         method: "POST",

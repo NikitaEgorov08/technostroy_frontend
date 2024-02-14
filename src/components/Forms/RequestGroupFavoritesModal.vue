@@ -1,36 +1,75 @@
 <template>
-  <div
-    class="request-group-favorites-modal"
-    :style="{ display: visible ? 'block' : 'none' }"
-  >
+  <div class="repair-price-modal">
     <div class="form-container">
-      <div class="close-container" @click="$emit('close')">
+      <div class="close-container" @click="close">
         <div class="close-hover"></div>
         <div class="close"></div>
       </div>
 
-      <img class="background-form" src="../../assets/image/Gears.png" alt="" />
-      <div class="form-info">
-        <p class="form-title">Заявка на группу товаров</p>
-
-        <input class="form-input" type="text" placeholder="Введите ваше имя*" />
+      <img
+        class="background-form"
+        src="../../assets/image/Gears.png"
+        alt=""
+        v-show="!isError && !isSuccess"
+      />
+      <p class="form-title-success" v-show="isSuccess">Отправлено успешно</p>
+      <p class="form-title-error" v-show="isError">Произошла ошибка</p>
+      <div class="form-info" v-show="!isError && !isSuccess">
+        <p class="form-title">Оставить заявку на группу товаров</p>
+        <span class="form-subtitle"
+          >Оставьте Ваши данные, чтобы мы связались с Вами и ответили на все
+          интересующие Вас вопросы</span
+        >
+        <input
+          class="form-input"
+          type="text"
+          placeholder="Введите ваше имя*"
+          v-model="name"
+        />
         <input
           class="form-input"
           type="text"
           placeholder="Введите ваш номер телефона*"
+          v-model="phone"
         />
         <input
           class="form-input"
           type="text"
           placeholder="Введите ваш e-mail*"
+          v-model="email"
         />
+        <div>
+          <input
+            type="checkbox"
+            class="custom-checkbox"
+            id="delivery"
+            name="delivery"
+            v-model="is_delivery"
+          />
+          <label for="delivery">Требуется расчет доставки</label>
+        </div>
+        <input
+          v-if="is_delivery"
+          class="form-input"
+          type="text"
+          placeholder="Введите адрес доставки"
+          v-model="address"
+        />
+        <textarea
+          class="form-comment"
+          type="text"
+          placeholder="Комментарий"
+          v-model="message"
+        ></textarea>
 
         <p class="form-bottom">
           * Отправляя заявку, Вы выражаете согласие на обработку персональных
           данных и соглашаетесь с политикой конфиденциальности
         </p>
         <div class="form-btn">
-          <button class="btn">Отправить заявку</button>
+          <button class="btn" @click="sendRequest" :disabled="btnDisabled">
+            {{ isLoading ? "Загрузка..." : "Отправить заявку" }}
+          </button>
         </div>
       </div>
     </div>
@@ -40,128 +79,130 @@
 import { Options, Vue } from "vue-class-component";
 
 @Options({
-  components: {},
-  props: { visible: Boolean },
+  props: ["product_title"],
   data() {
     return {
-      /* formItems: [
-                {
-                  id: 1,
-                  title: "Заявка на группу товаров",
-                  name: "",
-                  checked: false,
-                },
-              ], */
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      address: "",
+      company_name: "",
+      is_delivery: false,
+      is_commercial: false,
+      isError: false,
+      isSuccess: false,
+      isLoading: false,
     };
+  },
+  computed: {
+    btnDisabled() {
+      return (
+        !this.name.length ||
+        !this.phone.length ||
+        !this.email.length ||
+        !this.message.length
+      );
+    },
+  },
+  methods: {
+    sendRequest() {
+      this.isLoading = true;
+      const cart = localStorage.getItem("cart");
+      const parsed = JSON.parse(cart || "");
+      if (parsed) {
+        for (const item of parsed) {
+          const data: any = {
+            name: this.name,
+            phone: this.phone,
+            email: this.email,
+            message: this.message,
+            product_name: item.title,
+            is_delivery: this.is_delivery,
+            is_commercial: this.is_commercial,
+            address: this.address,
+            company_name: this.company_name,
+          };
+          if (item.type === "tech") {
+            fetch("http://45.12.238.17:8000/api/requests-tech/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }).then((response) => {
+              if (!response.ok) {
+                this.isError = true;
+                this.isLoading = false;
+              } else {
+                const data = response.json();
+                this.isSuccess = true;
+                this.isLoading = false;
+              }
+            });
+          } else if (item.type === "part") {
+            fetch("http://45.12.238.17:8000/api/requests-parts/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }).then((response) => {
+              if (!response.ok) {
+                this.isError = true;
+                this.isLoading = false;
+              } else {
+                const data = response.json();
+                this.isSuccess = true;
+                this.isLoading = false;
+              }
+            });
+          }
+        }
+        localStorage.clear();
+      }
+    },
+    close() {
+      this.name = "";
+      this.phone = "";
+      this.email = "";
+      this.message = "";
+      this.is_devlivery = true;
+      this.isError = false;
+      this.isSuccess = false;
+      this.$emit("close");
+    },
   },
 })
 export default class RequestGroupFavoritesModal extends Vue {}
 </script>
-<style>
-.request-group-favorites-modal {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
 
-  .form-container {
-    border: 1px solid #000;
-    .close-container:hover {
-      .close-hover {
-        position: absolute;
-
-        top: 16px;
-        right: 16px;
-        background-color: #ffcc00;
-        width: 36px;
-        height: 36px;
-        border-radius: 10%;
-        z-index: 3;
-        cursor: pointer;
-      }
-    }
-
-    .close:before,
-    .close:after {
-      content: "";
-      position: absolute;
-
-      top: 32px;
-      right: 22px;
-      width: 24px;
-      height: 4px;
-      background: #333;
-      z-index: 4;
-      cursor: pointer;
-    }
-    .close:before {
-      transform: rotate(45deg);
-    }
-    .close:after {
-      transform: rotate(-45deg);
-    }
-
-    .background-form {
-      position: absolute;
-      right: -56px;
-      transform: scale(-1, 1);
-    }
-    .form-info {
-      background-color: #fff;
-      text-align: left;
-      padding: 16px 40px;
-      .form-title {
-        text-align: center;
-        font-size: 24px;
-      }
-
-      .form-input {
-        display: block;
-        width: 100%;
-        margin-top: 2rem;
-        background-color: none;
-        border: none;
-        border-bottom: 1px solid #000;
-      }
-
-      .form-comment {
-        display: block;
-        width: 100%;
-        height: 6rem;
-        margin-top: 2rem;
-        background-color: none;
-
-        border: 1px solid #000;
-        resize: none;
-      }
-      .form-bottom {
-        font-size: 14px;
-      }
-      .form-btn {
-        margin-top: 2rem;
-        margin-bottom: 8px;
-        display: flex;
-        justify-content: center;
-        .btn {
-          color: rgba(255, 204, 0, 0.5);
-
-          border: none;
-          background-color: #949494;
-          border-radius: 6px;
-          padding: 8px 20px;
-        }
-      }
-    }
-  }
+<style scoped>
+.custom-checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
 }
-@media (max-width: 1600px) {
-  .request-group-favorites-modal .form-container .form-info .form-input {
-  }
+.custom-checkbox + label {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  text-align: end;
+  margin-top: 24px;
 }
-@media (max-width: 768px) {
-  .request-group-favorites-modal {
-    width: 100%;
-  }
+.custom-checkbox + label::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  flex-grow: 0;
+  border: 1px solid #000;
+  margin-right: 12px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.custom-checkbox:checked + label::before {
+  background-image: url("../../assets/icon/Check.svg");
 }
 </style>

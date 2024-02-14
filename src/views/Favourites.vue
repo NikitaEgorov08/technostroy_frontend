@@ -28,10 +28,21 @@
       <!-- <div class="favourite-card-checked">{{ item.checked }}</div> -->
     </div>
     <div class="favourites-buttons">
-      <button class="application-favorites" @click="showModalGroupFavorites">
+      <button
+        class="application-favorites btn"
+        @click="showModalGroupFavorites"
+        :disabled="!cartItems.length"
+      >
         Отправить заявку
       </button>
-      <button class="forms-btn" @click="showModalLeasing">
+      <button
+        class="forms-btn btn"
+        @click="showModalLeasing"
+        :disabled="
+          !cartItems.length ||
+          !cartItems.filter((i) => i.type === 'tech').length
+        "
+      >
         Купить в лизинг
       </button>
       <a class="delite-btn" @click="deleteChecked()">Удалить выбранное</a>
@@ -42,6 +53,7 @@
     @close="closeModalGroupFavorites"
   />
   <leasing-request-modal
+    :many="true"
     v-show="leasingRequestModalVisibility"
     @close="closeModalLeasing"
   />
@@ -67,14 +79,13 @@ import Bulldozer from "../assets/image/Bulldozer.png";
     showModalGroupFavorites() {
       this.groupFavoritesModalVisibility = true;
     },
-
     closeModalGroupFavorites() {
       this.groupFavoritesModalVisibility = false;
+      this.cartItems = [];
     },
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
     },
-
     closeModalLeasing() {
       this.leasingRequestModalVisibility = false;
     },
@@ -222,5 +233,28 @@ export default class Favourites extends Vue {}
   .favourites .favourites-buttons {
     flex-wrap: wrap;
   }
+}
+.btn {
+  color: #000;
+
+  border: none;
+  background-color: #ffcc00;
+  border-radius: 6px;
+  padding: 8px 20px;
+  &:hover {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  &:active {
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  }
+}
+.btn:disabled,
+.btn[disabled] {
+  color: rgba(255, 204, 0, 0.5);
+
+  border: none;
+  background-color: #949494;
+  border-radius: 6px;
+  padding: 8px 20px;
 }
 </style>

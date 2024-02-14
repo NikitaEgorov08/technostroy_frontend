@@ -49,7 +49,8 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
       const tovar = {
         id: Math.round(Math.random() * 100),
         title: this.title,
-        image: "http://localhost:8080/img/Tractor.135f9fd1.png",
+        image: this.img,
+        type: "part",
         checked: false,
       };
       const currentCart = localStorage.getItem("cart");
