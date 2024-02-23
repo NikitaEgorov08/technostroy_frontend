@@ -168,7 +168,7 @@ export default class TechProduct extends Vue {}
 </script>
 <style>
 b {
-  font-weight: 500;
+  font-weight: 700;
 }
 .tech-product {
   padding: 0 68px;
