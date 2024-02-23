@@ -47,13 +47,15 @@
       <div class="descr">
         <h3>Характеристики модели</h3>
         <p v-for="item of character" :key="item.key">
-          {{ item.key }}, {{ item.value }}
+          <b>{{ item.key }}</b
+          >: {{ item.value }}
         </p>
       </div>
       <div class="equipment" v-if="complectation.length">
         <h3>Комплектация модели</h3>
         <p v-for="item of complectation" :key="item.key">
-          {{ item.key }}, {{ item.value }}
+          <b>{{ item.key }}</b
+          >: {{ item.value }}
         </p>
       </div>
     </div>
@@ -165,6 +167,9 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
 export default class TechProduct extends Vue {}
 </script>
 <style>
+b {
+  font-weight: 500;
+}
 .tech-product {
   padding: 0 68px;
   .tech-product-hero {
