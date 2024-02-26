@@ -46,17 +46,11 @@
     <div class="description" v-if="character.length" id="desc">
       <div class="descr">
         <h3>Характеристики модели</h3>
-        <p v-for="item of character" :key="item.key">
-          <b>{{ item.key }}</b
-          >: {{ item.value }}
-        </p>
+        <p v-html="character"></p>
       </div>
       <div class="equipment" v-if="complectation.length">
         <h3>Комплектация модели</h3>
-        <p v-for="item of complectation" :key="item.key">
-          <b>{{ item.key }}</b
-          >: {{ item.value }}
-        </p>
+        <p v-html="complectation"></p>
       </div>
     </div>
   </div>
