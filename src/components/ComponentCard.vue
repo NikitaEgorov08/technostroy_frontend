@@ -107,6 +107,8 @@ export default class ComponentCard extends Vue {}
   }
   .component-card-img {
     width: 100%;
+    height: 180px;
+    object-fit: contain;
   }
   .service-card-info {
     text-align: left;
