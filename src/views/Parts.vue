@@ -17,6 +17,11 @@
         :url="'/parts/' + item.id"
         :img="item.image"
         :title="item.title"
+        :slug="
+          item.title === 'Запчасти для трубоукладчиков'
+            ? 'truboukladchiki'
+            : null
+        "
       />
     </div>
   </div>
