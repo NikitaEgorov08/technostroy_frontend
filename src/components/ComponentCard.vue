@@ -10,11 +10,11 @@
       <span class="compatibility">Совместим с: {{ compatibility }}</span>
       <span class="article-number">Артикул: {{ article_number }}</span>
       <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>
-      <router-link :to="url" class="detail">Подробнее</router-link>
-      <button class="forms-btn service-card-btn" @click="showModalPrice">
-        Купить
-      </button>
     </div>
+    <router-link :to="url" class="detail">Подробнее</router-link>
+    <button class="forms-btn service-card-btn" @click="showModalPrice">
+      Купить
+    </button>
   </div>
   <request-tech
     v-show="repairPriceModalVisibility"
@@ -79,6 +79,7 @@ export default class ComponentCard extends Vue {}
   border: 1px solid #fc0;
   background: #fff;
   padding: 36px;
+  position: relative;
   .component-card-top {
     display: flex;
     justify-content: space-between;
@@ -115,20 +116,29 @@ export default class ComponentCard extends Vue {}
     position: relative;
     .card-text {
       font-size: 18px;
+      min-height: 180px;
     }
-    .detail {
-      color: #000;
-      position: absolute;
-      right: 0;
-    }
-    .service-card-btn {
-      margin: 0 auto;
-      margin-top: 80px;
-    }
+
     .compatibility {
       display: block;
       margin-top: 8px;
     }
+  }
+  .detail {
+    color: #000;
+    position: absolute;
+    right: 1%;
+    bottom: 10%;
+    &:hover {
+      color: #f60707;
+    }
+  }
+  .service-card-btn {
+    position: absolute;
+    bottom: 1%;
+
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 @media (max-width: 1600px) {
