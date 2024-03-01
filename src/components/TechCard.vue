@@ -135,6 +135,9 @@ export default class TechCard extends Vue {}
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      position: absolute;
+      width: 60%;
+      bottom: 5%;
     }
   }
 }
@@ -188,6 +191,14 @@ export default class TechCard extends Vue {}
   }
   .tech-card .tech-card-item {
     margin-left: 0;
+  }
+  .tech-card .tech-card-item .tech-card-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: auto;
+    gap: 8px;
+    position: inherit;
   }
 }
 </style>
