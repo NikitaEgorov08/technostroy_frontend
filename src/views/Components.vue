@@ -34,18 +34,29 @@
       />
     </div>
     <h3 v-else>К сожалению, в данной категории нет товаров</h3>
+    <div class="catalog-bottom">
+      <div class="catalog-bottom-title">
+        Если вы не нашли интересующую вас запчасть, оставьте свои контакты и мы
+        свяжемся с вами для уточнения наличия детали на складе.
+      </div>
+      <button class="forms-btn" @click="showModal">Отправить заявку</button>
+    </div>
   </div>
+  <contact-form v-show="contactFormVisibility" @close="closeModal" />
 </template>
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to /src
+import ComponentCard from "@/components/ComponentCard.vue";
+import ContactForm from "../components/Forms/ContactForm.vue";
 
 @Options({
   components: {
     ComponentCard,
+    ContactForm,
   },
   data() {
     return {
+      contactFormVisibility: false,
       parts: [],
       subcategoryTitle: "",
       categoryTitle: "",
@@ -56,6 +67,12 @@ import ComponentCard from "@/components/ComponentCard.vue"; // @ is an alias to 
     back(e: Event) {
       e.preventDefault();
       this.$router.back();
+    },
+    showModal() {
+      this.contactFormVisibility = true;
+    },
+    closeModal() {
+      this.contactFormVisibility = false;
     },
   },
   computed: {
@@ -111,6 +128,21 @@ export default class Components extends Vue {}
     gap: 32px;
     padding: 64px 80px;
   }
+  .catalog-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 64px;
+
+    .catalog-bottom-title {
+      color: #000;
+      margin-right: 5%;
+      font-size: 18px;
+
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
 }
 
 @media (max-width: 1199px) {
@@ -129,6 +161,14 @@ export default class Components extends Vue {}
 @media (max-width: 768px) {
   .components .components-catalog {
     display: block;
+  }
+  .components .catalog-bottom {
+    display: block;
+    padding: 32px;
+  }
+  .components .catalog-bottom .catalog-bottom-title {
+    margin: 24px 0;
+    text-align: left;
   }
 }
 </style>

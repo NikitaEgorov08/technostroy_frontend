@@ -35,9 +35,7 @@
 
         <div class="component-product-buttons">
           <a class="favourite-btn" @click="addToCart">В избранное</a>
-          <button class="request-btn" @click="showModalPrice">
-             Купить 
-          </button>
+          <button class="request-btn" @click="showModalPrice">Купить</button>
           <button
             class="forms-btn forms-btn-adaptive"
             @click="showModalLeasing"
