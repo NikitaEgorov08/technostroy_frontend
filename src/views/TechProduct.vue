@@ -183,7 +183,7 @@ b {
       right: 2%;
     }
     .tech-product-info {
-      text-align: left;
+      text-align: justify;
 
       .detailed-btn {
         display: flex;

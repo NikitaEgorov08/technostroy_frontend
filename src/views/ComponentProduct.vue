@@ -188,7 +188,7 @@ export default class TechProduct extends Vue {}
       right: 2%;
     }
     .component-product-info {
-      text-align: left;
+      text-align: justify;
 
       .detailed-btn {
         display: flex;
