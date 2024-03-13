@@ -14,7 +14,15 @@
     <div class="tech-product-hero">
       <span class="ru-sng-mobile">Доставка по России и СНГ</span>
       <div class="top-mobile">
-        <a class="favourite-btn-mobile" @click="addToCart">В избранное</a>
+        <a
+          class="favourite-btn-mobile"
+          @click="addToCart"
+          v-if="cart.findIndex((el) => el.title === title) === -1"
+          >В избранное</a
+        >
+        <a class="favourite-btn-mobile-added" @click="addToCart" v-else
+          >В избранном</a
+        >
         <span class="status-mobile">В наличии</span>
       </div>
       <div class="tech-product-gallery">
@@ -34,7 +42,15 @@
         </p>
 
         <div class="component-product-buttons">
-          <a class="favourite-btn" @click="addToCart">В избранное</a>
+          <a
+            class="favourite-btn"
+            @click="addToCart"
+            v-if="cart.findIndex((el) => el.title === title) === -1"
+            >В избранное</a
+          >
+          <a class="favourite-btn-added" @click="addToCart" v-else
+            >В избранном</a
+          >
           <button class="request-btn" @click="showModalPrice">Купить</button>
           <button
             class="forms-btn forms-btn-adaptive"
@@ -88,8 +104,10 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
       compatibility: "",
       article_number: "",
       breadcrumbs: [],
+      cart: [],
     };
   },
+  computed: {},
   methods: {
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
@@ -116,6 +134,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
       if (currentCart) {
         const currentCartItems = JSON.parse(currentCart!);
         currentCartItems.push(tovar);
+        this.cart.push(tovar);
         localStorage.setItem("cart", JSON.stringify(currentCartItems));
       } else {
         localStorage.setItem("cart", JSON.stringify([tovar]));
@@ -162,6 +181,10 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
               });
           });
       });
+    const currentCart = localStorage.getItem("cart");
+    if (currentCart) {
+      this.cart = JSON.parse(currentCart);
+    }
   },
 })
 export default class TechProduct extends Vue {}
@@ -206,6 +229,25 @@ export default class TechProduct extends Vue {}
           position: relative;
           text-decoration: none;
           color: #f60707;
+
+          &::after {
+            content: url("../assets/icon/Favourite.svg");
+            position: absolute;
+            right: -20%;
+          }
+          &:active {
+            &::after {
+              content: url("../assets/icon/FavouriteBlack.svg");
+              position: absolute;
+              right: -20%;
+            }
+          }
+        }
+        .favourite-btn-added {
+          position: relative;
+          text-decoration: none;
+          color: #4ecb71;
+          cursor: pointer;
 
           &::after {
             content: url("../assets/icon/Favourite.svg");
@@ -308,6 +350,25 @@ export default class TechProduct extends Vue {}
           }
         }
       }
+      .favourite-btn-mobile-added {
+        position: relative;
+        text-decoration: none;
+        color: #4ecb71;
+        cursor: pointer;
+
+        &::after {
+          content: url("../assets/icon/Favourite.svg");
+          position: absolute;
+          right: -20%;
+        }
+        &:active {
+          &::after {
+            content: url("../assets/icon/FavouriteBlack.svg");
+            position: absolute;
+            right: -20%;
+          }
+        }
+      }
     }
   }
   .component-product
@@ -315,6 +376,13 @@ export default class TechProduct extends Vue {}
     .component-product-info
     .component-product-buttons {
     margin-bottom: 40px;
+  }
+  .component-product
+    .tech-product-hero
+    .component-product-info
+    .component-product-buttons
+    .favourite-btn-added {
+    display: none;
   }
 }
 </style>

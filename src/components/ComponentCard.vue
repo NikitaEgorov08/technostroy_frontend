@@ -1,7 +1,14 @@
 <template>
   <div class="component-card">
     <div class="component-card-top">
-      <a class="favourite-btn" @click="addToCart">В избранное</a>
+      <a
+        class="favourite-btn"
+        @click="addToCart"
+        v-if="cart.findIndex((el) => el.title === title) === -1"
+        >В избранное</a
+      >
+      <a class="favourite-btn-added" @click="addToCart" v-else>В избранном</a>
+
       <span class="status" v-show="inStock">В наличии</span>
     </div>
     <img class="component-card-img" :src="img" />
@@ -42,8 +49,10 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
   data() {
     return {
       repairPriceModalVisibility: false,
+      cart: [],
     };
   },
+  computed: {},
   methods: {
     addToCart() {
       const tovar = {
@@ -58,11 +67,13 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
       if (currentCart) {
         const currentCartItems = JSON.parse(currentCart!);
         currentCartItems.push(tovar);
+        this.cart.push(tovar);
         localStorage.setItem("cart", JSON.stringify(currentCartItems));
       } else {
         localStorage.setItem("cart", JSON.stringify([tovar]));
       }
     },
+
     showModalPrice() {
       this.repairPriceModalVisibility = true;
     },
@@ -70,6 +81,12 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
     closeModalPrice() {
       this.repairPriceModalVisibility = false;
     },
+  },
+  mounted() {
+    const currentCart = localStorage.getItem("cart");
+    if (currentCart) {
+      this.cart = JSON.parse(currentCart);
+    }
   },
 })
 export default class ComponentCard extends Vue {}
@@ -88,6 +105,25 @@ export default class ComponentCard extends Vue {}
       position: relative;
       text-decoration: none;
       color: #f60707;
+
+      &::after {
+        content: url("../assets/icon/Favourite.svg");
+        position: absolute;
+        right: -20%;
+      }
+      &:active {
+        &::after {
+          content: url("../assets/icon/FavouriteBlack.svg");
+          position: absolute;
+          right: -20%;
+        }
+      }
+    }
+    .favourite-btn-added {
+      position: relative;
+      text-decoration: none;
+      color: #4ecb71;
+      cursor: pointer;
 
       &::after {
         content: url("../assets/icon/Favourite.svg");
@@ -127,7 +163,7 @@ export default class ComponentCard extends Vue {}
   .detail {
     color: #000;
     position: absolute;
-    right: 1%;
+    right: 4%;
     bottom: 10%;
     &:hover {
       color: #f60707;

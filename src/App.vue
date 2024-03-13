@@ -219,7 +219,7 @@ textarea:focus {
 }
 @media (max-width: 768px) {
   h1 {
-    font-size: 24px;
+    font-size: 18px;
     width: 100%;
     left: 50%;
   }

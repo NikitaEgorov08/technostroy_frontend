@@ -462,4 +462,12 @@ export default class Header extends Vue {
     z-index: 2;
   }
 }
+@media (max-width: 480px) {
+  .header .header-info .search .search-bar {
+    width: 148px;
+  }
+  .header .header-info .logo {
+    left: 1%;
+  }
+}
 </style>

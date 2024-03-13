@@ -1,7 +1,15 @@
 <template>
   <div class="tech-card">
     <div class="tech-card-top-mobile">
-      <a class="favourite-btn-mobile" @click="addToCart">В избранное</a>
+      <a
+        class="favourite-btn-mobile"
+        @click="addToCart"
+        v-if="cart.findIndex((el) => el.title === title) === -1"
+        >В избранное</a
+      >
+      <a class="favourite-btn-mobile-added" @click="addToCart" v-else
+        >В избранном</a
+      >
       <span class="status mobile">В наличии</span>
     </div>
     <img class="tech-card-img" :src="img" />
@@ -16,7 +24,13 @@
       </div>
     </div>
     <div class="tech-card-top">
-      <a class="favourite-btn" @click="addToCart">В избранное</a>
+      <a
+        class="favourite-btn"
+        @click="addToCart"
+        v-if="cart.findIndex((el) => el.title === title) === -1"
+        >В избранное</a
+      >
+      <a class="favourite-btn-added" @click="addToCart" v-else>В избранном</a>
       <span class="status" v-show="inStock">В наличии</span>
       <span class="status" v-show="!inStock">Под заказ</span>
     </div>
@@ -41,6 +55,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
         cart: [],
         cartCount: 0,
       },
+      cart: [],
     };
   },
   methods: {
@@ -64,6 +79,8 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
       if (currentCart) {
         const currentCartItems = JSON.parse(currentCart!);
         currentCartItems.push(tovar);
+        this.cart.push(tovar);
+
         localStorage.setItem("cart", JSON.stringify(currentCartItems));
       } else {
         localStorage.setItem("cart", JSON.stringify([tovar]));
@@ -80,6 +97,12 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 
       return total.toFixed(2);
     },
+  },
+  mounted() {
+    const currentCart = localStorage.getItem("cart");
+    if (currentCart) {
+      this.cart = JSON.parse(currentCart);
+    }
   },
 })
 export default class TechCard extends Vue {}
@@ -106,6 +129,26 @@ export default class TechCard extends Vue {}
       text-decoration: none;
       color: #f60707;
       margin-right: 56px;
+      &::after {
+        content: url("../assets/icon/Favourite.svg");
+        position: absolute;
+        right: -20%;
+      }
+      &:active {
+        &::after {
+          content: url("../assets/icon/FavouriteBlack.svg");
+          position: absolute;
+          right: -20%;
+        }
+      }
+    }
+    .favourite-btn-added {
+      position: relative;
+      text-decoration: none;
+      margin-right: 56px;
+      color: #4ecb71;
+      cursor: pointer;
+
       &::after {
         content: url("../assets/icon/Favourite.svg");
         position: absolute;
@@ -173,6 +216,25 @@ export default class TechCard extends Vue {}
         position: relative;
         text-decoration: none;
         color: #f60707;
+        margin-right: 56px;
+        &::after {
+          content: url("../assets/icon/Favourite.svg");
+          position: absolute;
+          right: -20%;
+        }
+        &:active {
+          &::after {
+            content: url("../assets/icon/FavouriteBlack.svg");
+            position: absolute;
+            right: -20%;
+          }
+        }
+      }
+      .favourite-btn-mobile-added {
+        position: relative;
+        text-decoration: none;
+        color: #4ecb71;
+        cursor: pointer;
         margin-right: 56px;
         &::after {
           content: url("../assets/icon/Favourite.svg");

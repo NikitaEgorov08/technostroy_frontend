@@ -14,7 +14,15 @@
     <div class="tech-product-hero">
       <span class="ru-sng-mobile">Доставка по России и СНГ</span>
       <div class="top-mobile">
-        <a class="favourite-btn-mobile" @click="addToCart">В избранное</a>
+        <a
+          class="favourite-btn-mobile"
+          @click="addToCart"
+          v-if="cart.findIndex((el) => el.title === title) === -1"
+          >В избранное</a
+        >
+        <a class="favourite-btn-mobile-added" @click="addToCart" v-else
+          >В избранном</a
+        >
         <span class="status-mobile" v-show="inStock">В наличии</span>
         <span class="status-mobile" v-show="!inStock">Под заказ</span>
       </div>
@@ -33,7 +41,15 @@
         </p>
         <a class="detailed-btn" href="#desc">Подробнее</a>
         <div class="tech-product-buttons">
-          <a class="favourite-btn" @click="addToCart">В избранное</a>
+          <a
+            class="favourite-btn"
+            @click="addToCart"
+            v-if="cart.findIndex((el) => el.title === title) === -1"
+            >В избранное</a
+          >
+          <a class="favourite-btn-added" @click="addToCart" v-else
+            >В избранном</a
+          >
           <button class="request-btn" @click="showRequestTechModal">
             Оставить заявку
           </button>
@@ -95,6 +111,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
       character: [],
       complectation: [],
       breadcrumbs: [],
+      cart: [],
     };
   },
   methods: {
@@ -123,6 +140,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
       if (currentCart) {
         const currentCartItems = JSON.parse(currentCart!);
         currentCartItems.push(tovar);
+        this.cart.push(tovar);
         localStorage.setItem("cart", JSON.stringify(currentCartItems));
       } else {
         localStorage.setItem("cart", JSON.stringify([tovar]));
@@ -156,6 +174,10 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
             ];
           });
       });
+    const currentCart = localStorage.getItem("cart");
+    if (currentCart) {
+      this.cart = JSON.parse(currentCart);
+    }
   },
 })
 export default class TechProduct extends Vue {}
@@ -189,6 +211,7 @@ b {
         display: flex;
         justify-content: end;
         margin: 40px 0;
+        color: #000;
       }
 
       .tech-product-buttons {
@@ -201,6 +224,25 @@ b {
           position: relative;
           text-decoration: none;
           color: #f60707;
+
+          &::after {
+            content: url("../assets/icon/Favourite.svg");
+            position: absolute;
+            right: -20%;
+          }
+          &:active {
+            &::after {
+              content: url("../assets/icon/FavouriteBlack.svg");
+              position: absolute;
+              right: -20%;
+            }
+          }
+        }
+        .favourite-btn-added {
+          position: relative;
+          text-decoration: none;
+          color: #4ecb71;
+          cursor: pointer;
 
           &::after {
             content: url("../assets/icon/Favourite.svg");
@@ -264,6 +306,14 @@ b {
     .favourite-btn {
     display: none;
   }
+  .tech-product
+    .tech-product-hero
+    .tech-product-info
+    .tech-product-buttons
+    .favourite-btn-added {
+    display: none;
+  }
+
   .tech-product .tech-product-hero {
     .ru-sng-mobile {
       text-align: left;
@@ -283,6 +333,26 @@ b {
         position: relative;
         text-decoration: none;
         color: #f60707;
+
+        &::after {
+          content: url("../assets/icon/Favourite.svg");
+          position: absolute;
+          right: -20%;
+        }
+        &:active {
+          &::after {
+            content: url("../assets/icon/FavouriteBlack.svg");
+            position: absolute;
+            right: -20%;
+          }
+        }
+      }
+
+      .favourite-btn-mobile-added {
+        position: relative;
+        text-decoration: none;
+        color: #4ecb71;
+        cursor: pointer;
 
         &::after {
           content: url("../assets/icon/Favourite.svg");
