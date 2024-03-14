@@ -95,10 +95,10 @@ import { Options, Vue } from "vue-class-component";
       inn: "",
       pay_percent: "",
       message: "",
-
       isError: false,
       isSuccess: false,
       isLoading: false,
+      sended: false,
     };
   },
   computed: {
@@ -178,6 +178,7 @@ import { Options, Vue } from "vue-class-component";
           const data = response.json();
           this.isSuccess = true;
           this.isLoading = false;
+          this.sended = true;
         }
       });
     },
@@ -191,7 +192,7 @@ import { Options, Vue } from "vue-class-component";
       this.message = "";
       this.isError = false;
       this.isSuccess = false;
-      this.$emit("close");
+      this.$emit("close", this.sended);
     },
   },
 })

@@ -4,16 +4,16 @@
       <a class="header-mail" href="mailto:info@chelstroymash.ru"
         >info@chelstroymash.ru</a
       >
-      <a href="https://t.me/+79193519559"
+      <a target="_blank" href="https://t.me/+79193519559"
         ><img src="../assets/icon/Telegram.svg"
       /></a>
-      <a href="https://wa.me/79193519559"
+      <a target="_blank" href="https://wa.me/79193519559"
         ><img src="../assets/icon/Whatsapp.svg"
       /></a>
 
       <img src="../assets/icon/Tel.svg" alt="" />
 
-      <a href="tel:+79193519559">+7 (919) 351-95-59</a>
+      <a target="_blank" href="tel:+79193519559">+7 (919) 351-95-59</a>
     </div>
     <div class="header-info">
       <router-link to="/"

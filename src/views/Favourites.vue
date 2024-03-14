@@ -79,9 +79,11 @@ import Bulldozer from "../assets/image/Bulldozer.png";
     showModalGroupFavorites() {
       this.groupFavoritesModalVisibility = true;
     },
-    closeModalGroupFavorites() {
+    closeModalGroupFavorites(sended: boolean) {
       this.groupFavoritesModalVisibility = false;
-      this.cartItems = [];
+      if (sended) {
+        this.cartItems = [];
+      }
     },
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;

@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="footer-top">
       <img class="logo" src="../assets/Logo.svg" alt="" />
-      <div class="catalog">
+      <div class="catalog" @click="$router.push('/tech')">
         <a class="catalog-link" href="/tech">Перейти в каталог</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
