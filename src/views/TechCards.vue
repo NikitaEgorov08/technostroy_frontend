@@ -52,7 +52,7 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
   watch: {
     $route(to) {
       const idCarCat = to.params.idCarCat;
-      fetch(`http://45.12.238.17:8000/api/cars?category=${idCarCat}`)
+      fetch(`http://31.128.39.64:8000/api/cars?category=${idCarCat}`)
         .then((res) => {
           return res.json();
         })
@@ -63,14 +63,14 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
   },
   mounted() {
     const idCarCat = this.$route.params.idCarCat;
-    fetch(`http://45.12.238.17:8000/api/cars?category=${idCarCat}`)
+    fetch(`http://31.128.39.64:8000/api/cars?category=${idCarCat}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         this.cars = data;
       });
-    fetch("http://45.12.238.17:8000/api/cars-categories/" + idCarCat)
+    fetch("http://31.128.39.64:8000/api/cars-categories/" + idCarCat)
       .then((res) => res.json())
       .then((data) => {
         this.breadcrumbs = [

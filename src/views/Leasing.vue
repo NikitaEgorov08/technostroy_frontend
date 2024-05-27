@@ -175,7 +175,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
     },
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/leasing")
+    fetch("http://31.128.39.64:8000/api/leasing")
       .then((res) => res.json())
       .then((data) => (this.text = data[0].text));
   },

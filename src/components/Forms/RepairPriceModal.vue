@@ -99,7 +99,7 @@ import { Options, Vue } from "vue-class-component";
         is_devlivery: false,
       };
       if (this.type === "tech") {
-        fetch("http://45.12.238.17:8000/api/requests-tech/", {
+        fetch("http://31.128.39.64:8000/api/requests-tech/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,7 +116,7 @@ import { Options, Vue } from "vue-class-component";
           }
         });
       } else if (this.type === "parts") {
-        fetch("http://45.12.238.17:8000/api/requests-parts/", {
+        fetch("http://31.128.39.64:8000/api/requests-parts/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -46,7 +46,7 @@ import Bulldozer from "../assets/image/Bulldozer.png";
     };
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/cars-categories/")
+    fetch("http://31.128.39.64:8000/api/cars-categories/")
       .then((res) => {
         return res.json();
       })

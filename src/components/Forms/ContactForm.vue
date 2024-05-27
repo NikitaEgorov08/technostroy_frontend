@@ -72,7 +72,7 @@ import { Options, Vue } from "vue-class-component";
         phone: this.phone,
         email: this.email,
       };
-      fetch("http://45.12.238.17:8000/api/requests-call/", {
+      fetch("http://31.128.39.64:8000/api/requests-call/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

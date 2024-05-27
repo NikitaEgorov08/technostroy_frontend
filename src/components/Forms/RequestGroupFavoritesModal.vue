@@ -125,7 +125,7 @@ import { Options, Vue } from "vue-class-component";
             company_name: this.company_name,
           };
           if (item.type === "tech") {
-            fetch("http://45.12.238.17:8000/api/requests-tech/", {
+            fetch("http://31.128.39.64:8000/api/requests-tech/", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -143,7 +143,7 @@ import { Options, Vue } from "vue-class-component";
               }
             });
           } else if (item.type === "part") {
-            fetch("http://45.12.238.17:8000/api/requests-parts/", {
+            fetch("http://31.128.39.64:8000/api/requests-parts/", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

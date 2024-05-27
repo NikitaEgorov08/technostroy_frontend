@@ -61,7 +61,7 @@ import ContactsForm from "@/components/Forms/ContactsForm.vue";
     },
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/contacts")
+    fetch("http://31.128.39.64:8000/api/contacts")
       .then((res) => res.json())
       .then((data) => {
         data = data[0];

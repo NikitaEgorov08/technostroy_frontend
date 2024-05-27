@@ -35,7 +35,7 @@ import { Options, Vue } from "vue-class-component";
     };
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/delivery-main")
+    fetch("http://31.128.39.64:8000/api/delivery-main")
       .then((res) => res.json())
       .then((data) => (this.text = data[0].text));
   },

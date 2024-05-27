@@ -133,7 +133,7 @@ import { Options, Vue } from "vue-class-component";
               message: this.message,
               product_name: item.title,
             };
-            fetch("http://45.12.238.17:8000/api/requests-leasing/", {
+            fetch("http://31.128.39.64:8000/api/requests-leasing/", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -164,7 +164,7 @@ import { Options, Vue } from "vue-class-component";
         message: this.message,
         product_name: this.product_title,
       };
-      fetch("http://45.12.238.17:8000/api/requests-leasing/", {
+      fetch("http://31.128.39.64:8000/api/requests-leasing/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

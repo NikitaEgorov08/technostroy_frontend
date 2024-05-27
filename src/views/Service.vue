@@ -60,7 +60,7 @@ import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
   mounted() {
     const serviceID = this.$route.params.id;
 
-    fetch("http://45.12.238.17:8000/api/services/" + serviceID)
+    fetch("http://31.128.39.64:8000/api/services/" + serviceID)
       .then((response) => {
         return response.json();
       })

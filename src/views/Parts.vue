@@ -56,7 +56,7 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
     },
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/parts-categories/")
+    fetch("http://31.128.39.64:8000/api/parts-categories/")
       .then((response) => {
         return response.json();
       })

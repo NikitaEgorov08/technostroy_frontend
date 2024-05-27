@@ -35,7 +35,7 @@ import { Options, Vue } from "vue-class-component";
     return { text: "" };
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/about")
+    fetch("http://31.128.39.64:8000/api/about")
       .then((res) => res.json())
       .then((data) => (this.text = data[0].text));
   },

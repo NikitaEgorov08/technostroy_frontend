@@ -51,19 +51,19 @@ import Components from "../assets/image/Components.png";
   },
   mounted() {
     const currentCategory = this.$route.params.id;
-    fetch("http://45.12.238.17:8000/api/parts-subcategories/")
+    fetch("http://31.128.39.64:8000/api/parts-subcategories/")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         this.subcategories = data.reverse();
       });
-    fetch("http://45.12.238.17:8000/api/parts-categories/" + currentCategory)
+    fetch("http://31.128.39.64:8000/api/parts-categories/" + currentCategory)
       .then((res) => res.json())
       .then((data) => {
         this.categoryTitle = data.title;
       });
-    fetch("http://45.12.238.17:8000/api/parts-categories/" + currentCategory)
+    fetch("http://31.128.39.64:8000/api/parts-categories/" + currentCategory)
       .then((res) => res.json())
       .then((data) => {
         this.breadcrumbs = [

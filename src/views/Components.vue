@@ -84,7 +84,7 @@ import ContactForm from "../components/Forms/ContactForm.vue";
     const idCat = this.$route.params.idCat;
     const idSub = this.$route.params.idSub;
     fetch(
-      `http://45.12.238.17:8000/api/parts?category=${idCat}&subcategory=${idSub}`
+      `http://31.128.39.64:8000/api/parts?category=${idCat}&subcategory=${idSub}`
     )
       .then((response) => {
         return response.json();
@@ -92,16 +92,16 @@ import ContactForm from "../components/Forms/ContactForm.vue";
       .then((data) => {
         this.parts = data;
       });
-    fetch("http://45.12.238.17:8000/api/parts-categories/" + idCat)
+    fetch("http://31.128.39.64:8000/api/parts-categories/" + idCat)
       .then((res) => res.json())
       .then((data) => (this.categoryTitle = data.title));
-    fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
+    fetch("http://31.128.39.64:8000/api/parts-subcategories/" + idSub)
       .then((res) => res.json())
       .then((data) => (this.subcategoryTitle = data.title));
-    fetch("http://45.12.238.17:8000/api/parts-categories/" + idCat)
+    fetch("http://31.128.39.64:8000/api/parts-categories/" + idCat)
       .then((res) => res.json())
       .then((data) => {
-        fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
+        fetch("http://31.128.39.64:8000/api/parts-subcategories/" + idSub)
           .then((res) => res.json())
           .then((cat) => {
             this.breadcrumbs = [

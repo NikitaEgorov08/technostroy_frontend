@@ -107,7 +107,7 @@ import { Options, Vue } from "vue-class-component";
         product_name: this.product_title,
         is_devlivery: true,
       };
-      fetch("http://45.12.238.17:8000/api/requests-parts/", {
+      fetch("http://31.128.39.64:8000/api/requests-parts/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

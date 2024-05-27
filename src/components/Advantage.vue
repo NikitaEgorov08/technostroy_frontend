@@ -29,7 +29,7 @@ import Advantage4 from "../assets/icon/Advantage4.svg";
     return { Advantage1, Advantage2, Advantage3, Advantage4, advantages: [] };
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/benefits")
+    fetch("http://31.128.39.64:8000/api/benefits")
       .then((res) => res.json())
       .then((data) => (this.advantages = data));
   },

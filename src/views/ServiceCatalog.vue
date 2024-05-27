@@ -35,7 +35,7 @@ import Service2 from "../assets/image/Service2.png";
     },
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/services/")
+    fetch("http://31.128.39.64:8000/api/services/")
       .then((response) => {
         return response.json();
       })

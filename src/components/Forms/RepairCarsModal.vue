@@ -109,7 +109,7 @@ import { Options, Vue } from "vue-class-component";
         message: this.message,
         product_name: this.product_title,
       };
-      fetch("http://45.12.238.17:8000/api/requests-service-tech/", {
+      fetch("http://31.128.39.64:8000/api/requests-service-tech/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

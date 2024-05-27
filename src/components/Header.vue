@@ -161,13 +161,13 @@ import MobileMenu from "./Forms/MobileMenu.vue";
     },
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/parts")
+    fetch("http://31.128.39.64:8000/api/parts")
       .then((res) => res.json())
       .then(
         (data) =>
           (this.parts = data.map((item: any) => ({ ...item, type: "parts" })))
       );
-    fetch("http://45.12.238.17:8000/api/cars")
+    fetch("http://31.128.39.64:8000/api/cars")
       .then((res) => res.json())
       .then(
         (data) =>

@@ -151,7 +151,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
     const idCar = this.$route.params.idCar;
     const idCarCat = this.$route.params.idCarCat;
 
-    fetch(`http://45.12.238.17:8000/api/cars/${idCar}`)
+    fetch(`http://31.128.39.64:8000/api/cars/${idCar}`)
       .then((res) => {
         return res.json();
       })
@@ -164,7 +164,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
         this.character = data.character;
         this.complectation = data.complectation;
 
-        fetch("http://45.12.238.17:8000/api/cars-categories/" + idCarCat)
+        fetch("http://31.128.39.64:8000/api/cars-categories/" + idCarCat)
           .then((res) => res.json())
           .then((bc) => {
             this.breadcrumbs = [

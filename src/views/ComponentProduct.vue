@@ -145,7 +145,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
     const id = this.$route.params.idPart;
     const idCat = this.$route.params.idCat;
     const idSub = this.$route.params.idSub;
-    fetch("http://45.12.238.17:8000/api/parts/" + id)
+    fetch("http://31.128.39.64:8000/api/parts/" + id)
       .then((res) => {
         return res.json();
       })
@@ -158,10 +158,10 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
         this.compatibility = data.compatibility;
         this.article_number = data.article_number;
 
-        fetch("http://45.12.238.17:8000/api/parts-categories/" + idCat)
+        fetch("http://31.128.39.64:8000/api/parts-categories/" + idCat)
           .then((res) => res.json())
           .then((cat) => {
-            fetch("http://45.12.238.17:8000/api/parts-subcategories/" + idSub)
+            fetch("http://31.128.39.64:8000/api/parts-subcategories/" + idSub)
               .then((res) => res.json())
               .then((sub) => {
                 this.breadcrumbs = [

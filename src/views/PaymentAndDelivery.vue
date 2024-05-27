@@ -127,7 +127,7 @@ import CommonCalcDeliveryModal from "@/components/Forms/CommonCalcDeliveryModal.
     },
   },
   mounted() {
-    fetch("http://45.12.238.17:8000/api/delivery")
+    fetch("http://31.128.39.64:8000/api/delivery")
       .then((res) => res.json())
       .then((data) => (this.text = data[0].text));
   },
