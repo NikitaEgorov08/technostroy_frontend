@@ -1,5 +1,5 @@
 <template>
-  <h2>ИЗБРАННОЕ</h2>
+  <h1 class="leas-title">ИЗБРАННОЕ</h1>
   <div class="favourites">
     <a class="select-all" @click="deleteAll">Удалить все</a>
 

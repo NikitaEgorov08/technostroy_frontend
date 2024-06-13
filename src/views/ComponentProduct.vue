@@ -9,7 +9,7 @@
       </span>
     </div>
   </div>
-  <h2>{{ title }}</h2>
+  <h1 class="leas-title">{{ title }}</h1>
   <div class="component-product">
     <div class="tech-product-hero">
       <span class="ru-sng-mobile">Доставка по России и СНГ</span>
