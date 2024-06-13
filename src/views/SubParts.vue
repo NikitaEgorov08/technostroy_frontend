@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <h2 class="parts-title">{{ categoryTitle }}</h2>
+    <h1 class="parts-title">{{ categoryTitle }}</h1>
 
     <div class="catalog-main">
       <SubPartsCard

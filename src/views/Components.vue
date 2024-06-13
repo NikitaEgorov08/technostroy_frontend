@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <h2 class="parts-title">{{ headline }}</h2>
+    <h1 class="parts-title">{{ headline }}</h1>
 
     <div class="components-catalog" v-if="parts.length">
       <ComponentCard
