@@ -5,7 +5,7 @@
       <a href class="" @click="back">Назад</a>
     </div>
 
-    <h2>СПЕЦТЕХНИКА</h2>
+    <h1 class="leas-title">СПЕЦТЕХНИКА</h1>
     <CatalogTech />
   </div>
 </template>
