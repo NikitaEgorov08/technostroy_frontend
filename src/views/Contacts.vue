@@ -74,6 +74,9 @@ import ContactsForm from "@/components/Forms/ContactsForm.vue";
         this.ooo = data.ooo;
       });
   },
+  created() {
+    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Контакты"
+  }
 })
 export default class Contacts extends Vue {}
 </script>

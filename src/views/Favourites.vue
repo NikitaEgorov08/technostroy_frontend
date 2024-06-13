@@ -119,6 +119,9 @@ import Bulldozer from "../assets/image/Bulldozer.png";
       this.cartItems = parsed;
     }
   },
+  created() {
+    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Избранное"
+  }
 })
 export default class Favourites extends Vue {}
 </script>

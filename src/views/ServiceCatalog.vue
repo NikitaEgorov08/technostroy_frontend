@@ -43,6 +43,9 @@ import Service2 from "../assets/image/Service2.png";
         this.services = data;
       });
   },
+  created() {
+    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Услуги"
+  }
 })
 export default class CatalogService extends Vue {}
 </script>

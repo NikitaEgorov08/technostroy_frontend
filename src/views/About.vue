@@ -27,6 +27,9 @@ import Advantage from "@/components/Advantage.vue";
       this.$router.back();
     },
   },
+  created() {
+    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | О компании"
+  }
 })
 export default class About extends Vue {}
 </script>

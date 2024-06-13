@@ -179,6 +179,9 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
       .then((res) => res.json())
       .then((data) => (this.text = data[0].text));
   },
+  created() {
+    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Лизинг"
+  }
 })
 export default class Leasing extends Vue {}
 </script>
