@@ -71,6 +71,11 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
   created() {
     document.title =
       'ООО Торговый Дом "Челябинские Строительные Машины" | Каталог запчастей';
+    const description = document.querySelector("meta[name=description]");
+    description?.setAttribute(
+      "content",
+      "Купить запчасти, узлы/агрегаты для спецтехники с доставкой по России и странам СНГ"
+    );
   },
 })
 export default class Parts extends Vue {}

@@ -142,6 +142,13 @@ import ContactForm from "../components/Forms/ContactForm.vue";
               data.title +
               " | " +
               cat.title;
+            const description = document.querySelector(
+              "meta[name=description]"
+            );
+            description?.setAttribute(
+              "content",
+              "Купить " + cat.title + "с доставкой по России и странам СНГ"
+            );
             this.breadcrumbs = [
               { id: 0, title: "Каталог", link: `/parts/` },
               { id: data.id, title: data.title, link: `/parts/${idCat}` },
