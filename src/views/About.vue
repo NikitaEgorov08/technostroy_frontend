@@ -30,6 +30,11 @@ import Advantage from "@/components/Advantage.vue";
   created() {
     document.title =
       'ООО Торговый Дом "Челябинские Строительные Машины" | О компании';
+    const description = document.querySelector("meta[name=description]");
+    description?.setAttribute(
+      "content",
+      "Наша компания занимается продажей и ремонтом спецтехники, запчастей, узлов и агрегатов"
+    );
   },
 })
 export default class About extends Vue {}
