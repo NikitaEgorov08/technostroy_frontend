@@ -67,7 +67,7 @@ export default class Home extends Vue {}
     top: 0;
     left: 100%;
     z-index: 2;
-
+    display: none;
     background-size: cover;
     background-position: 50% 50%;
     transition: left 0s 0.75s;
