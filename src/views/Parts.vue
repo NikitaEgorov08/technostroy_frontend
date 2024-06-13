@@ -79,9 +79,9 @@ export default class Parts extends Vue {}
 .parts {
   .parts-subtitle {
     color: #000;
-
     font-size: 24px;
     margin-left: 64px;
+    margin-top: 32px;
     display: flex;
   }
 }
