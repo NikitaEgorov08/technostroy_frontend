@@ -182,6 +182,13 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
             document.title =
               'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
               data.title;
+            const description = document.querySelector(
+              "meta[name=description]"
+            );
+            description?.setAttribute(
+              "content",
+              "Купить " + data.title + " с доставкой по России и странам СНГ"
+            );
             this.breadcrumbs = [
               { id: 0, title: "Каталог", link: `/tech/` },
               { id: bc.id, title: bc.title, link: `/tech/${idCarCat}` },
