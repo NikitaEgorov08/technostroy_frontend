@@ -73,6 +73,7 @@ export default class Home extends Vue {}
     transition: left 0s 0.75s;
   }
   [id^="slide"]:checked + .slide {
+    display: block;
     left: 0;
     z-index: 100;
     transition: left 0.75s ease-out;
