@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h1 class="leas-title">{{ title }}</h2>
+  <h1 class="leas-title">{{ title }}</h1>
   <div class="service">
     <div class="service-img">
       <img
