@@ -46,6 +46,11 @@ import Service2 from "../assets/image/Service2.png";
   created() {
     document.title =
       'ООО Торговый Дом "Челябинские Строительные Машины" | Ремонт спецтехники';
+    const description = document.querySelector("meta[name=description]");
+    description?.setAttribute(
+      "content",
+      "Ремонт спецтехники и узлов/агрегатов в Челябинске"
+    );
   },
 })
 export default class CatalogService extends Vue {}

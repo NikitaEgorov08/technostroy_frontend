@@ -134,6 +134,11 @@ import CommonCalcDeliveryModal from "@/components/Forms/CommonCalcDeliveryModal.
   created() {
     document.title =
       'ООО Торговый Дом "Челябинские Строительные Машины" | Оплата и доставка';
+    const description = document.querySelector("meta[name=description]");
+    description?.setAttribute(
+      "content",
+      "Доставка и оплата техники и запчастей"
+    );
   },
 })
 export default class Payment extends Vue {}

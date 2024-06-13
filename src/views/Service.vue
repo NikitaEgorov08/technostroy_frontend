@@ -75,6 +75,8 @@ import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
         this.gallery = data.gallery;
         document.title =
           'ООО Торговый Дом "Челябинские Строительные Машины" | ' + data.title;
+        const description = document.querySelector("meta[name=description]");
+        description?.setAttribute("content", data.title + " в Челябинске");
       });
   },
 })

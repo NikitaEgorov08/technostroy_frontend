@@ -122,6 +122,8 @@ import Bulldozer from "../assets/image/Bulldozer.png";
   created() {
     document.title =
       'ООО Торговый Дом "Челябинские Строительные Машины" | Избранное';
+    const description = document.querySelector("meta[name=description]");
+    description?.setAttribute("content", "Избранное (корзина)");
   },
 })
 export default class Favourites extends Vue {}
