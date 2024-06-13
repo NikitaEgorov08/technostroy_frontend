@@ -89,6 +89,8 @@ import Components from "../assets/image/Components.png";
         }
       })
       .then((data) => {
+        document.title =
+          'ООО Торговый Дом "Челябинские Строительные Машины" | ' + data.title;
         this.breadcrumbs = [
           { id: 0, title: "Каталог", link: `/parts/` },
           { id: data.id, title: data.title, link: `/parts/${currentCategory}` },

@@ -140,7 +140,7 @@ import ContactForm from "../components/Forms/ContactForm.vue";
             document.title =
               'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
               data.title +
-              " " +
+              " | " +
               cat.title;
             this.breadcrumbs = [
               { id: 0, title: "Каталог", link: `/parts/` },
