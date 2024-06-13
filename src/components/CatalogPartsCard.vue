@@ -1,7 +1,7 @@
 <template>
   <router-link :to="url" class="catalog-parts-card">
     <h3 class="parts-card-title" :class="slug">{{ title }}</h3>
-    <img class="parts-card-img" :src="img" :class="slug" />
+    <img class="parts-card-img" :src="img" :class="slug" alt="" />
   </router-link>
 </template>
 <script lang="ts">

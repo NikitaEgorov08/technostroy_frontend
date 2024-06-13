@@ -102,7 +102,7 @@
       >*Информация, представленная на сайте, не является публичной офертой</span
     >
     <div class="top-mobile" @click="toTop" v-show="arrowVisible">
-      <img class="arrow-top-mobile" src="../assets/icon/Arrow-top.svg" />
+      <img class="arrow-top-mobile" src="../assets/icon/Arrow-top.svg" alt="" />
       <span class="arrow-top-text-mobile">ВВЕРХ</span>
     </div>
   </div>

@@ -11,7 +11,7 @@
 
       <span class="status" v-show="inStock">В наличии</span>
     </div>
-    <img class="component-card-img" :src="img" />
+    <img class="component-card-img" :src="img" alt="" />
     <div class="service-card-info">
       <h3 class="card-title">{{ title }}</h3>
       <span class="compatibility">Совместим с: {{ compatibility }}</span>

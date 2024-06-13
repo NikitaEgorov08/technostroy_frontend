@@ -1,6 +1,6 @@
 <template>
   <div class="catalog-service-card">
-    <img class="service-img" :src="img" />
+    <img class="service-img" :src="img" alt="" />
     <div class="service-card-info">
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">{{ text }}</p>

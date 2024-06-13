@@ -5,10 +5,10 @@
         >info@chelstroymash.ru</a
       >
       <a target="_blank" href="https://t.me/+79193519559"
-        ><img src="../assets/icon/Telegram.svg"
+        ><img src="../assets/icon/Telegram.svg" alt=""
       /></a>
       <a target="_blank" href="https://wa.me/79193519559"
-        ><img src="../assets/icon/Whatsapp.svg"
+        ><img src="../assets/icon/Whatsapp.svg" alt=""
       /></a>
 
       <img src="../assets/icon/Tel.svg" alt="" />
@@ -89,6 +89,7 @@
     class="header-modal-mobile"
     src="../assets/icon/Hero-modal-mobile.svg"
     @click="showModal"
+    alt=""
   />
   <contact-form v-show="contactFormVisibility" @close="closeModal" />
   <mobile-menu v-show="mobileMenuVisibility" @close="closeMobileMenu" />

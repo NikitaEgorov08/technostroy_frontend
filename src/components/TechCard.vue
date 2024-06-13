@@ -12,7 +12,7 @@
       >
       <span class="status mobile">В наличии</span>
     </div>
-    <img class="tech-card-img" :src="img" />
+    <img class="tech-card-img" :src="img" alt="" />
     <div class="tech-card-item">
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>

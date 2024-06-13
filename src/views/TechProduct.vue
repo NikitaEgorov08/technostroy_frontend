@@ -27,7 +27,7 @@
         <span class="status-mobile" v-show="!inStock">Под заказ</span>
       </div>
       <div class="tech-product-gallery">
-        <img class="tech-card-img" :src="img" />
+        <img class="tech-card-img" :src="img" alt="" />
       </div>
       <div class="tech-product-info">
         <span class="ru-sng">Доставка по России и СНГ</span>
