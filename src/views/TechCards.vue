@@ -87,6 +87,11 @@ import TechCard from "@/components/TechCard.vue"; // @ is an alias to /src
       .then((data) => {
         document.title =
           'ООО Торговый Дом "Челябинские Строительные Машины" | ' + data.title;
+        const description = document.querySelector("meta[name=description]");
+        description?.setAttribute(
+          "content",
+          "Купить " + data.title + " с доставкой по России и странам СНГ"
+        );
         this.breadcrumbs = [
           { id: 0, title: "Каталог", link: `/tech/` },
           { id: data.id, title: data.title, link: `/tech/${idCarCat}` },

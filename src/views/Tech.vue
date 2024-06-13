@@ -27,6 +27,11 @@ import CatalogTech from "@/components/СatalogTech.vue";
   created() {
     document.title =
       'ООО Торговый Дом "Челябинские Строительные Машины" | Каталог спецтехники';
+    const description = document.querySelector("meta[name=description]");
+    description?.setAttribute(
+      "content",
+      "Купить спецтехнику с доставкой по России и странам СНГ"
+    );
   },
 })
 export default class Tech extends Vue {}
