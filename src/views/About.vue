@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h2 class="leas-title">О нас</h2>
+  <h1 class="leas-title">О нас</h1>
   <div class="about">
     <AboutInfo />
     <Advantage />

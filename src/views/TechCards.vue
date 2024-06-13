@@ -13,7 +13,7 @@
       </span>
     </div>
   </div>
-  <h2 class="leas-title">{{ title }}</h2>
+  <h1 class="leas-title">{{ title }}</h1>
   <div class="catalog-service" v-if="cars.length">
     <TechCard
       v-for="car of cars"

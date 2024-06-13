@@ -4,7 +4,7 @@
       <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
       <a href class="" @click="back">Назад</a>
     </div>
-    <h2 class="leas-title">Лизинг</h2>
+    <h1 class="leas-title">Лизинг</h1>
     <div class="leas-info">
       <div class="leas-info-left" v-html="text"></div>
       <!--        <div class="info-left-title">Что это такое?</div>

@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h2 class="leas-title">ремонт спецтехники</h2>
+  <h1 class="leas-title">ремонт спецтехники</h1>
   <div class="catalog-service">
     <CatalogServiceCard
       v-for="service of services"

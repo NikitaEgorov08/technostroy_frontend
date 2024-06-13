@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h2 class="leas-title">Контакты</h2>
+  <h1 class="leas-title">Контакты</h1>
   <div class="contacts-home">
     <div class="contacts-block">
       <div class="contact-info">

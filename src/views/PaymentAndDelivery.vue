@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h2 class="leas-title">ОПЛАТА И ДОСТАВКА</h2>
+  <h1 class="leas-title">ОПЛАТА И ДОСТАВКА</h1>
 
   <div class="pay-del-cont" v-html="text"></div>
   <!--<h3 class="pay-del-title">ДОСТАВКА</h3>
