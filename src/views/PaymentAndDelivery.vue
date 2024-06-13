@@ -132,8 +132,9 @@ import CommonCalcDeliveryModal from "@/components/Forms/CommonCalcDeliveryModal.
       .then((data) => (this.text = data[0].text));
   },
   created() {
-    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Оплата и доставка"
-  }
+    document.title =
+      'ООО Торговый Дом "Челябинские Строительные Машины" | Оплата и доставка';
+  },
 })
 export default class Payment extends Vue {}
 </script>

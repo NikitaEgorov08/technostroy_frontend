@@ -69,8 +69,9 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
       });
   },
   created() {
-    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Каталог запчастей"
-  }
+    document.title =
+      'ООО Торговый Дом "Челябинские Строительные Машины" | Каталог запчастей';
+  },
 })
 export default class Parts extends Vue {}
 </script>

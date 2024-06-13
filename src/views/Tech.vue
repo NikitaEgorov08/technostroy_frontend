@@ -25,8 +25,9 @@ import CatalogTech from "@/components/СatalogTech.vue";
     },
   },
   created() {
-    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Каталог спецтехники"
-  }
+    document.title =
+      'ООО Торговый Дом "Челябинские Строительные Машины" | Каталог спецтехники';
+  },
 })
 export default class Tech extends Vue {}
 </script>

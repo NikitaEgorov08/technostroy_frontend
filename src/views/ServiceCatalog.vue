@@ -44,8 +44,9 @@ import Service2 from "../assets/image/Service2.png";
       });
   },
   created() {
-    document.title = "ООО Торговый Дом \"Челябинские Строительные Машины\" | Услуги"
-  }
+    document.title =
+      'ООО Торговый Дом "Челябинские Строительные Машины" | Услуги';
+  },
 })
 export default class CatalogService extends Vue {}
 </script>
