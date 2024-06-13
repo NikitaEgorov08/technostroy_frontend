@@ -193,7 +193,9 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
                 );
                 description?.setAttribute(
                   "content",
-                  "Купить " + data.title + "с доставкой по России и странам СНГ"
+                  "Купить " +
+                    data.title +
+                    " с доставкой по России и странам СНГ"
                 );
                 this.breadcrumbs = [
                   { id: 0, title: "Каталог", link: `/parts/` },

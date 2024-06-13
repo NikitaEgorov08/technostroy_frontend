@@ -94,7 +94,7 @@ import Components from "../assets/image/Components.png";
         const description = document.querySelector("meta[name=description]");
         description?.setAttribute(
           "content",
-          "Купить " + data.title + "с доставкой по России и странам СНГ"
+          "Купить " + data.title + " с доставкой по России и странам СНГ"
         );
         this.breadcrumbs = [
           { id: 0, title: "Каталог", link: `/parts/` },

@@ -147,7 +147,7 @@ import ContactForm from "../components/Forms/ContactForm.vue";
             );
             description?.setAttribute(
               "content",
-              "Купить " + cat.title + "с доставкой по России и странам СНГ"
+              "Купить " + cat.title + " с доставкой по России и странам СНГ"
             );
             this.breadcrumbs = [
               { id: 0, title: "Каталог", link: `/parts/` },
