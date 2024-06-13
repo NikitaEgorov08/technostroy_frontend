@@ -95,6 +95,7 @@ h1.parts-title {
   font-family: sans-serif;
   width: unset;
   color: #000;
+  text-wrap: wrap;
 }
 .service {
   padding: 64px;
