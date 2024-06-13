@@ -50,10 +50,10 @@
         </p>
         <div class="social">
           <a href="https://t.me/+79193519559"
-            ><img class="soc" src="../assets/icon/Telegram.svg"
+            ><img class="soc" src="../assets/icon/Telegram.svg" alt=""
           /></a>
           <a href="https://wa.me/79193519559"
-            ><img class="soc" src="../assets/icon/Whatsapp.svg"
+            ><img class="soc" src="../assets/icon/Whatsapp.svg" alt=""
           /></a>
           <a href="mailto:info@chelstroymash.ru">
             <img class="soc" src="../assets/icon/Mail.svg" alt=""
@@ -65,7 +65,7 @@
       >*Информация, представленная на сайте, не является публичной офертой</span
     >
     <div class="top" @click="toTop">
-      <img class="arrow-top" src="../assets/icon/Arrow-top.svg" />
+      <img class="arrow-top" src="../assets/icon/Arrow-top.svg" alt="" />
       <span class="arrow-top-text">ВВЕРХ</span>
     </div>
   </div>

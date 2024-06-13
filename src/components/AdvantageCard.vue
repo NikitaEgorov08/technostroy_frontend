@@ -1,6 +1,6 @@
 <template>
   <div class="advantage-card">
-    <img class="icon" :src="img" />
+    <img class="icon" :src="img" alt="" />
     <div class="card-title">{{ title }}</div>
     <div class="card-text">{{ text }}</div>
   </div>

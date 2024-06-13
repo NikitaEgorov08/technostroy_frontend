@@ -1,7 +1,7 @@
 <template>
   <router-link :to="url" class="menu-link"
     ><div class="catalog-card">
-      <img class="catalog-cart-img" :src="img" />
+      <img class="catalog-cart-img" :src="img" alt="" />
       <h3 class="card-title" :class="slug">{{ title }}</h3>
       <div class="hover-link">
         <a class="link" href="">Каталог</a>
