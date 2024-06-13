@@ -8,7 +8,7 @@
         <div class="circle"></div>
       </div>
       <div class="contact" @click="showModal">
-        <a class="contact-link">Заказать звонок</a>
+        <a class="contact-link" href="#">Заказать звонок</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
       </div>
