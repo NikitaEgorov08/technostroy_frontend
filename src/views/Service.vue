@@ -3,7 +3,7 @@
     <img class="back-arrow" src="../assets/icon/Back-arrow.svg" alt="" />
     <a href class="" @click="back">Назад</a>
   </div>
-  <h2 class="leas-title">{{ title }}</h2>
+  <h1 class="leas-title">{{ title }}</h2>
   <div class="service">
     <div class="service-img">
       <img
@@ -81,6 +81,20 @@ import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
 export default class Service extends Vue {}
 </script>
 <style lang="scss">
+h1 {
+  text-align: left;
+  margin-left: 64px;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 80px;
+  position: static;
+  transform: none;
+  font-family: sans-serif;
+  width: unset;
+  color: #000;
+}
 .service {
   padding: 64px;
 
