@@ -179,6 +179,9 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
             }
           })
           .then((bc) => {
+            document.title =
+              'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
+              data.title;
             this.breadcrumbs = [
               { id: 0, title: "Каталог", link: `/tech/` },
               { id: bc.id, title: bc.title, link: `/tech/${idCarCat}` },
