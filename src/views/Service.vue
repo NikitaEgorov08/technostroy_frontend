@@ -81,7 +81,7 @@ import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
 export default class Service extends Vue {}
 </script>
 <style lang="scss">
-h1 {
+h1.leas-title {
   text-align: left;
   margin-left: 64px;
   font-size: 32px;
