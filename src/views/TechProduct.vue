@@ -162,8 +162,16 @@ import { convertLetters } from "@/utils";
               );
               this.breadcrumbs = [
                 { id: 0, title: "Каталог", link: `/tech/` },
-                { id: bc.id, title: bc.title, link: `/tech/${idCarCat}` },
-                { id: data.id, title: data.title, link: `/tech/${idCarCat}` },
+                {
+                  id: bc.id,
+                  title: bc.title,
+                  link: `/tech/${this.$route.params.idCarCat}`,
+                },
+                {
+                  id: data.id,
+                  title: data.title,
+                  link: `/tech/${this.$route.params.idCarCat}`,
+                },
               ];
             });
         });
