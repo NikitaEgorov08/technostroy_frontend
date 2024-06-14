@@ -1,5 +1,8 @@
 <template>
-  <router-link :to="url" class="menu-link"
+  <router-link
+    :to="url"
+    class="menu-link"
+    @click="$store.dispatch('setTechCategoryID', id)"
     ><div class="catalog-card">
       <img class="catalog-cart-img" :src="img" alt="" />
       <h3 class="card-title" :class="slug">{{ title }}</h3>
@@ -15,7 +18,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: ["title", "img", "slug", "url"],
+  props: ["title", "img", "slug", "url", "id"],
 })
 export default class CatalogTechCard extends Vue {}
 </script>

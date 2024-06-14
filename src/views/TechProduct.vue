@@ -89,6 +89,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 import GetOfferModal from "@/components/Forms/GetOfferModal.vue";
 import CarouselTech from "@/components/CarouselTech.vue";
 import RequestTech from "@/components/Forms/RequestTech.vue";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: {
@@ -115,6 +116,62 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
     };
   },
   methods: {
+    getData(idCar: number, idCarCat: number) {
+      if (!idCar || !idCarCat) {
+        window.location.href = "https://chelstroymash.ru/404.html";
+      }
+      fetch(`https://chelstroymash.ru/api/cars/${idCar}/`)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          if (res.status === 404) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+        })
+        .then((data) => {
+          this.title = data.title;
+          this.text = data.text_description;
+          this.img = data.image;
+          this.inStock = data.in_stock;
+          this.allowLeasing = data.allow_leasing;
+          this.character = data.character;
+          this.complectation = data.complectation;
+
+          fetch(
+            "https://chelstroymash.ru/api/cars-categories/" + idCarCat + "/"
+          )
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              }
+              if (res.status === 404) {
+                window.location.href = "https://chelstroymash.ru/404.html";
+              }
+            })
+            .then((bc) => {
+              document.title =
+                'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
+                data.title;
+              const description = document.querySelector(
+                "meta[name=description]"
+              );
+              description?.setAttribute(
+                "content",
+                "Купить " + data.title + " с доставкой по России и странам СНГ"
+              );
+              this.breadcrumbs = [
+                { id: 0, title: "Каталог", link: `/tech/` },
+                { id: bc.id, title: bc.title, link: `/tech/${idCarCat}` },
+                { id: data.id, title: data.title, link: `/tech/${idCarCat}` },
+              ];
+            });
+        });
+      const currentCart = localStorage.getItem("cart");
+      if (currentCart) {
+        this.cart = JSON.parse(currentCart);
+      }
+    },
     showModalLeasing() {
       this.leasingRequestModalVisibility = true;
     },
@@ -148,57 +205,57 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
     },
   },
   mounted() {
-    const idCar = this.$route.params.idCar;
-    const idCarCat = this.$route.params.idCarCat;
-
-    fetch(`https://chelstroymash.ru/api/cars/${idCar}/`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        if (res.status === 404) {
-          window.location.href = "https://chelstroymash.ru/404.html";
-        }
-      })
-      .then((data) => {
-        this.title = data.title;
-        this.text = data.text_description;
-        this.img = data.image;
-        this.inStock = data.in_stock;
-        this.allowLeasing = data.allow_leasing;
-        this.character = data.character;
-        this.complectation = data.complectation;
-
-        fetch("https://chelstroymash.ru/api/cars-categories/" + idCarCat + "/")
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            if (res.status === 404) {
-              window.location.href = "https://chelstroymash.ru/404.html";
-            }
-          })
-          .then((bc) => {
-            document.title =
-              'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
-              data.title;
-            const description = document.querySelector(
-              "meta[name=description]"
-            );
-            description?.setAttribute(
-              "content",
-              "Купить " + data.title + " с доставкой по России и странам СНГ"
-            );
-            this.breadcrumbs = [
-              { id: 0, title: "Каталог", link: `/tech/` },
-              { id: bc.id, title: bc.title, link: `/tech/${idCarCat}` },
-              { id: data.id, title: data.title, link: `/tech/${idCarCat}` },
-            ];
-          });
-      });
-    const currentCart = localStorage.getItem("cart");
-    if (currentCart) {
-      this.cart = JSON.parse(currentCart);
+    const idCar = this.$store.state.techItemID;
+    const idCarCat = this.$store.state.techCategoryID;
+    if (idCar > 0 && idCarCat > 0) {
+      this.getData(idCar, idCarCat);
+    } else {
+      fetch("https://chelstroymash.ru/api/cars-categories/")
+        .then((res) => res.json())
+        .then((data) => {
+          const categorySlug = this.$route.params.idCarCat;
+          const itemSlug = this.$route.params.idCar;
+          const map =
+            categorySlug === "traktora"
+              ? "Трактора"
+              : categorySlug === "buldozery"
+              ? "Бульдозеры"
+              : categorySlug === "svaeboi"
+              ? "Сваебои/Копры"
+              : categorySlug === "truboukladchiki"
+              ? "Трубоукладчики"
+              : categorySlug === "burilnaya-mashina"
+              ? "Бурильные машины"
+              : null;
+          if (!data.find((item: any) => item.title === map)?.id) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+          this.$store.dispatch(
+            "setTechCategoryID",
+            data.find((item: any) => item.title === map)?.id
+          );
+          fetch(
+            `https://chelstroymash.ru/api/cars/?category=${
+              data.find((item: any) => item.title === map)?.id
+            }`
+          )
+            .then((res) => res.json())
+            .then((data2) => {
+              console.log(data2);
+              this.$store.dispatch(
+                "setTechItemID",
+                data2.find(
+                  (item: any) => convertLetters(item.title) === itemSlug
+                )?.id
+              );
+              this.getData(
+                data2.find(
+                  (item: any) => convertLetters(item.title) === itemSlug
+                )?.id,
+                data.find((item: any) => item.title === map)?.id
+              );
+            });
+        });
     }
   },
 })

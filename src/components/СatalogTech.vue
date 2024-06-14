@@ -18,7 +18,21 @@
           ? 'burilnaya-mashina'
           : null
       "
-      :url="'/tech/' + category.id"
+      :url="
+        '/tech/' +
+        (category.title === 'Трактора'
+          ? 'traktora'
+          : category.title === 'Бульдозеры'
+          ? 'buldozery'
+          : category.title === 'Сваебои/Копры'
+          ? 'svaeboi'
+          : category.title === 'Трубоукладчики'
+          ? 'truboukladchiki'
+          : category.title === 'Бурильные машины'
+          ? 'burilnaya-mashina'
+          : null)
+      "
+      :id="category.id"
     />
   </div>
 </template>
@@ -30,6 +44,7 @@ import Drill from "../assets/image/Drill.png";
 import Three from "../assets/image/Three.png";
 import Piles from "../assets/image/Piles.png";
 import Bulldozer from "../assets/image/Bulldozer.png";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: {
@@ -45,6 +60,7 @@ import Bulldozer from "../assets/image/Bulldozer.png";
       categories: [],
     };
   },
+  methods: { convertLetters },
   mounted() {
     fetch("https://chelstroymash.ru/api/cars-categories/")
       .then((res) => {

@@ -31,6 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/tech/:idCarCat",
     name: "TechCards",
     component: TechCards,
+    props: true,
   },
   {
     path: "/tech/:idCarCat/:idCar",
@@ -97,10 +98,10 @@ const routes: Array<RouteRecordRaw> = [
     name: "NotFound",
     component: NotFound,
   },
-  //{
-  // path: "**",
-  //redirect: "/404",
-  //},
+  // {
+  //   path: "/:pathMatch(.*)*",
+  //   redirect: "/404",
+  // },
 ];
 
 const router = createRouter({

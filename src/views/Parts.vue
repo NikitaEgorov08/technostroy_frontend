@@ -62,10 +62,6 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
       })
       .then((data) => {
         this.categories = data;
-      })
-      .catch((err) => {
-        alert(JSON.stringify(err));
-        window.location.href = "https://chelstroymash.ru/404.html";
       });
   },
   created() {

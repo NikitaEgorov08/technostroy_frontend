@@ -34,7 +34,21 @@
           class="menu-link"
           v-for="category of categories"
           :key="category.id"
-          :to="'/tech/' + category.id"
+          :to="
+            '/tech/' +
+            (category.title === 'Трактора'
+              ? 'traktora'
+              : category.title === 'Бульдозеры'
+              ? 'buldozery'
+              : category.title === 'Сваебои/Копры'
+              ? 'svaeboi'
+              : category.title === 'Трубоукладчики'
+              ? 'truboukladchiki'
+              : category.title === 'Бурильные машины'
+              ? 'burilnaya-mashina'
+              : null)
+          "
+          @click="$store.dispatch('setTechCategoryID', category.id)"
           >{{ category.title }}</router-link
         >
       </nav>
@@ -93,7 +107,20 @@
           class="menu-link"
           v-for="category of categories"
           :key="category.id"
-          :to="'/tech/' + category.id"
+          :to="
+            '/tech/' +
+            (category.title === 'Трактора'
+              ? 'traktora'
+              : category.title === 'Бульдозеры'
+              ? 'buldozery'
+              : category.title === 'Сваебои/Копры'
+              ? 'svaeboi'
+              : category.title === 'Трубоукладчики'
+              ? 'truboukladchiki'
+              : category.title === 'Бурильные машины'
+              ? 'burilnaya-mashina'
+              : null)
+          "
           >{{ category.title }}</router-link
         >
       </nav>
