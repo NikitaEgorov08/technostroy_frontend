@@ -37,6 +37,9 @@ export default createStore({
     setTechItemID: (store: any, id: number) => {
       store.commit("SET_TECH_ITEM_ID", id);
     },
+    setServiceItemID: (store: any, id: number) => {
+      store.commit("SET_SERVICES_ITEM_ID", id);
+    },
   },
   modules: {},
 });

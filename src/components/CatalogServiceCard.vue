@@ -4,7 +4,12 @@
     <div class="service-card-info">
       <h3 class="card-title">{{ title }}</h3>
       <p class="card-text">{{ text }}</p>
-      <router-link :to="url" class="detail">Подробнее</router-link>
+      <router-link
+        :to="url"
+        class="detail"
+        @click="$store.dispatch('setServiceItemID', id)"
+        >Подробнее</router-link
+      >
       <button class="forms-btn service-card-btn" @click="showModal">
         Отправить заявку
       </button>
@@ -24,7 +29,7 @@ import RepairPartsModal from "./Forms/RepairPartsModal.vue";
 
 @Options({
   components: { RepairCarsModal, RepairPartsModal },
-  props: ["img", "title", "text", "url"],
+  props: ["img", "title", "text", "url", "id"],
   data() {
     return {
       repairCarsModalVisibility: false,

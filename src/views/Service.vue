@@ -28,6 +28,7 @@
 import { Options, Vue } from "vue-class-component";
 import RepairCarsModal from "@/components/Forms/RepairCarsModal.vue";
 import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: { RepairPartsModal, RepairCarsModal },
@@ -58,26 +59,65 @@ import RepairPartsModal from "@/components/Forms/RepairPartsModal.vue";
     },
   },
   mounted() {
-    const serviceID = this.$route.params.id;
-
-    fetch("https://chelstroymash.ru/api/services/" + serviceID + "/")
-      .then((response) => {
-        if (response.ok) {
+    const serviceID = this.$store.state.serviceItemID;
+    if (serviceID > 0) {
+      fetch("https://chelstroymash.ru/api/services/" + serviceID + "/")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          if (response.status === 404) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+        })
+        .then((data) => {
+          this.title = data.title;
+          this.full_text = data.full_text;
+          this.gallery = data.gallery;
+          document.title =
+            'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
+            data.title;
+          const description = document.querySelector("meta[name=description]");
+          description?.setAttribute("content", data.title + " в Челябинске");
+        });
+    } else {
+      fetch("https://chelstroymash.ru/api/services/")
+        .then((response) => {
           return response.json();
-        }
-        if (response.status === 404) {
-          window.location.href = "https://chelstroymash.ru/404.html";
-        }
-      })
-      .then((data) => {
-        this.title = data.title;
-        this.full_text = data.full_text;
-        this.gallery = data.gallery;
-        document.title =
-          'ООО Торговый Дом "Челябинские Строительные Машины" | ' + data.title;
-        const description = document.querySelector("meta[name=description]");
-        description?.setAttribute("content", data.title + " в Челябинске");
-      });
+        })
+        .then((data) => {
+          const id = data.find(
+            (item: any) => convertLetters(item.title) === this.$route.params.id
+          )?.id;
+          if (!id) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+          fetch("https://chelstroymash.ru/api/services/" + id + "/")
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              if (response.status === 404) {
+                window.location.href = "https://chelstroymash.ru/404.html";
+              }
+            })
+            .then((data) => {
+              this.title = data.title;
+              this.full_text = data.full_text;
+              this.gallery = data.gallery;
+              document.title =
+                'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
+                data.title;
+              const description = document.querySelector(
+                "meta[name=description]"
+              );
+              description?.setAttribute(
+                "content",
+                data.title + " в Челябинске"
+              );
+            });
+        });
+    }
   },
 })
 export default class Service extends Vue {}

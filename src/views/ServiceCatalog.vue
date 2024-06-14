@@ -8,10 +8,11 @@
     <CatalogServiceCard
       v-for="service of services"
       :key="service.id"
-      :url="'/services/' + service.id"
+      :url="'/services/' + convertLetters(service.title)"
       :img="service.image"
       :title="service.title"
       :text="service.description"
+      :id="service.id"
     />
   </div>
 </template>
@@ -20,6 +21,7 @@ import { Options, Vue } from "vue-class-component";
 import CatalogServiceCard from "@/components/CatalogServiceCard.vue"; // @ is an alias to /src
 import Service1 from "../assets/image/Service1.png";
 import Service2 from "../assets/image/Service2.png";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: {
@@ -29,6 +31,7 @@ import Service2 from "../assets/image/Service2.png";
     return { services: [], Service1, Service2 };
   },
   methods: {
+    convertLetters,
     back(e: Event) {
       e.preventDefault();
       this.$router.back();
