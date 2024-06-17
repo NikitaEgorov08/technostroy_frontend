@@ -14,6 +14,7 @@ import SubParts from "../views/SubParts.vue";
 import Components from "../views/Components.vue";
 import ComponentProduct from "../views/ComponentProduct.vue";
 import Service from "../views/Service.vue";
+import SiteMap from "../views/SiteMap.vue";
 import NotFound from "../views/404.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -92,6 +93,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/paymentAndDelivery",
     name: "PaymentAndDelivery",
     component: PaymentAndDelivery,
+  },
+  {
+    path: "/site-map",
+    name: "SiteMap",
+    component: SiteMap,
   },
   {
     path: "/404",
