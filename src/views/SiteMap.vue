@@ -135,7 +135,7 @@ import { Vue, Options } from "vue-class-component";
         return res.json();
       })
       .then((data) => {
-        this.categories = data.map((i) => ({ ...i, cars: [] }));
+        this.categories = data.map((i: any) => ({ ...i, cars: [] }));
         for (let category of data) {
           fetch(`https://chelstroymash.ru/api/cars/?category=${category.id}`)
             .then((res) => res.json())
