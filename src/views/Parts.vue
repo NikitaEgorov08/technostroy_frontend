@@ -14,7 +14,7 @@
       <CatalogPartsCard
         v-for="item of categories"
         :key="item.id"
-        :url="'/parts/' + item.id"
+        :url="'/parts/' + convertLetters(item.title)"
         :img="item.image"
         :title="item.title"
         :slug="
@@ -22,6 +22,7 @@
             ? 'truboukladchiki'
             : null
         "
+        :id="item.id"
       />
     </div>
   </div>
@@ -34,6 +35,7 @@ import PartsDrill from "../assets/image/PartsDrill.png";
 import PartsThree from "../assets/image/PartsThree.png";
 import PartsPiles from "../assets/image/PartsPiles.png";
 import PartsBulldozer from "../assets/image/PartsBulldozer.png";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: {
@@ -50,6 +52,7 @@ import PartsBulldozer from "../assets/image/PartsBulldozer.png";
     };
   },
   methods: {
+    convertLetters,
     back(e: Event) {
       e.preventDefault();
       this.$router.push("/");

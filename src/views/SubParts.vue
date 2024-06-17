@@ -17,9 +17,10 @@
       <SubPartsCard
         v-for="item of subcategories"
         :key="item.id"
-        :url="'/parts/' + $route.params.id + '/' + item.id"
+        :url="'/parts/' + $route.params.id + '/' + convertLetters(item.title)"
         :img="item.image"
         :title="item.title"
+        :id="item.id"
       />
     </div>
   </div>
@@ -29,6 +30,7 @@ import { Options, Vue } from "vue-class-component";
 import SubPartsCard from "@/components/SubPartsCard.vue"; // @ is an alias to /src
 import Engines from "../assets/image/Engines.png";
 import Components from "../assets/image/Components.png";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: {
@@ -44,63 +46,88 @@ import Components from "../assets/image/Components.png";
     };
   },
   methods: {
+    convertLetters,
     back(e: Event) {
       e.preventDefault();
       this.$router.back();
     },
+    getData(currentCategory: number) {
+      const currentCategoryName = this.$route.params.id;
+      fetch("https://chelstroymash.ru/api/parts-subcategories/")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          if (response.status === 404) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+        })
+        .then((data) => {
+          this.subcategories = data.reverse();
+        });
+      fetch(
+        "https://chelstroymash.ru/api/parts-categories/" + currentCategory + "/"
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          if (res.status === 404) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+        })
+        .then((data) => {
+          this.categoryTitle = data.title;
+        });
+      fetch(
+        "https://chelstroymash.ru/api/parts-categories/" + currentCategory + "/"
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          if (res.status === 404) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+        })
+        .then((data) => {
+          document.title =
+            'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
+            data.title;
+          const description = document.querySelector("meta[name=description]");
+          description?.setAttribute(
+            "content",
+            "Купить " + data.title + " с доставкой по России и странам СНГ"
+          );
+          this.breadcrumbs = [
+            { id: 0, title: "Каталог", link: `/parts/` },
+            {
+              id: data.id,
+              title: data.title,
+              link: `/parts/${currentCategoryName}`,
+            },
+          ];
+        });
+    },
   },
   mounted() {
-    const currentCategory = this.$route.params.id;
-    fetch("https://chelstroymash.ru/api/parts-subcategories/")
-      .then((response) => {
-        if (response.ok) {
+    const currentCategoryName = this.$route.params.id;
+    const currentCategory = this.$store.state.partsCategoryID;
+    if (currentCategory > 0) {
+      this.getData(currentCategory);
+    } else {
+      fetch("https://chelstroymash.ru/api/parts-categories/")
+        .then((response) => {
           return response.json();
-        }
-        if (response.status === 404) {
-          window.location.href = "https://chelstroymash.ru/404.html";
-        }
-      })
-      .then((data) => {
-        this.subcategories = data.reverse();
-      });
-    fetch(
-      "https://chelstroymash.ru/api/parts-categories/" + currentCategory + "/"
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        if (res.status === 404) {
-          window.location.href = "https://chelstroymash.ru/404.html";
-        }
-      })
-      .then((data) => {
-        this.categoryTitle = data.title;
-      });
-    fetch(
-      "https://chelstroymash.ru/api/parts-categories/" + currentCategory + "/"
-    )
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        if (res.status === 404) {
-          window.location.href = "https://chelstroymash.ru/404.html";
-        }
-      })
-      .then((data) => {
-        document.title =
-          'ООО Торговый Дом "Челябинские Строительные Машины" | ' + data.title;
-        const description = document.querySelector("meta[name=description]");
-        description?.setAttribute(
-          "content",
-          "Купить " + data.title + " с доставкой по России и странам СНГ"
-        );
-        this.breadcrumbs = [
-          { id: 0, title: "Каталог", link: `/parts/` },
-          { id: data.id, title: data.title, link: `/parts/${currentCategory}` },
-        ];
-      });
+        })
+        .then((data) => {
+          this.getData(
+            data.find(
+              (item: any) => convertLetters(item.title) === currentCategoryName
+            )?.id
+          );
+        });
+    }
   },
 })
 export default class SubParts extends Vue {}

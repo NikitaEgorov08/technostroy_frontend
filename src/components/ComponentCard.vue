@@ -18,7 +18,12 @@
       <span class="article-number">Артикул: {{ article_number }}</span>
       <p class="card-text">{{ text.slice(0, 120) + "..." }}</p>
     </div>
-    <router-link :to="url" class="detail">Подробнее</router-link>
+    <router-link
+      :to="url"
+      class="detail"
+      @click="$store.dispatch('setPartsItemID', id)"
+      >Подробнее</router-link
+    >
     <button class="forms-btn service-card-btn" @click="showModalPrice">
       Купить
     </button>
@@ -45,6 +50,7 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
     "inStock",
     "compatibility",
     "article_number",
+    "id",
   ],
   data() {
     return {

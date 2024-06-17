@@ -1,5 +1,9 @@
 <template>
-  <router-link :to="url" class="catalog-parts-card">
+  <router-link
+    :to="url"
+    class="catalog-parts-card"
+    @click="$store.dispatch('setPartsCategoryID', id)"
+  >
     <h3 class="parts-card-title" :class="slug">{{ title }}</h3>
     <img class="parts-card-img" :src="img" :class="slug" alt="" />
   </router-link>
@@ -9,7 +13,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   components: {},
-  props: ["title", "img", "slug", "url"],
+  props: ["title", "img", "slug", "url", "id"],
 })
 export default class CatalogPartsCard extends Vue {}
 </script>

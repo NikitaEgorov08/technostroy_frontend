@@ -82,6 +82,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
 
 import CalcDeliveryModal from "@/components/Forms/CalcDeliveryModal.vue";
 import RequestTech from "@/components/Forms/RequestTech.vue";
+import { convertLetters } from "@/utils";
 
 @Options({
   components: {
@@ -140,83 +141,131 @@ import RequestTech from "@/components/Forms/RequestTech.vue";
         localStorage.setItem("cart", JSON.stringify([tovar]));
       }
     },
+    getData(idCat: number, idSub: number, id: number) {
+      const currentCategoryName = this.$route.params.idCat;
+      const currentSubCategoryName = this.$route.params.idSub;
+      const currentItemName = this.$route.params.idPart;
+      fetch("https://chelstroymash.ru/api/parts/" + id + "/")
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          if (res.status === 404) {
+            window.location.href = "https://chelstroymash.ru/404.html";
+          }
+        })
+        .then((data) => {
+          this.title = data.title;
+          this.text = data.description;
+          this.img = data.image;
+          this.inStock = data.in_stock;
+          this.allowLeasing = data.allow_leasing;
+          this.compatibility = data.compatibility;
+          this.article_number = data.article_number;
+
+          fetch("https://chelstroymash.ru/api/parts-categories/" + idCat + "/")
+            .then((res) => {
+              if (res.ok) {
+                return res.json();
+              }
+              if (res.status === 404) {
+                window.location.href = "https://chelstroymash.ru/404.html";
+              }
+            })
+            .then((cat) => {
+              fetch(
+                "https://chelstroymash.ru/api/parts-subcategories/" +
+                  idSub +
+                  "/"
+              )
+                .then((res) => {
+                  if (res.ok) {
+                    return res.json();
+                  }
+                  if (res.status === 404) {
+                    window.location.href = "https://chelstroymash.ru/404.html";
+                  }
+                })
+                .then((sub) => {
+                  document.title =
+                    'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
+                    data.title;
+                  const description = document.querySelector(
+                    "meta[name=description]"
+                  );
+                  description?.setAttribute(
+                    "content",
+                    "Купить " +
+                      data.title +
+                      " с доставкой по России и странам СНГ"
+                  );
+                  this.breadcrumbs = [
+                    { id: 0, title: "Каталог", link: `/parts/` },
+                    {
+                      id: cat.id,
+                      title: cat.title,
+                      link: `/parts/${currentCategoryName}`,
+                    },
+                    {
+                      id: sub.id,
+                      title: sub.title,
+                      link: `/parts/${currentCategoryName}/${currentSubCategoryName}`,
+                    },
+                    {
+                      id: data.id,
+                      title: data.title,
+                      link: `/parts/${currentCategoryName}/${currentSubCategoryName}/${currentItemName}`,
+                    },
+                  ];
+                });
+            });
+        });
+      const currentCart = localStorage.getItem("cart");
+      if (currentCart) {
+        this.cart = JSON.parse(currentCart);
+      }
+    },
   },
   mounted() {
-    const id = this.$route.params.idPart;
-    const idCat = this.$route.params.idCat;
-    const idSub = this.$route.params.idSub;
-    fetch("https://chelstroymash.ru/api/parts/" + id + "/")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        if (res.status === 404) {
-          window.location.href = "https://chelstroymash.ru/404.html";
-        }
-      })
-      .then((data) => {
-        this.title = data.title;
-        this.text = data.description;
-        this.img = data.image;
-        this.inStock = data.in_stock;
-        this.allowLeasing = data.allow_leasing;
-        this.compatibility = data.compatibility;
-        this.article_number = data.article_number;
+    const currentCategoryName = this.$route.params.idCat;
+    const currentSubCategoryName = this.$route.params.idSub;
+    const currentItemName = this.$route.params.idPart;
+    const id = this.$store.state.partsItemID;
+    const idCat = this.$store.state.partsCategoryID;
+    const idSub = this.$store.state.partsSubCategoryID;
 
-        fetch("https://chelstroymash.ru/api/parts-categories/" + idCat + "/")
-          .then((res) => {
-            if (res.ok) {
-              return res.json();
-            }
-            if (res.status === 404) {
-              window.location.href = "https://chelstroymash.ru/404.html";
-            }
-          })
-          .then((cat) => {
-            fetch(
-              "https://chelstroymash.ru/api/parts-subcategories/" + idSub + "/"
-            )
-              .then((res) => {
-                if (res.ok) {
-                  return res.json();
-                }
-                if (res.status === 404) {
-                  window.location.href = "https://chelstroymash.ru/404.html";
-                }
-              })
-              .then((sub) => {
-                document.title =
-                  'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
-                  data.title;
-                const description = document.querySelector(
-                  "meta[name=description]"
-                );
-                description?.setAttribute(
-                  "content",
-                  "Купить " +
-                    data.title +
-                    " с доставкой по России и странам СНГ"
-                );
-                this.breadcrumbs = [
-                  { id: 0, title: "Каталог", link: `/parts/` },
-                  { id: cat.id, title: cat.title, link: `/parts/${idCat}` },
-                  {
-                    id: sub.id,
-                    title: sub.title,
-                    link: `/parts/${idCat}/${idSub}`,
-                  },
-                  {
-                    id: data.id,
-                    title: data.title,
-                    link: `/parts/${idCat}/${idSub}/${id}`,
-                  },
-                ];
-              });
-          });
-      });
-    const currentCart = localStorage.getItem("cart");
-    if (currentCart) {
-      this.cart = JSON.parse(currentCart);
+    if (idCat > 0 && idSub > 0 && id > 0) {
+      this.getData(idCat, idSub, id);
+    } else {
+      fetch("https://chelstroymash.ru/api/parts-categories/")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const calcIdCat =
+            data.find(
+              (item: any) => convertLetters(item.title) === currentCategoryName
+            )?.id || 0;
+          const calcIdSub =
+            currentSubCategoryName === "yzly_i_agregaty"
+              ? 2
+              : currentSubCategoryName === "komplektyyuschie"
+              ? 1
+              : 0;
+          fetch(
+            `https://chelstroymash.ru/api/parts/?category=${calcIdCat}&subcategory=${calcIdSub}`
+          )
+            .then((res) => res.json())
+            .then((data2) => {
+              this.getData(
+                calcIdCat,
+                calcIdSub,
+                data2.find(
+                  (item: any) => convertLetters(item.title) === currentItemName
+                )?.id
+              );
+            });
+        });
     }
   },
 })

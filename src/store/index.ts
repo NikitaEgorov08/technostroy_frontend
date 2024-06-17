@@ -37,6 +37,15 @@ export default createStore({
     setTechItemID: (store: any, id: number) => {
       store.commit("SET_TECH_ITEM_ID", id);
     },
+    setPartsCategoryID: (store: any, id: number) => {
+      store.commit("SET_PARTS_CATEGORY_ID", id);
+    },
+    setPartsSubCategoryID: (store: any, id: number) => {
+      store.commit("SET_PARTS_SUBCATEGORY_ID", id);
+    },
+    setPartsItemID: (store: any, id: number) => {
+      store.commit("SET_PARTS_ITEM_ID", id);
+    },
     setServiceItemID: (store: any, id: number) => {
       store.commit("SET_SERVICES_ITEM_ID", id);
     },
