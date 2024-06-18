@@ -4,7 +4,9 @@
     <div>
       <h3 class="map-title">Компания</h3>
       <nav class="map-nav">
-        <router-link class="map-menu-link" to="/tech">Спецтехника</router-link>
+        <router-link class="map-menu-link" to="/catalog"
+          >Спецтехника</router-link
+        >
         <router-link class="map-menu-link" to="/leasing">Лизинг</router-link>
         <router-link class="map-menu-link" to="/parts">Запчасти</router-link>
         <router-link class="map-menu-link" to="/services"
@@ -24,7 +26,7 @@
             <router-link
               class="map-menu-link"
               :to="
-                '/tech/' +
+                '/catalog/' +
                 (category.title === 'Трактора'
                   ? 'traktora'
                   : category.title === 'Бульдозеры'
@@ -44,7 +46,7 @@
             v-for="item of category.cars"
             :key="item.id"
             :to="
-              '/tech/' +
+              '/catalog/' +
               (category.title === 'Трактора'
                 ? 'traktora'
                 : category.title === 'Бульдозеры'

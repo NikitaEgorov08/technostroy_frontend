@@ -24,18 +24,18 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/tech",
+    path: "/catalog",
     name: "Tech",
     component: Tech,
   },
   {
-    path: "/tech/:idCarCat",
+    path: "/catalog/:idCarCat",
     name: "TechCards",
     component: TechCards,
     props: true,
   },
   {
-    path: "/tech/:idCarCat/:idCar",
+    path: "/catalog/:idCarCat/:idCar",
     name: "TechProduct",
     component: TechProduct,
   },

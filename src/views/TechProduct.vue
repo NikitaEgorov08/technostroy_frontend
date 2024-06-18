@@ -161,16 +161,16 @@ import { convertLetters } from "@/utils";
                 "Купить " + data.title + " с доставкой по России и странам СНГ"
               );
               this.breadcrumbs = [
-                { id: 0, title: "Каталог", link: `/tech/` },
+                { id: 0, title: "Каталог", link: `/catalog/` },
                 {
                   id: bc.id,
                   title: bc.title,
-                  link: `/tech/${this.$route.params.idCarCat}`,
+                  link: `/catalog/${this.$route.params.idCarCat}`,
                 },
                 {
                   id: data.id,
                   title: data.title,
-                  link: `/tech/${this.$route.params.idCarCat}`,
+                  link: `/catalog/${this.$route.params.idCarCat}`,
                 },
               ];
             });

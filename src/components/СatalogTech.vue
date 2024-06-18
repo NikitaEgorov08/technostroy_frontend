@@ -19,7 +19,7 @@
           : null
       "
       :url="
-        '/tech/' +
+        '/catalog/' +
         (category.title === 'Трактора'
           ? 'traktora'
           : category.title === 'Бульдозеры'

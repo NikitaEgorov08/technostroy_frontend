@@ -2,7 +2,7 @@
   <div class="mobile-menu">
     <ul class="mobile-menu-list">
       <li class="mobile-menu-item">
-        <router-link to="/tech" class="menu-link" @click="$emit('close')"
+        <router-link to="/catalog" class="menu-link" @click="$emit('close')"
           >СПЕЦТЕХНИКА</router-link
         >
       </li>

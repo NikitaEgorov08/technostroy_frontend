@@ -2,8 +2,8 @@
   <div class="footer">
     <div class="footer-top">
       <img class="logo" src="../assets/Logo.svg" alt="" />
-      <div class="catalog" @click="$router.push('/tech')">
-        <a class="catalog-link" href="/tech">Перейти в каталог</a>
+      <div class="catalog" @click="$router.push('/catalog')">
+        <a class="catalog-link" href="/catalog">Перейти в каталог</a>
         <img class="arrow" src="../assets/icon/Arrow.svg" alt="" />
         <div class="circle"></div>
       </div>
@@ -17,7 +17,7 @@
     <div class="footer-menu">
       <nav class="menu-item">
         <h3 class="footer-title">КОМПАНИЯ</h3>
-        <router-link class="menu-link" to="/tech">Спецтехника</router-link>
+        <router-link class="menu-link" to="/catalog">Спецтехника</router-link>
         <router-link class="menu-link" to="/leasing">Лизинг</router-link>
         <router-link class="menu-link" to="/parts">Запчасти</router-link>
         <router-link class="menu-link" to="/services"
@@ -35,7 +35,7 @@
           v-for="category of categories"
           :key="category.id"
           :to="
-            '/tech/' +
+            '/catalog/' +
             (category.title === 'Трактора'
               ? 'traktora'
               : category.title === 'Бульдозеры'
@@ -90,7 +90,7 @@
     <div class="footer-mobile-menu">
       <nav class="menu-item">
         <h3 class="footer-title">КОМПАНИЯ</h3>
-        <router-link class="menu-link" to="/tech">Спецтехника</router-link>
+        <router-link class="menu-link" to="/catalog">Спецтехника</router-link>
         <router-link class="menu-link" to="/leasing">Лизинг</router-link>
         <router-link class="menu-link" to="/parts">Запчасти</router-link>
         <router-link class="menu-link" to="/services"
@@ -108,7 +108,7 @@
           v-for="category of categories"
           :key="category.id"
           :to="
-            '/tech/' +
+            '/catalog/' +
             (category.title === 'Трактора'
               ? 'traktora'
               : category.title === 'Бульдозеры'

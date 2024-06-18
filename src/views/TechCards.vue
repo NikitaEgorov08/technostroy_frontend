@@ -23,7 +23,9 @@
       :allowLeasing="car.allow_leasing"
       :inStock="car.in_stock"
       :text="car.text_description"
-      :url="'/tech/' + $route.params.idCarCat + '/' + convertLetters(car.title)"
+      :url="
+        '/catalog/' + $route.params.idCarCat + '/' + convertLetters(car.title)
+      "
       :id="car.id"
     />
   </div>
@@ -83,11 +85,11 @@ import { convertLetters } from "@/utils";
             "Купить " + data.title + " с доставкой по России и странам СНГ"
           );
           this.breadcrumbs = [
-            { id: 0, title: "Каталог", link: `/tech/` },
+            { id: 0, title: "Каталог", link: `/catalog/` },
             {
               id: data.id,
               title: data.title,
-              link: `/tech/${this.$route.params.idCarCat}`,
+              link: `/catalog/${this.$route.params.idCarCat}`,
             },
           ];
         });
@@ -125,11 +127,11 @@ import { convertLetters } from "@/utils";
               "Купить " + data.title + " с доставкой по России и странам СНГ"
             );
             this.breadcrumbs = [
-              { id: 0, title: "Каталог", link: `/tech/` },
+              { id: 0, title: "Каталог", link: `/catalog/` },
               {
                 id: data.id,
                 title: data.title,
-                link: `/tech/${this.$route.params.idCarCat}`,
+                link: `/catalog/${this.$route.params.idCarCat}`,
               },
             ];
           });
@@ -183,11 +185,11 @@ import { convertLetters } from "@/utils";
               "Купить " + data.title + " с доставкой по России и странам СНГ"
             );
             this.breadcrumbs = [
-              { id: 0, title: "Каталог", link: `/tech/` },
+              { id: 0, title: "Каталог", link: `/catalog/` },
               {
                 id: data.id,
                 title: data.title,
-                link: `/tech/${this.$route.params.idCarCat}`,
+                link: `/catalog/${this.$route.params.idCarCat}`,
               },
             ];
           });

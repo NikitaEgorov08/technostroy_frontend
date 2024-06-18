@@ -70,7 +70,7 @@
     </div>
 
     <nav class="menu-item">
-      <router-link to="/tech" class="menu-link">СПЕЦТЕХНИКА</router-link>
+      <router-link to="/catalog" class="menu-link">СПЕЦТЕХНИКА</router-link>
       <router-link to="/leasing" class="menu-link">ЛИЗИНГ</router-link>
       <router-link to="/parts" class="menu-link">ЗАПЧАСТИ</router-link>
       <router-link to="/services" class="menu-link"
