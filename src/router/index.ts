@@ -123,10 +123,10 @@ router.beforeEach((to, from, next) => {
     meta.setAttribute("name", "robots");
     meta.setAttribute("content", "noindex");
     document.head.appendChild(meta);
-    // window.location.href =
-    //   "https://chelstroymash.ru/404.html?from=" +
-    //   "https://chelstroymash.ru" +
-    //   to.path;
+    window.location.href =
+      "https://chelstroymash.ru/404.html?from=" +
+      "https://chelstroymash.ru" +
+      to.path;
   } else {
     //eslint-disable-next-line
     const link: any = !!document.querySelector("link[rel='canonical']")
