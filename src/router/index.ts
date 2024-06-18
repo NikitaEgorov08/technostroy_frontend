@@ -120,7 +120,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (!to.matched.length) {
     console.log(to);
-    window.location.href = "https://chelstroymash.ru/404.html?from=" + to.path;
+    window.location.href =
+      "https://chelstroymash.ru/404.html?from=" +
+      "https://chelstroymash.ru" +
+      to.path;
   } else {
     //eslint-disable-next-line
     const link: any = !!document.querySelector("link[rel='canonical']")
