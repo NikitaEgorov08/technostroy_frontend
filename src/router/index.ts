@@ -119,7 +119,10 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
   if (!to.matched.length) {
-    console.log(to);
+    const meta = document.createElement("meta");
+    meta.setAttribute("name", "robots");
+    meta.setAttribute("content", "noindex");
+    document.head.appendChild(meta);
     window.location.href =
       "https://chelstroymash.ru/404.html?from=" +
       "https://chelstroymash.ru" +
