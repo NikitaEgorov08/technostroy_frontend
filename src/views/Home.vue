@@ -32,6 +32,9 @@ import ContactsHome from "@/components/ContactsHome.vue";
     Payment,
     ContactsHome,
   },
+  mounted() {
+    document.title = 'ООО Торговый Дом "Челябинские Строительные Машины"';
+  },
 })
 export default class Home extends Vue {}
 </script>
