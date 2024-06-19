@@ -133,7 +133,7 @@ import CommonCalcDeliveryModal from "@/components/Forms/CommonCalcDeliveryModal.
   },
   created() {
     document.title =
-      'ООО Торговый Дом "Челябинские Строительные Машины" | Оплата и доставка';
+      'Оплата и доставка | ООО Торговый Дом "Челябинские Строительные Машины"';
     const description = document.querySelector("meta[name=description]");
     description?.setAttribute(
       "content",

@@ -69,7 +69,7 @@ import { convertLetters } from "@/utils";
   },
   created() {
     document.title =
-      'ООО Торговый Дом "Челябинские Строительные Машины" | Каталог запчастей';
+      'Каталог запчастей | ООО Торговый Дом "Челябинские Строительные Машины"';
     const description = document.querySelector("meta[name=description]");
     description?.setAttribute(
       "content",

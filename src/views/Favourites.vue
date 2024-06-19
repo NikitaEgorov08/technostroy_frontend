@@ -121,7 +121,7 @@ import Bulldozer from "../assets/image/Bulldozer.png";
   },
   created() {
     document.title =
-      'ООО Торговый Дом "Челябинские Строительные Машины" | Избранное';
+      'Избранное | ООО Торговый Дом "Челябинские Строительные Машины"';
     const description = document.querySelector("meta[name=description]");
     description?.setAttribute("content", "Избранное (корзина)");
   },

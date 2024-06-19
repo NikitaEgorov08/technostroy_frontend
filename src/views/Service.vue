@@ -75,8 +75,9 @@ import { convertLetters } from "@/utils";
           this.full_text = data.full_text;
           this.gallery = data.gallery;
           document.title =
-            'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
-            data.title;
+            data.title +
+            ' | ООО Торговый Дом "Челябинские Строительные Машины"';
+
           const description = document.querySelector("meta[name=description]");
           description?.setAttribute("content", data.title + " в Челябинске");
         });
@@ -106,8 +107,8 @@ import { convertLetters } from "@/utils";
               this.full_text = data.full_text;
               this.gallery = data.gallery;
               document.title =
-                'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
-                data.title;
+                data.title +
+                ' | ООО Торговый Дом "Челябинские Строительные Машины"';
               const description = document.querySelector(
                 "meta[name=description]"
               );

@@ -181,7 +181,7 @@ import LeasingRequestModal from "@/components/Forms/LeasingRequestModal.vue";
   },
   created() {
     document.title =
-      'ООО Торговый Дом "Челябинские Строительные Машины" | Лизинг';
+      'Лизинг | ООО Торговый Дом "Челябинские Строительные Машины"';
     const description = document.querySelector("meta[name=description]");
     description?.setAttribute(
       "content",

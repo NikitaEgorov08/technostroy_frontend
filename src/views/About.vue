@@ -29,7 +29,7 @@ import Advantage from "@/components/Advantage.vue";
   },
   created() {
     document.title =
-      'ООО Торговый Дом "Челябинские Строительные Машины" | О компании';
+      'О компании | ООО Торговый Дом "Челябинские Строительные Машины"';
     const description = document.querySelector("meta[name=description]");
     description?.setAttribute(
       "content",

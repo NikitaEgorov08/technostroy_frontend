@@ -26,7 +26,7 @@ import CatalogTech from "@/components/СatalogTech.vue";
   },
   created() {
     document.title =
-      'ООО Торговый Дом "Челябинские Строительные Машины" | Каталог спецтехники';
+      'Каталог спецтехники | ООО Торговый Дом "Челябинские Строительные Машины"';
     const description = document.querySelector("meta[name=description]");
     description?.setAttribute(
       "content",

@@ -151,8 +151,9 @@ import { convertLetters } from "@/utils";
             })
             .then((bc) => {
               document.title =
-                'ООО Торговый Дом "Челябинские Строительные Машины" | ' +
-                data.title;
+                data.title +
+                ' | ООО Торговый Дом "Челябинские Строительные Машины"';
+
               const description = document.querySelector(
                 "meta[name=description]"
               );
